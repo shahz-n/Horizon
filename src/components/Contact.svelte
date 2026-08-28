@@ -48,7 +48,7 @@
               </svg>
               <span class="link-value relative z-10">{siteData.email}</span>
             </div>
-            <span class={cn(`link-label font-mono text-[11px] uppercase tracking-[0.08em] text-text-faint relative z-10`)}>Email</span>
+            <span class={cn(`link-label font-mono text-xs uppercase tracking-[0.08em] text-text-faint relative z-10`)}>Email</span>
           </a>
 
           <!-- GITHUB -->
@@ -60,7 +60,7 @@
               </svg>
               <span class="link-value relative z-10">{siteData.github.replace('https://', '')}</span>
             </div>
-            <span class={cn(`link-label font-mono text-[11px] uppercase tracking-[0.08em] text-text-faint relative z-10`)}>GitHub</span>
+            <span class={cn(`link-label font-mono text-xs uppercase tracking-[0.08em] text-text-faint relative z-10`)}>GitHub</span>
           </a>
 
           <!-- LINKEDIN -->
@@ -74,7 +74,7 @@
               </svg>
               <span class="link-value relative z-10">{siteData.linkedin.replace('https://', '')}</span>
             </div>
-            <span class={cn(`link-label font-mono text-[11px] uppercase tracking-[0.08em] text-text-faint relative z-10`)}>LinkedIn</span>
+            <span class={cn(`link-label font-mono text-xs uppercase tracking-[0.08em] text-text-faint relative z-10`)}>LinkedIn</span>
           </a>
 
           <!-- PHONE -->
@@ -86,7 +86,7 @@
               </svg>
               <span class="link-value relative z-10">{siteData.phone}</span>
             </div>
-            <span class={cn(`link-label font-mono text-[11px] uppercase tracking-[0.08em] text-text-faint relative z-10`)}>Phone</span>
+            <span class={cn(`link-label font-mono text-xs uppercase tracking-[0.08em] text-text-faint relative z-10`)}>Phone</span>
           </a>
         </div>
       </div>
@@ -95,17 +95,17 @@
         <div class="glow-border"></div>
 
         <div class={cn(`field relative z-10 text-left`)}>
-          <label for="cf-name" class={cn(`block font-mono text-[11px] uppercase tracking-[0.08em] text-text-faint mb-2`)}>Name</label>
+          <label for="cf-name" class={cn(`block font-mono text-xs uppercase tracking-[0.08em] text-text-faint mb-2`)}>Name</label>
           <input id="cf-name" name="name" type="text" placeholder={contactData.form.namePlaceholder} required class="form-input" />
         </div>
 
         <div class={cn(`field relative z-10 text-left`)}>
-          <label for="cf-email" class={cn(`block font-mono text-[11px] uppercase tracking-[0.08em] text-text-faint mb-2`)}>Email</label>
+          <label for="cf-email" class={cn(`block font-mono text-xs uppercase tracking-[0.08em] text-text-faint mb-2`)}>Email</label>
           <input id="cf-email" name="email" type="email" placeholder={contactData.form.emailPlaceholder} required class="form-input" />
         </div>
 
         <div class={cn(`field relative z-10 text-left`)}>
-          <label for="cf-message" class={cn(`block font-mono text-[11px] uppercase tracking-[0.08em] text-text-faint mb-2`)}>Message</label>
+          <label for="cf-message" class={cn(`block font-mono text-xs uppercase tracking-[0.08em] text-text-faint mb-2`)}>Message</label>
           <textarea id="cf-message" name="message" rows="5" placeholder={contactData.form.messagePlaceholder} required class="form-input"></textarea>
         </div>
 
@@ -120,7 +120,7 @@
   .contact-link { transition: background 0.25s ease, transform 0.2s ease; }
   .contact-link:hover { background: var(--glass-bg-hover); transform: translateX(6px); }
   .contact-form { padding: 38px; }
-  .form-input { width: 100%; background: rgba(120, 140, 255, 0.04); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 14px 18px; color: var(--text); font-family: var(--ff-body); font-size: 15px; resize: vertical; transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; }
+  .form-input { width: 100%; background: rgba(120, 140, 255, 0.04); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 14px 18px; color: var(--text); font-family: var(--ff-body); font-size: 1rem; resize: vertical; transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; }
   .form-input::placeholder { color: var(--text-faint); }
   .form-input:focus { outline: none; border-color: var(--accent-blue); background: rgba(120, 140, 255, 0.06); box-shadow: 0 0 0 3px rgba(123, 166, 247, 0.12); }
   @media (max-width: 900px) { .contact-form { padding: 26px; } }

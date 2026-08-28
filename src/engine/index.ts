@@ -47,16 +47,12 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   camera.position.set(0, 0, 16);
 
   /* Lighting */
-  const sun = new THREE.DirectionalLight(0xeef2ff, 2.4);
+  const sun = new THREE.DirectionalLight(0xefefff, 2.5);
   sun.position.set(0, 0, 10);
   scene.add(sun);
 
-  const fill = new THREE.HemisphereLight(0x3545b0, 0x080414, 0.65);
+  const fill = new THREE.HemisphereLight(0x3545b0, 0x080414, 0.6);
   scene.add(fill);
-
-  const rimLight = new THREE.PointLight(0x7050e0, 1.0, 120);
-  rimLight.position.set(12, -6, -18);
-  scene.add(rimLight);
 
   /* Engine Subsystems */
   const starfield: StarfieldSystem = createStarfield(

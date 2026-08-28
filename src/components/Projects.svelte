@@ -310,7 +310,7 @@
   }
   .placeholder-text {
     font-family: var(--ff-mono);
-    font-size: 11px;
+    font-size: 0.6875rem;
     opacity: 0.35;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -329,7 +329,7 @@
 
   .glass-capsule {
     font-family: var(--ff-mono);
-    font-size: 11px;
+    font-size: 0.6875rem;
     color: var(--text);
     background: rgba(10, 14, 30, 0.82);
     border: 1px solid rgba(140, 180, 255, 0.3);
@@ -373,7 +373,7 @@
 
   .p-title {
     font-family: var(--ff-display);
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 600;
     color: var(--text);
     text-align: left;
@@ -381,7 +381,7 @@
 
   .p-tagline {
     color: var(--accent-purple);
-    font-size: 14.5px;
+    font-size: 0.90625rem;
     margin-top: 4px;
     font-weight: 500;
     text-align: left;
@@ -398,7 +398,7 @@
     position: relative;
     padding-left: 18px;
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-bottom: 9px;
     line-height: 1.65;
     text-align: left;

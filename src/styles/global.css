@@ -85,16 +85,22 @@
     rgba(103, 232, 249, 0.15),
     rgba(139, 92, 246, 0.15)
   );
+  --gradient-glass: linear-gradient(
+    135deg,
+    rgba(103, 232, 249, 0.03),
+    rgba(139, 92, 246, 0.03)
+  );
 
   /* Text */
-  --text: #f0eef8;
+  /* --text: #f0eef8; */
+  --text: #fff;
   --text-secondary: #b0b8d0;
   --text-muted: #7a829a;
   --text-faint: #4a5068;
 
   /* Layout */
-  --radius-lg: 24px;
-  --radius: 18px;
+  --radius-lg: 20px;
+  --radius: 16px;
   --radius-sm: 12px;
   --radius-xs: 8px;
 
@@ -117,8 +123,33 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(120, 140, 255, 0.3) transparent;
+  /* scrollbar-width: thin;
+  scrollbar-color: rgba(120, 140, 255, 0.3) transparent; */
+}
+
+/* Responsive font-size rules for device sizes */
+html {
+  font-size: 16px;
+}
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (max-width: 640px) {
+  html {
+    font-size: 13.5px;
+  }
+}
+@media (max-width: 420px) {
+  html {
+    font-size: 12.5px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -138,7 +169,7 @@ body {
   background: var(--void);
   color: var(--text);
   font-family: var(--ff-body);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -234,24 +265,37 @@ section {
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent-purple);
+  /* color: ; */
   margin-bottom: 16px;
   display: flex;
   align-items: center;
   gap: 12px;
+  font-weight: 600;
+  /* background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: var(--accent-cyan);
 }
-.eyebrow::before {
+.eyebrow::before,
+.eyebrow::after {
   content: "";
-  width: 24px;
+  width: 32px;
   height: 1px;
-  background: var(--accent-purple);
+  /* background: var(--gradient-primary); */
+  background: var(--accent-cyan);
   display: inline-block;
 }
 
 /* ===== Section header ===== */
 .section-head {
-  max-width: 760px;
-  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 4rem;
 }
 .section-head h2 {
   font-size: clamp(28px, 4vw, 44px);
@@ -268,7 +312,8 @@ section {
 
 /* ===== Glass primitive ===== */
 .glass {
-  background: var(--glass-bg);
+  /* background: var(--glass-bg); */
+  background: var(--gradient-glass);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(24px) saturate(140%);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
@@ -283,39 +328,6 @@ section {
     background 0.4s ease,
     box-shadow 0.4s ease;
 }
-
-/* ===== Glass glow effect (applied via JS glassGlow.ts) ===== */
-.glass-glow {
-  --glow-x: 50%;
-  --glow-y: 50%;
-  --glow-opacity: 0;
-}
-
-.glow-border {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: radial-gradient(
-    300px circle at var(--glow-x) var(--glow-y),
-    rgba(123, 166, 247, 0.3),
-    rgba(167, 139, 250, 0.18),
-    transparent 70%
-  );
-  opacity: var(--glow-opacity);
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 0;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: xor;
-  padding: 1px;
-}
-
 /* ===== Reveal animation ===== */
 .reveal {
   opacity: 0;
@@ -394,4 +406,12 @@ section {
 .btn-ghost:hover {
   background: var(--glass-bg-hover);
   border-color: var(--glass-border-hover);
+}
+
+* {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }

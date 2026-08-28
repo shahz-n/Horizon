@@ -9,6 +9,7 @@
   import Skills from "./components/Skills.svelte";
   import Projects from "./components/Projects.svelte";
   import Contact from "./components/Contact.svelte";
+  import Nav from "./components/Nav.svelte";
 
   let canvasEl: HTMLCanvasElement;
   let siteEl: HTMLElement;
@@ -33,6 +34,7 @@
 </script>
 
 <canvas id="bg-canvas" bind:this={canvasEl} aria-hidden="true"></canvas>
+<Nav />
 
 <div class="site" bind:this={siteEl}>
   <Hero />

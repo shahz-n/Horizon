@@ -1,20 +1,8 @@
 {
   "eyebrow": "Stack",
-  "title": "Skills, sized by how much I reach for them.",
-  "sub": "Square 1x1 and 2x2 cards with proportional logo scaling. Larger tiles are daily tools.",
+  "title": "The stack behind the systems.",
+  "sub": "The tools I use to design, build, and ship them.",
   "skills": [
-    {
-      "name": "TypeScript",
-      "sub": "JS · TS everywhere",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-      "size": "s-2x2"
-    },
-    {
-      "name": "Node.js",
-      "sub": "Express · NestJS",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
-      "size": "s-2x2"
-    },
     {
       "name": "React",
       "sub": "Next.js · Zustand",
@@ -32,12 +20,6 @@
       "size": "s-1x1"
     },
     {
-      "name": "PostgreSQL",
-      "sub": "Mongo · DynamoDB · Firestore",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
-      "size": "s-2x2"
-    },
-    {
       "name": "Redis",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
       "size": "s-1x1"
@@ -47,42 +29,10 @@
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachekafka/apachekafka-original.svg",
       "size": "s-1x1"
     },
+
     {
       "name": "RabbitMQ",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rabbitmq/rabbitmq-original.svg",
-      "size": "s-1x1"
-    },
-    {
-      "name": "Three.js",
-      "sub": "WebGL · GLSL",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original.svg",
-      "size": "s-2x2"
-    },
-    {
-      "name": "Docker",
-      "sub": "Kubernetes",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
-      "size": "s-2x2"
-    },
-    {
-      "name": "AWS",
-      "sub": "GCP · Azure",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-      "size": "s-2x2"
-    },
-    {
-      "name": "MongoDB",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
-      "size": "s-1x1"
-    },
-    {
-      "name": "Svelte",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/svelte/svelte-original.svg",
-      "size": "s-1x1"
-    },
-    {
-      "name": "Tailwind CSS",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
       "size": "s-1x1"
     },
     {
@@ -91,13 +41,120 @@
       "size": "s-1x1"
     },
     {
+      "name": "TypeScript",
+      "sub": "JS · TS everywhere",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+      "size": "s-2x2"
+    },
+    {
+      "name": "MongoDB",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+      "size": "s-1x1"
+    },
+
+    {
+      "name": "PostgreSQL",
+      "sub": "Mongo · DynamoDB · Firestore",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+      "size": "s-1x1"
+    },
+
+    {
+      "name": "Svelte",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/svelte/svelte-original.svg",
+      "size": "s-1x1"
+    },
+
+    {
+      "name": "Tailwind CSS",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Three.js",
+      "sub": "WebGL · GLSL",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Zustand",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/zustand/zustand-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Express.js",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+      "size": "s-2x2"
+    },
+    {
       "name": "Next.js",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
       "size": "s-1x1"
     },
+
+    {
+      "name": "Docker",
+      "sub": "Kubernetes",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+      "size": "s-1x1"
+    },
+
     {
       "name": "NestJS",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "AWS",
+      "sub": "GCP · Azure",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+      "size": "s-x1"
+    },
+
+    {
+      "name": "MySQL",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Node.js",
+      "sub": "Express · NestJS",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+      "size": "s-2x2"
+    },
+    {
+      "name": "GitHub",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Linux",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Google Cloud",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Microsoft Azure",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Supabase",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg",
+      "size": "s-1x1"
+    },
+    {
+      "name": "Firebase",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
       "size": "s-1x1"
     }
   ]
