@@ -1,0 +1,19 @@
+{
+  "name": "Shahzer Najeeb",
+  "brand": "SHAHZER.NAJEEB",
+  "title": "Full-Stack Software Engineer",
+  "location": "New Delhi, India",
+  "remoteStatus": "Remote · GMT+5:30",
+  "email": "m.shahzer.najeeb@gmail.com",
+  "phone": "+91 78605 36423",
+  "github": "https://github.com/shahz-n",
+  "linkedin": "https://linkedin.com/in/m-shahzer-najeeb",
+  "certifications": [
+    "ITPEC Fundamental IT Engineer (FE), 2026"
+  ],
+  "languages": [
+    "English — Native",
+    "Japanese — Conversational (JLPT N3)"
+  ],
+  "credit": "Shahzer Najeeb — built with Svelte & Three.js. Standing on the surface, looking out."
+}

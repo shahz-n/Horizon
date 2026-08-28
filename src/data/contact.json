@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Say hello",
+  "title": "Get in touch.",
+  "sub": "Open to full-stack and backend-heavy roles, remote or otherwise. I reply fastest by email.",
+  "form": {
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@company.com",
+    "messagePlaceholder": "What are you building?",
+    "buttonText": "Send message"
+  }
+}

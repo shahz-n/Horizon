@@ -1,0 +1,19 @@
+{
+  "eyebrow": "About",
+  "title": "Depth in the backend, comfortable across the whole stack.",
+  "summary": "I'm a full-stack software engineer with six-plus years of hands-on experience building production systems across fintech, HR-tech, and marketplace platforms — in environments ranging from early-stage startups to large enterprises. My depth is in backend architecture, distributed systems, and performance, alongside real experience building complex frontend applications and real-time interfaces. I like owning systems end-to-end: architecture, data modeling, implementation, and deployment.",
+  "stats": [
+    {
+      "value": "70%",
+      "label": "Inter-service latency cut with a custom routing layer at Moback"
+    },
+    {
+      "value": "20+",
+      "label": "Countries — clients served as an independent full-stack developer"
+    },
+    {
+      "value": "100+",
+      "label": "Developers mentored, from first principles to system design"
+    }
+  ]
+}

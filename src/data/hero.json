@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Full-stack engineer · remote · GMT+5:30",
+  "nameFirst": "Shahzer",
+  "nameLast": "Najeeb",
+  "roleDescription": "I build backend architecture, distributed systems, and real-time interfaces — from fintech approval engines to a to-scale model of the solar system, built for the love of it.",
+  "metaStats": [
+    { "value": "06+", "label": "years shipping production systems" },
+    { "value": "03", "label": "domains — fintech, HR-tech, marketplace" },
+    { "value": "New Delhi", "label": "India" }
+  ]
+}
