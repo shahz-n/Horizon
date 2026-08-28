@@ -3,14 +3,12 @@
   import { initEngine, type SceneAPI } from "./engine";
   import { initGlassGlow } from "./lib/glassGlow";
   import { initScrollReveals } from "./lib/scrollReveal";
-  import Nav from "./components/Nav.svelte";
   import Hero from "./components/Hero.svelte";
   import About from "./components/About.svelte";
   import Experience from "./components/Experience.svelte";
   import Skills from "./components/Skills.svelte";
   import Projects from "./components/Projects.svelte";
   import Contact from "./components/Contact.svelte";
-  import Footer from "./components/Footer.svelte";
 
   let canvasEl: HTMLCanvasElement;
   let siteEl: HTMLElement;
@@ -36,8 +34,6 @@
 
 <canvas id="bg-canvas" bind:this={canvasEl} aria-hidden="true"></canvas>
 
-<!-- <Nav /> -->
-
 <div class="site" bind:this={siteEl}>
   <Hero />
   <About />
@@ -45,7 +41,6 @@
   <Skills />
   <Projects />
   <Contact />
-  <Footer />
 </div>
 
 <style>

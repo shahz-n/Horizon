@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import expData from "../data/experience.json";
+  import { cn } from "../lib/utils";
 
   let timelineEl: HTMLElement;
   let timelineFillEl: HTMLElement;
@@ -45,7 +46,7 @@
   });
 </script>
 
-<section id="experience">
+<section id="experience" class="page">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">{expData.eyebrow}</div>
@@ -67,28 +68,28 @@
               <div class="timeline-dot dot-right"></div>
               <div class="timeline-card glass-glow glass">
                 <div class="glow-border"></div>
-                <div class="card-header">
+                <div class={cn(`card-header flex justify-between items-start gap-4 flex-wrap relative z-10 text-left`)}>
                   <div>
-                    <div class="role-title">{exp.title}</div>
-                    <div class="role-company">{exp.company}</div>
+                    <div class={cn(`role-title text-xl font-semibold text-text text-left`)}>{exp.title}</div>
+                    <div class={cn(`role-company text-base text-accent-purple font-medium mt-1 text-left`)}>{exp.company}</div>
                   </div>
-                  <div class="role-meta">
-                    <span class="tag domain-tag">{exp.domain}</span>
-                    <span class="tag period-tag">{exp.period}</span>
+                  <div class={cn(`role-meta flex gap-2 flex-wrap items-center`)}>
+                    <span class={cn(`tag domain-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-accent-cyan bg-[rgba(103,232,249,0.08)]`)}>{exp.domain}</span>
+                    <span class={cn(`tag period-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-text-secondary bg-[rgba(255,255,255,0.04)]`)}>{exp.period}</span>
                   </div>
                 </div>
 
-                <p class="role-summary">{exp.summary}</p>
+                <p class={cn(`role-summary mt-3.5 text-base text-text font-medium leading-relaxed relative z-10 text-left`)}>{exp.summary}</p>
 
-                <ul class="role-bullets">
+                <ul class={cn(`role-bullets mt-4 relative z-10 text-left`)}>
                   {#each exp.bullets as bullet}
                     <li>{bullet}</li>
                   {/each}
                 </ul>
 
-                <div class="stack-list">
+                <div class={cn(`stack-list mt-5 pt-4 border-t border-[rgba(140,160,255,0.08)] flex gap-2 flex-wrap relative z-10`)}>
                   {#each exp.stack as tech}
-                    <span class="tech-badge">{tech}</span>
+                    <span class={cn(`tech-badge font-mono text-xs text-accent-blue bg-[rgba(123,166,247,0.08)] border border-[rgba(123,166,247,0.15)] px-2 py-0.5 rounded`)}>{tech}</span>
                   {/each}
                 </div>
               </div>
@@ -103,28 +104,28 @@
               <div class="timeline-dot dot-left"></div>
               <div class="timeline-card glass-glow glass">
                 <div class="glow-border"></div>
-                <div class="card-header">
+                <div class={cn(`card-header flex justify-between items-start gap-4 flex-wrap relative z-10 text-left`)}>
                   <div>
-                    <div class="role-title">{exp.title}</div>
-                    <div class="role-company">{exp.company}</div>
+                    <div class={cn(`role-title text-xl font-semibold text-text text-left`)}>{exp.title}</div>
+                    <div class={cn(`role-company text-base text-accent-purple font-medium mt-1 text-left`)}>{exp.company}</div>
                   </div>
-                  <div class="role-meta">
-                    <span class="tag domain-tag">{exp.domain}</span>
-                    <span class="tag period-tag">{exp.period}</span>
+                  <div class={cn(`role-meta flex gap-2 flex-wrap items-center`)}>
+                    <span class={cn(`tag domain-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-accent-cyan bg-[rgba(103,232,249,0.08)]`)}>{exp.domain}</span>
+                    <span class={cn(`tag period-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-text-secondary bg-[rgba(255,255,255,0.04)]`)}>{exp.period}</span>
                   </div>
                 </div>
 
-                <p class="role-summary">{exp.summary}</p>
+                <p class={cn(`role-summary mt-3.5 text-base text-text font-medium leading-relaxed relative z-10 text-left`)}>{exp.summary}</p>
 
-                <ul class="role-bullets">
+                <ul class={cn(`role-bullets mt-4 relative z-10 text-left`)}>
                   {#each exp.bullets as bullet}
                     <li>{bullet}</li>
                   {/each}
                 </ul>
 
-                <div class="stack-list">
+                <div class={cn(`stack-list mt-5 pt-4 border-t border-[rgba(140,160,255,0.08)] flex gap-2 flex-wrap relative z-10`)}>
                   {#each exp.stack as tech}
-                    <span class="tech-badge">{tech}</span>
+                    <span class={cn(`tech-badge font-mono text-xs text-accent-blue bg-[rgba(123,166,247,0.08)] border border-[rgba(123,166,247,0.15)] px-2 py-0.5 rounded`)}>{tech}</span>
                   {/each}
                 </div>
               </div>
@@ -343,30 +344,5 @@
     border: 1px solid rgba(123, 166, 247, 0.15);
     padding: 3px 9px;
     border-radius: 6px;
-  }
-
-  @media (max-width: 960px) {
-    .timeline-track,
-    .timeline-fill {
-      left: 20px;
-      transform: none;
-    }
-    .timeline-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    .right-column {
-      margin-top: 0;
-    }
-    .timeline-item {
-      padding-left: 44px;
-    }
-    .timeline-dot {
-      left: 12px;
-      top: 24px;
-    }
-    .timeline-card {
-      padding: 26px;
-    }
   }
 </style>

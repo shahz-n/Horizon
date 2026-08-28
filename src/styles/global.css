@@ -1,9 +1,45 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+/* Custom breakpoint variants (max_* convention) */
+@custom-variant max_sm (@media (max-width: 640px));
+@custom-variant max_md (@media (max-width: 768px));
+@custom-variant max_lg (@media (max-width: 1024px));
+@custom-variant max_xl (@media (max-width: 1280px));
+@custom-variant max_2xl (@media (max-width: 1536px));
+
+@theme {
+  --color-void: #030408;
+  --color-deep-space: #060a14;
+  --color-nebula-dark: #0a0e1a;
+  --color-nebula-mid: #101628;
+  --color-accent-blue: #7ba6f7;
+  --color-accent-purple: #a78bfa;
+  --color-accent-cyan: #67e8f9;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-indigo: #6366f1;
+  --color-accent-lavender: #c4b5fd;
+  --color-moonlight: #e8c99b;
+  --color-moonlight-dim: #b99e73;
+  --color-text: #f0eef8;
+  --color-text-secondary: #b0b8d0;
+  --color-text-muted: #7a829a;
+  --color-text-faint: #4a5068;
+  --font-family-display: "Space Grotesk", sans-serif;
+  --font-family-body: "IBM Plex Sans", sans-serif;
+  --font-family-mono: "IBM Plex Mono", monospace;
+  --radius-lg: 24px;
+  --radius-default: 18px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
+  --backdrop-blur-xs: 6px;
+  --backdrop-blur-sm: 12px;
+}
+
 /* ========================================================================
-   GLOBAL STYLES — Shahzer Najeeb Portfolio
+   GLOBAL STYLES — ...
    Space-themed, glassmorphism, cool blues & purples
    ======================================================================== */
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 :root {
   /* Deep space palette — cool blues & purples */
@@ -175,6 +211,11 @@ button {
   z-index: 1;
 }
 
+/* ===== Page section (100vh) ===== */
+.page {
+  min-height: 100vh;
+}
+
 .wrap {
   width: min(84vw, 1600px);
   margin: 0 auto;
@@ -286,6 +327,31 @@ section {
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ===== Gradient utilities (reusable) ===== */
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+.gradient-hero {
+  background: var(--gradient-hero);
+}
+.gradient-subtle {
+  background: var(--gradient-subtle);
+}
+.gradient-text {
+  background: var(--gradient-hero);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.gradient-text-primary {
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ===== Buttons ===== */
