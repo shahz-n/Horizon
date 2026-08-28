@@ -1,10 +1,33 @@
 <script lang="ts">
   import siteData from '../data/index.json';
+  import { cn } from '../lib/utils';
 </script>
 
-<footer>
+<footer
+  class={cn(
+    'portfolio-footer',
+    'relative',
+    'py-[44px]',
+    'pb-[52px]',
+    'text-center',
+    'border-t',
+    'border-solid',
+    'border-[rgba(140,160,255,0.06)]'
+  )}
+>
   <div class="wrap">
-    <div class="foot-line">
+    <div
+      class={cn(
+        'portfolio-foot-line',
+        'font-[var(--ff-mono)]',
+        'text-[12px]',
+        'text-[#4a5068]',
+        'flex',
+        'justify-center',
+        'gap-5',
+        'flex-wrap'
+      )}
+    >
       {#each siteData.certifications as cert}
         <span>{cert}</span>
       {/each}
@@ -12,32 +35,16 @@
         <span>{lang}</span>
       {/each}
     </div>
-    <div class="credit">{siteData.credit}</div>
+    <div
+      class={cn(
+        'portfolio-credit',
+        'mt-4',
+        'text-[11px]',
+        'text-[#4a5068]',
+        'opacity-50'
+      )}
+    >
+      {siteData.credit}
+    </div>
   </div>
 </footer>
-
-<style>
-  footer {
-    position: relative;
-    padding: 44px 0 52px;
-    text-align: center;
-    border-top: 1px solid rgba(140, 160, 255, 0.06);
-  }
-
-  .foot-line {
-    font-family: var(--ff-mono);
-    font-size: 12px;
-    color: var(--text-faint);
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .credit {
-    margin-top: 16px;
-    font-size: 11px;
-    color: var(--text-faint);
-    opacity: 0.5;
-  }
-</style>

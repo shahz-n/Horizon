@@ -1,5 +1,6 @@
 <script lang="ts">
   import aboutData from '../data/about.json';
+  import { cn } from '../lib/utils';
 </script>
 
 <section id="about">
@@ -9,7 +10,15 @@
       <h2>{aboutData.title}</h2>
     </div>
 
-    <p class="summary">
+    <p
+      class={cn(
+        'summary',
+        'max-w-[780px]',
+        'text-[#b0b8d0]',
+        'text-[18px]',
+        'leading-[1.8]'
+      )}
+    >
       I'm a <strong>full-stack software engineer</strong> with six-plus years of hands-on
       experience building production systems across <strong>fintech, HR-tech, and marketplace</strong>
       platforms — in environments ranging from early-stage startups to large enterprises. My depth
@@ -19,12 +28,44 @@
       data modeling, implementation, and deployment.
     </p>
 
-    <div class="stat-row">
+    <div class={cn(
+      'stat-row',
+      'mt-14',
+      'grid',
+      'grid-cols-3',
+      'gap-5',
+      'max-[800px]:grid-cols-1'
+    )}>
       {#each aboutData.stats as stat, i}
-        <div class="stat-tile glass-glow glass reveal" data-reveal-delay={i * 100}>
+        <div
+          class={cn(
+            'stat-tile',
+            'glass-glow',
+            'glass',
+            'reveal',
+            'p-7',
+            'relative',
+            'overflow-hidden'
+          )}
+          data-reveal-delay={i * 100}
+        >
           <div class="glow-border"></div>
-          <div class="num">{stat.value}</div>
-          <div class="label">{stat.label}</div>
+          <div class={cn(
+            'num',
+            'font-[var(--ff-display)]',
+            'text-[36px]',
+            'font-bold',
+            'bg-[linear-gradient(135deg,#7ba6f7,#a78bfa)]',
+            'bg-clip-text',
+            'text-transparent'
+          )}>{stat.value}</div>
+          <div class={cn(
+            'label',
+            'mt-2',
+            'text-[14px]',
+            'text-[#b0b8d0]',
+            'leading-[1.6]'
+          )}>{stat.label}</div>
         </div>
       {/each}
     </div>
@@ -32,52 +73,10 @@
 </section>
 
 <style>
-  .summary {
-    max-width: 780px;
-    color: var(--text-secondary);
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
-  .summary strong {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  .stat-row {
-    margin-top: 56px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
   .stat-tile {
     padding: 28px 26px;
     position: relative;
     overflow: hidden;
-  }
-
-  .num {
-    font-family: var(--ff-display);
-    font-size: 36px;
-    font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .label {
-    margin-top: 8px;
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .glass-glow {
-    --glow-x: 50%;
-    --glow-y: 50%;
-    --glow-opacity: 0;
   }
 
   .glow-border {
@@ -109,11 +108,5 @@
   :global(.reveal.revealed) {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  @media (max-width: 800px) {
-    .stat-row {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

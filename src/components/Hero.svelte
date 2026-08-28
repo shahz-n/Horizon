@@ -1,5 +1,6 @@
 <script lang="ts">
   import heroData from "../data/hero.json";
+  import { cn } from "../lib/utils";
 </script>
 
 <section id="hero">
@@ -25,7 +26,14 @@
         like building things that are unnecessarily interesting.
       </p>
 
-      <div class="hero-actions">
+      <div class={cn(
+        'hero-actions',
+        'flex',
+        'items-center',
+        'justify-center',
+        'gap-3',
+        'mt-[42px]'
+      )}>
         <a href="#experience" class="btn btn-primary"> View experience </a>
 
         <a href="#contact" class="btn btn-ghost"> Get in touch </a>

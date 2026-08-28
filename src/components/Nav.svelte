@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import siteData from "../data/index.json";
+  import { cn } from "../lib/utils";
 
   let scrolled = $state(false);
 
@@ -13,103 +14,88 @@
   });
 </script>
 
-<nav class="top-nav wrap" class:scrolled>
-  <a href="#hero" class="brand"
-    >{siteData.brand.split(".")[0]}<span class="dot">.</span
-    >{siteData.brand.split(".")[1]}</a
+<nav
+  class={cn(
+    "top-nav wrap",
+    "portfolio-nav",
+    "fixed",
+    "top-5",
+    "left-1/2",
+    "-translate-x-1/2",
+    "z-50",
+    "w-full",
+    "flex",
+    "items-center",
+    "justify-between",
+    "py-[14px]",
+    "px-7",
+    "rounded-[18px]",
+    "bg-[rgba(10,12,30,0.4)]",
+    "border",
+    "border-solid",
+    "border-[rgba(140,160,255,0.1)]",
+    "backdrop-blur-2xl",
+    "saturate-[140%]",
+    "transition-all",
+    "duration-400",
+    "ease",
+    scrolled &&
+      "bg-[rgba(10,12,30,0.8)] border-[rgba(140,160,255,0.18)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+  )}
+>
+  <a
+    href="#hero"
+    class={cn(
+      "brand",
+      "portfolio-brand",
+      "font-[var(--ff-mono)]",
+      "text-[14px]",
+      "tracking-[0.08em]",
+      "text-[#f0eef8]",
+      "no-underline",
+      "font-medium"
+    )}
   >
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
+    {siteData.brand.split(".")[0]}<span class="text-[#a78bfa]">.</span
+    >{siteData.brand.split(".")[1]}
+  </a>
+  <ul
+    class={cn(
+      "nav-links",
+      "portfolio-nav-links",
+      "flex",
+      "gap-9",
+      "list-none",
+      "m-0",
+      "p-0",
+      "max-[768px]:hidden"
+    )}
+  >
+    <li><a href="#about" class="text-[13.5px] font-[var(--ff-mono)] text-[#7a829a] no-underline transition-colors duration-250 ease hover:text-[#7ba6f7]">About</a></li>
+    <li><a href="#experience" class="text-[13.5px] font-[var(--ff-mono)] text-[#7a829a] no-underline transition-colors duration-250 ease hover:text-[#7ba6f7]">Experience</a></li>
+    <li><a href="#skills" class="text-[13.5px] font-[var(--ff-mono)] text-[#7a829a] no-underline transition-colors duration-250 ease hover:text-[#7ba6f7]">Skills</a></li>
+    <li><a href="#projects" class="text-[13.5px] font-[var(--ff-mono)] text-[#7a829a] no-underline transition-colors duration-250 ease hover:text-[#7ba6f7]">Projects</a></li>
   </ul>
-  <a href="#contact" class="cta-btn">Get in touch</a>
+  <a
+    href="#contact"
+    class={cn(
+      "cta-btn",
+      "portfolio-cta",
+      "text-[13px]",
+      "py-[9px]",
+      "px-5",
+      "rounded-full",
+      "text-[#030408]",
+      "bg-[linear-gradient(135deg,#7ba6f7,#a78bfa)]",
+      "font-semibold",
+      "no-underline",
+      "transition-[box-shadow,transform]",
+      "duration-300",
+      "ease",
+      "hover:shadow-[0_4px_24px_rgba(123,166,247,0.5)]",
+      "hover:-translate-y-px"
+    )}
+  >
+    Get in touch
+  </a>
 </nav>
-
-<style>
-  .top-nav {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 50;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 28px;
-    border-radius: var(--radius);
-    background: rgba(10, 12, 30, 0.4);
-    border: 1px solid rgba(140, 160, 255, 0.1);
-    backdrop-filter: blur(24px) saturate(140%);
-    -webkit-backdrop-filter: blur(24px) saturate(140%);
-    transition: all 0.4s ease;
-  }
-
-  .top-nav.scrolled {
-    background: rgba(10, 12, 30, 0.8);
-    border-color: rgba(140, 160, 255, 0.18);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  }
-
-  .brand {
-    font-family: var(--ff-mono);
-    font-size: 14px;
-    letter-spacing: 0.08em;
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  .dot {
-    color: var(--accent-purple);
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-links a {
-    font-size: 13.5px;
-    font-family: var(--ff-mono);
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.25s ease;
-  }
-
-  .nav-links a:hover {
-    color: var(--accent-blue);
-  }
-
-  .cta-btn {
-    font-size: 13px;
-    padding: 9px 20px;
-    border-radius: 999px;
-    color: var(--void);
-    background: var(--gradient-primary);
-    font-weight: 600;
-    text-decoration: none;
-    transition:
-      box-shadow 0.3s ease,
-      transform 0.3s ease;
-  }
-
-  .cta-btn:hover {
-    box-shadow: 0 4px 24px rgba(123, 166, 247, 0.5);
-    transform: translateY(-1px);
-  }
-
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-    .top-nav {
-      width: calc(100% - 32px);
-    }
-  }
-</style>
