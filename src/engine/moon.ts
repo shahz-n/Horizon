@@ -2,7 +2,6 @@
    Engine Module — Moon Mesh & DDS Compressed Texture Loader
    ========================================================================= */
 import * as THREE from "three";
-import { DDSLoader } from "three/examples/jsm/loaders/DDSLoader.js";
 
 const MOON_RADIUS = 6;
 
@@ -18,7 +17,7 @@ export function createMoon(scene: THREE.Scene): MoonSystem {
 
   const initialMaterial = new THREE.MeshStandardMaterial({
     color: 0x9c968d,
-    roughness: 0.95,
+    roughness: 1.0,
     metalness: 0.0,
   });
 
@@ -27,7 +26,8 @@ export function createMoon(scene: THREE.Scene): MoonSystem {
   moonMesh.scale.setScalar(12);
   scene.add(moonMesh);
 
-  const loader = new DDSLoader();
+  // const loader = new DDSLoader();
+  const loader = new THREE.TextureLoader();
 
   return {
     mesh: moonMesh,
