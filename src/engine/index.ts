@@ -39,7 +39,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   scene.fog = new THREE.FogExp2(0x030410, 0.003);
 
   const camera = new THREE.PerspectiveCamera(
-    40,
+    45,
     window.innerWidth / window.innerHeight,
     0.001,
     600,

@@ -6,8 +6,8 @@ import * as THREE from "three";
 const MOON_PATH_POINTS = [
   new THREE.Vector3(0.0, -70, -50.0), // 0.00: Hero (surface view right under content)
   new THREE.Vector3(0.0, -20.0, -30.0), // 0.20: About (ascending toward center)
-  new THREE.Vector3(0.0, 0.0, -50.0), // 0.40: Experience (centered in viewport ~50% page height)
-  new THREE.Vector3(0.0, -0.0, -50.0), // 0.60: Skills (gently floating center-right)
+  new THREE.Vector3(0.0, 0.0, -60.0), // 0.40: Experience (centered in viewport ~50% page height)
+  new THREE.Vector3(0.0, -0.0, -60.0), // 0.60: Skills (gently floating center-right)
   new THREE.Vector3(0.0, 10.0, -30.0), // 0.80: Projects (gently floating center-left)
   new THREE.Vector3(0.0, 70, -50.0), // 1.00: Contact (descending into surface view)
 ];
