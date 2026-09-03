@@ -34,9 +34,7 @@
       <p class="sub">{skillsData.sub}</p>
     </div>
 
-    <div
-      class={cn(`portfolio-skills-grid grid gap-2.5 w-full overflow-hidden`)}
-    >
+    <div class={cn(`portfolio-skills-grid grid gap-2.5 w-full `)}>
       {#each skillsData.skills as skill, i}
         <div
           class={cn(
@@ -46,8 +44,6 @@
           bind:this={tiles[i]}
           style="transition-delay: {i * 30}ms"
         >
-          <div class="glow-border"></div>
-
           <div
             class={cn(
               `portfolio-skill-icon absolute z-10 w-full h-[80%] flex top-0 left-0 items-center justify-center`,
@@ -58,7 +54,6 @@
               alt={skill.name}
               loading="lazy"
               class="w-3/4 h-3/4 object-contain"
-              style="filter: drop-shadow(0 0 10px rgba(123, 166, 247, 0.25));"
             />
           </div>
 
@@ -116,6 +111,8 @@
       background 0.3s ease;
     aspect-ratio: 1 / 1;
     max-height: 400px;
+  }
+  .skill-tile img {
   }
   .skill-tile:global(.in-view) {
     opacity: 1;

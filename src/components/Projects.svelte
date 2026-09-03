@@ -94,7 +94,11 @@
                   </div>
 
                   <!-- Glass capsules floating from bottom left on hover -->
-                  <div class={cn(`glass-capsules-container absolute bottom-4 left-4 flex flex-wrap gap-2 z-10 pointer-events-none`)}>
+                  <div
+                    class={cn(
+                      `glass-capsules-container absolute bottom-4 left-4 flex flex-wrap gap-2 z-10 pointer-events-none`,
+                    )}
+                  >
                     {#each project.tags as tag}
                       <span class="glass-capsule">{tag}</span>
                     {/each}
@@ -103,8 +107,20 @@
 
                 <!-- Project Content -->
                 <div class={cn(`project-content p-8 text-left`)}>
-                  <div class={cn(`p-title font-display text-xl font-semibold text-text text-left`)}>{project.title}</div>
-                  <p class={cn(`p-tagline text-base text-accent-purple font-medium mt-1 text-left`)}>{project.tagline}</p>
+                  <div
+                    class={cn(
+                      `p-title font-display text-xl font-semibold text-text text-left`,
+                    )}
+                  >
+                    {project.title}
+                  </div>
+                  <p
+                    class={cn(
+                      `p-tagline text-base text-accent-purple font-medium mt-1 text-left`,
+                    )}
+                  >
+                    {project.tagline}
+                  </p>
 
                   <ul class={cn(`p-bullets mt-4 list-none p-0 text-left`)}>
                     {#each project.bullets as bullet}
@@ -150,7 +166,11 @@
                   </div>
 
                   <!-- Glass capsules floating from bottom left on hover -->
-                  <div class={cn(`glass-capsules-container absolute bottom-4 left-4 flex flex-wrap gap-2 z-10 pointer-events-none`)}>
+                  <div
+                    class={cn(
+                      `glass-capsules-container absolute bottom-4 left-4 flex flex-wrap gap-2 z-10 pointer-events-none`,
+                    )}
+                  >
                     {#each project.tags as tag}
                       <span class="glass-capsule">{tag}</span>
                     {/each}
@@ -159,8 +179,20 @@
 
                 <!-- Project Content -->
                 <div class={cn(`project-content p-8 text-left`)}>
-                  <div class={cn(`p-title font-display text-xl font-semibold text-text text-left`)}>{project.title}</div>
-                  <p class={cn(`p-tagline text-base text-accent-purple font-medium mt-1 text-left`)}>{project.tagline}</p>
+                  <div
+                    class={cn(
+                      `p-title font-display text-xl font-semibold text-text text-left`,
+                    )}
+                  >
+                    {project.title}
+                  </div>
+                  <p
+                    class={cn(
+                      `p-tagline text-base text-accent-purple font-medium mt-1 text-left`,
+                    )}
+                  >
+                    {project.tagline}
+                  </p>
 
                   <ul class={cn(`p-bullets mt-4 list-none p-0 text-left`)}>
                     {#each project.bullets as bullet}
@@ -222,11 +254,11 @@
   .column {
     display: flex;
     flex-direction: column;
-    gap: 25vh;
+    gap: 20vh;
   }
 
   .right-column {
-    margin-top: 50vh;
+    margin-top: 40vh;
   }
 
   .project-item {

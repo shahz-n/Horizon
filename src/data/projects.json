@@ -39,30 +39,6 @@
         "Two-factor authentication, audit logging, and role-based dashboards integrated with NymCard's core payment systems."
       ],
       "color": "#67e8f9"
-    },
-    {
-      "title": "BorrowBe Marketplace",
-      "tagline": "Peer-to-peer rental marketplace with real-time geolocation and wallet.",
-      "tags": ["Node.js", "React", "Stripe", "WebSockets", "PostgreSQL"],
-      "side": "right",
-      "bullets": [
-        "Hybrid geolocation and address-based search system with map, radius, and structured address queries.",
-        "Real-time chat and notification system with per-listing conversation identity and live presence.",
-        "Stripe-integrated wallet with a hybrid ledger (direct payments and credits) and hash-locked transaction immutability."
-      ],
-      "color": "#f0abfc"
-    },
-    {
-      "title": "Korn Ferry Talent Suite Backend",
-      "tagline": "Enterprise HR-tech platform backend serving 150+ countries.",
-      "tags": ["NestJS", "Microservices", "Redis", "Docker", "AWS"],
-      "side": "left",
-      "bullets": [
-        "Core backend microservices powering a global platform serving thousands of organizations across 150+ countries.",
-        "Designed an internal-routing system reducing inter-service latency by 70% and overall latency by 40%.",
-        "Streaming export system for multi-gigabyte audit logs and zero-overhead request-tracing system."
-      ],
-      "color": "#fbbf24"
     }
   ]
 }

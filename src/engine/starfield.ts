@@ -6,13 +6,13 @@ import * as THREE from "three";
 const SIMULATION_RADIUS = 260;
 
 const STAR_RANGES = [
-  { weight: 0.03, min: 30000, max: 45000, size: [1.5, 3.0] }, // O
-  { weight: 0.08, min: 10000, max: 30000, size: [1.5, 2.8] }, // B
-  { weight: 0.1, min: 7500, max: 10000, size: [1.3, 2.5] }, // A
-  { weight: 0.13, min: 6000, max: 7500, size: [1.3, 2.5] }, // F
-  { weight: 0.2, min: 5200, max: 6000, size: [1.1, 2.3] }, // G
-  { weight: 0.18, min: 3700, max: 5200, size: [1.1, 2.1] }, // K
-  { weight: 0.2, min: 2400, max: 3700, size: [1.0, 1.8] }, // M
+  { weight: 0.03, min: 30000, max: 45000, size: [1.3, 2.5] }, // O
+  { weight: 0.08, min: 10000, max: 30000, size: [1.2, 2.5] }, // B
+  { weight: 0.1, min: 7500, max: 10000, size: [1.1, 2.3] }, // A
+  { weight: 0.13, min: 6000, max: 7500, size: [1.1, 2.3] }, // F
+  { weight: 0.2, min: 5200, max: 6000, size: [1.0, 2.1] }, // G
+  { weight: 0.18, min: 3700, max: 5200, size: [1.0, 1.9] }, // K
+  { weight: 0.2, min: 2400, max: 3700, size: [1.0, 1.6] }, // M
 ] as const;
 
 const starVertexShader = `
@@ -26,7 +26,7 @@ const starVertexShader = `
     vIntensity = intensity;
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * mvPosition;
-    gl_PointSize = max(min(size * 2.0, uPixelRatio * 3.0), uPixelRatio);
+    gl_PointSize = max(min(size * 2.5, uPixelRatio * 4.0), uPixelRatio);
   }
 `;
 
@@ -166,7 +166,7 @@ export function createStarfield(
   });
 
   const starCount =
-    Math.pow(Math.min(window.innerHeight, window.innerWidth), 2) / 110;
+    Math.pow(Math.min(window.innerHeight, window.innerWidth), 2) / 100;
   const starPoints = new THREE.Points(
     createStarGeometry(starCount),
     starMaterial,

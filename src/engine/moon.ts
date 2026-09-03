@@ -16,7 +16,7 @@ export function createMoon(scene: THREE.Scene): MoonSystem {
   const moonGeometry = new THREE.SphereGeometry(MOON_RADIUS, 128, 128);
 
   const initialMaterial = new THREE.MeshStandardMaterial({
-    color: 0x9c968d,
+    color: 0xffffff,
     roughness: 1.0,
     metalness: 0.0,
   });

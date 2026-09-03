@@ -68,18 +68,50 @@
               <div class="timeline-dot dot-right"></div>
               <div class="timeline-card glass-glow glass">
                 <div class="glow-border"></div>
-                <div class={cn(`card-header flex justify-between items-start gap-4 flex-wrap relative z-10 text-left`)}>
+                <div
+                  class={cn(
+                    `card-header flex justify-between items-start gap-4 flex-wrap relative z-10 text-left`,
+                  )}
+                >
                   <div>
-                    <div class={cn(`role-title text-xl font-semibold text-text text-left`)}>{exp.title}</div>
-                    <div class={cn(`role-company text-base text-accent-purple font-medium mt-1 text-left`)}>{exp.company}</div>
+                    <div
+                      class={cn(
+                        `role-title text-xl font-semibold text-text text-left`,
+                      )}
+                    >
+                      {exp.title}
+                    </div>
+                    <div
+                      class={cn(
+                        `role-company text-base text-accent-purple font-medium mt-1 text-left`,
+                      )}
+                    >
+                      {exp.company}
+                    </div>
                   </div>
-                  <div class={cn(`role-meta flex gap-2 flex-wrap items-center`)}>
-                    <span class={cn(`tag domain-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-accent-cyan bg-[rgba(103,232,249,0.08)]`)}>{exp.domain}</span>
-                    <span class={cn(`tag period-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-text-secondary bg-[rgba(255,255,255,0.04)]`)}>{exp.period}</span>
+                  <div
+                    class={cn(`role-meta flex gap-2 flex-wrap items-center`)}
+                  >
+                    <span
+                      class={cn(
+                        `tag domain-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-accent-cyan bg-[rgba(103,232,249,0.08)]`,
+                      )}>{exp.domain}</span
+                    >
+                    <span
+                      class={cn(
+                        `tag period-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-text-secondary bg-[rgba(255,255,255,0.04)]`,
+                      )}>{exp.period}</span
+                    >
                   </div>
                 </div>
 
-                <p class={cn(`role-summary mt-3.5 text-base text-text font-medium leading-relaxed relative z-10 text-left`)}>{exp.summary}</p>
+                <p
+                  class={cn(
+                    `role-summary mt-3.5 text-base text-text font-medium leading-relaxed relative z-10 text-left`,
+                  )}
+                >
+                  {exp.summary}
+                </p>
 
                 <ul class={cn(`role-bullets mt-4 relative z-10 text-left`)}>
                   {#each exp.bullets as bullet}
@@ -87,9 +119,17 @@
                   {/each}
                 </ul>
 
-                <div class={cn(`stack-list mt-5 pt-4 border-t border-[rgba(140,160,255,0.08)] flex gap-2 flex-wrap relative z-10`)}>
+                <div
+                  class={cn(
+                    `stack-list mt-5 pt-4 border-t border-[rgba(140,160,255,0.08)] flex gap-2 flex-wrap relative z-10`,
+                  )}
+                >
                   {#each exp.stack as tech}
-                    <span class={cn(`tech-badge font-mono text-xs text-accent-blue bg-[rgba(123,166,247,0.08)] border border-[rgba(123,166,247,0.15)] px-2 py-0.5 rounded`)}>{tech}</span>
+                    <span
+                      class={cn(
+                        `tech-badge font-mono text-xs text-accent-blue bg-[rgba(123,166,247,0.08)] border border-[rgba(123,166,247,0.15)] px-2 py-0.5 rounded`,
+                      )}>{tech}</span
+                    >
                   {/each}
                 </div>
               </div>
@@ -104,18 +144,50 @@
               <div class="timeline-dot dot-left"></div>
               <div class="timeline-card glass-glow glass">
                 <div class="glow-border"></div>
-                <div class={cn(`card-header flex justify-between items-start gap-4 flex-wrap relative z-10 text-left`)}>
+                <div
+                  class={cn(
+                    `card-header flex justify-between items-start gap-4 flex-wrap relative z-10 text-left`,
+                  )}
+                >
                   <div>
-                    <div class={cn(`role-title text-xl font-semibold text-text text-left`)}>{exp.title}</div>
-                    <div class={cn(`role-company text-base text-accent-purple font-medium mt-1 text-left`)}>{exp.company}</div>
+                    <div
+                      class={cn(
+                        `role-title text-xl font-semibold text-text text-left`,
+                      )}
+                    >
+                      {exp.title}
+                    </div>
+                    <div
+                      class={cn(
+                        `role-company text-base text-accent-purple font-medium mt-1 text-left`,
+                      )}
+                    >
+                      {exp.company}
+                    </div>
                   </div>
-                  <div class={cn(`role-meta flex gap-2 flex-wrap items-center`)}>
-                    <span class={cn(`tag domain-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-accent-cyan bg-[rgba(103,232,249,0.08)]`)}>{exp.domain}</span>
-                    <span class={cn(`tag period-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-text-secondary bg-[rgba(255,255,255,0.04)]`)}>{exp.period}</span>
+                  <div
+                    class={cn(`role-meta flex gap-2 flex-wrap items-center`)}
+                  >
+                    <span
+                      class={cn(
+                        `tag domain-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-accent-cyan bg-[rgba(103,232,249,0.08)]`,
+                      )}>{exp.domain}</span
+                    >
+                    <span
+                      class={cn(
+                        `tag period-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-text-secondary bg-[rgba(255,255,255,0.04)]`,
+                      )}>{exp.period}</span
+                    >
                   </div>
                 </div>
 
-                <p class={cn(`role-summary mt-3.5 text-base text-text font-medium leading-relaxed relative z-10 text-left`)}>{exp.summary}</p>
+                <p
+                  class={cn(
+                    `role-summary mt-3.5 text-base text-text font-medium leading-relaxed relative z-10 text-left`,
+                  )}
+                >
+                  {exp.summary}
+                </p>
 
                 <ul class={cn(`role-bullets mt-4 relative z-10 text-left`)}>
                   {#each exp.bullets as bullet}
@@ -123,9 +195,17 @@
                   {/each}
                 </ul>
 
-                <div class={cn(`stack-list mt-5 pt-4 border-t border-[rgba(140,160,255,0.08)] flex gap-2 flex-wrap relative z-10`)}>
+                <div
+                  class={cn(
+                    `stack-list mt-5 pt-4 border-t border-[rgba(140,160,255,0.08)] flex gap-2 flex-wrap relative z-10`,
+                  )}
+                >
                   {#each exp.stack as tech}
-                    <span class={cn(`tech-badge font-mono text-xs text-accent-blue bg-[rgba(123,166,247,0.08)] border border-[rgba(123,166,247,0.15)] px-2 py-0.5 rounded`)}>{tech}</span>
+                    <span
+                      class={cn(
+                        `tech-badge font-mono text-xs text-accent-blue bg-[rgba(123,166,247,0.08)] border border-[rgba(123,166,247,0.15)] px-2 py-0.5 rounded`,
+                      )}>{tech}</span
+                    >
                   {/each}
                 </div>
               </div>
@@ -182,11 +262,11 @@
   .column {
     display: flex;
     flex-direction: column;
-    gap: 30vh;
+    gap: 20vh;
   }
 
   .right-column {
-    margin-top: 30vh;
+    margin-top: 20vh;
   }
 
   .timeline-item {

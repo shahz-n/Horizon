@@ -48,14 +48,14 @@
       )}
     >
       <a
-        href="#experience"
+        href="#contact"
         class="btn btn-primary min-w-[150px] max_md:w-[min(320px,100%)]"
-        >View experience</a
+        >Get in touch</a
       >
       <a
         href="#contact"
         class="btn btn-ghost min-w-[150px] max_md:w-[min(320px,100%)]"
-        >Get in touch</a
+        >Download resume</a
       >
     </div>
   </div>
