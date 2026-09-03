@@ -62,7 +62,7 @@
               />
 
               <span
-                class="font-mono font-semibold text-sm uppercase tracking-[0.08em] text-accent-cyan"
+                class="font-mono font-normal text-sm uppercase tracking-[0.08em] text-accent-cyan"
               >
                 {contact.label}
               </span>
@@ -77,7 +77,7 @@
             </div>
 
             <span
-              class="relative z-10 font-medium leading-snug [overflow-wrap:anywhere]"
+              class="relative z-10 text-lg leading-snug [overflow-wrap:anywhere]"
             >
               {contact.value}
             </span>

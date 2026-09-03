@@ -87,8 +87,9 @@
   );
   --gradient-glass: linear-gradient(
     45deg,
-    rgba(103, 232, 249, 0.025),
-    rgba(139, 92, 246, 0.025)
+    rgba(103, 232, 249, 0.05),
+    rgba(120, 140, 255, 0.05),
+    rgba(139, 92, 246, 0.05)
   );
   --text: #fff;
   --text-secondary: #fff;
@@ -288,7 +289,7 @@ section {
     0 8px 32px rgba(0, 0, 0, 0.5),
     inset 0 0 4px rgba(255, 255, 255, 0.1),
     inset 1px 1px 1px rgba(255, 255, 255, 0.1),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.1);
+    inset -1px -1px 1px rgba(255, 255, 255, 0.112);
   position: relative;
   overflow: hidden;
   transition:
