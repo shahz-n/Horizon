@@ -14,6 +14,8 @@
     MessageCircle,
   } from "@lucide/svelte";
 
+  import NavItem from "./NavItem.svelte";
+
   const leftNavigation = [
     { href: "#hero", label: "Home", icon: CirclePlay },
     { href: "#experience", label: "Experience", icon: Briefcase },
@@ -67,33 +69,15 @@
 <nav
   aria-label="Section navigation"
   class={cn(
-    `fixed! -left-3 top-1/2 z-40 -translate-y-1/2 flex-col glass-glow glass p-2 pl-5 lg:flex`,
+    `fixed! -left-3 top-1/2 z-40 -translate-y-1/2 flex-col glass-glow glass p-2 pl-5 lg:flex overflow-visible!`,
   )}
 >
   {#each leftNavigation as item}
-    <a
-      href={item.href}
-      aria-label={item.label}
-      class={cn(
-        `rail-button group flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] text-text-muted transition-all hover:gradient-text`,
-      )}
-    >
-      <svelte:component this={item.icon} size={24} strokeWidth={2} />
-    </a>
+    <NavItem {...item} />
   {/each}
 
   {#each leftContacts as item}
-    <a
-      href={item.href}
-      aria-label={item.label}
-      target={item.external ? "_blank" : undefined}
-      rel={item.external ? "noopener noreferrer" : undefined}
-      class={cn(
-        `rail-button group flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] text-text-muted transition-all hover:gradient-text`,
-      )}
-    >
-      <svelte:component this={item.icon} size={20} strokeWidth={2} />
-    </a>
+    <NavItem {...item} size={20} />
   {/each}
 </nav>
 
@@ -101,33 +85,15 @@
 <aside
   aria-label="Section and contact links"
   class={cn(
-    `fixed! -right-3 top-1/2 z-40 -translate-y-1/2 flex-col glass-glow glass p-2 pr-5 lg:flex`,
+    `fixed! -right-3 top-1/2 z-40 -translate-y-1/2 flex-col glass-glow glass p-2 pr-5 lg:flex overflow-visible!`,
   )}
 >
   {#each rightNavigation as item}
-    <a
-      href={item.href}
-      aria-label={item.label}
-      class={cn(
-        `rail-button group flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] text-text-muted transition-all hover:gradient-text`,
-      )}
-    >
-      <svelte:component this={item.icon} size={24} strokeWidth={2} />
-    </a>
+    <NavItem {...item} />
   {/each}
 
   {#each rightContacts as item}
-    <a
-      href={item.href}
-      aria-label={item.label}
-      target={item.external ? "_blank" : undefined}
-      rel={item.external ? "noopener noreferrer" : undefined}
-      class={cn(
-        `rail-button group flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] text-text-muted transition-all hover:gradient-text`,
-      )}
-    >
-      <svelte:component this={item.icon} size={20} strokeWidth={2} />
-    </a>
+    <NavItem {...item} size={20} />
   {/each}
 </aside>
 

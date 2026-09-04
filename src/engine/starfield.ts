@@ -26,7 +26,7 @@ const starVertexShader = `
     vIntensity = intensity;
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * mvPosition;
-    gl_PointSize = max(min(size * 2.5, uPixelRatio * 4.0), uPixelRatio);
+    gl_PointSize = max(min(size * 2.5, uPixelRatio * 3.0), uPixelRatio);
   }
 `;
 
@@ -166,7 +166,7 @@ export function createStarfield(
   });
 
   const starCount =
-    Math.pow(Math.min(window.innerHeight, window.innerWidth), 2) / 100;
+    Math.pow(Math.min(window.innerHeight, window.innerWidth), 2) / 50;
   const starPoints = new THREE.Points(
     createStarGeometry(starCount),
     starMaterial,
