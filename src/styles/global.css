@@ -91,6 +91,13 @@
     rgba(120, 140, 255, 0.05),
     rgba(139, 92, 246, 0.05)
   );
+
+  --gradient-glass-hover: linear-gradient(
+    45deg,
+    rgba(103, 232, 249, 0.075),
+    rgba(120, 140, 255, 0.075),
+    rgba(139, 92, 246, 0.075)
+  );
   --text: #fff;
   --text-secondary: #fff;
   --text-muted: #7a829a;
@@ -282,20 +289,27 @@ section {
   /* background: var(--glass-bg); */
   background: var(--gradient-glass);
   /* border: 1px solid var(--glass-border-strong); */
-  backdrop-filter: blur(24px) saturate(175%);
-  -webkit-backdrop-filter: blur(24px) saturate(175%);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
   border-radius: var(--radius);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.5),
     inset 0 0 4px rgba(255, 255, 255, 0.1),
     inset 1px 1px 1px rgba(255, 255, 255, 0.1),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.112);
+    inset -1px -1px 1px rgba(255, 255, 255, 0.125);
   position: relative;
   overflow: hidden;
-  transition:
-    border-color 0.4s ease,
-    background 0.4s ease,
-    box-shadow 0.4s ease;
+  transition: box-shadow 0.3s ease !important;
+}
+
+.glass:hover {
+  background: var(--gradient-glass-hover);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 0 4px rgba(255, 255, 255, 0.2),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.15),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.175),
+    inset 0 0 8px rgba(140, 180, 255, 0.25);
 }
 /* ===== Reveal animation ===== */
 .reveal {

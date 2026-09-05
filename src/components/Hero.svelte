@@ -35,11 +35,8 @@
         `intro max-w-5xl mt-6! font-body font-normal text-text  max_lg:max-w-3xl md:text-xl lg:text-2xl`,
       )}
     >
-      A <span class="font-medium">Full-Stack Software Development Engineer</span
-      >. I build
-      <span class="font-medium">backend architecture</span>,
-      <span class="font-medium">distributed systems</span>,
-      <span class="font-medium">real-time interfaces</span>, and more.
+      A Full-Stack Software Engineer building backend architecture, distributed
+      systems, real-time interfaces, and complex web applications.
     </p>
 
     <div
@@ -49,12 +46,12 @@
     >
       <a
         href="#contact"
-        class="btn btn-primary min-w-[150px] max_md:w-[min(320px,100%)]"
+        class="glass rounded-full! py-3 px-9 text-lg font-bold text-black! font-family-display bg-[image:var(--gradient-hero)]!"
         >Get in touch</a
       >
       <a
         href="#contact"
-        class="btn btn-ghost min-w-[150px] max_md:w-[min(320px,100%)]"
+        class="glass rounded-full! py-3 px-9 text-lg font-semibold font-family-display"
         >Download resume</a
       >
     </div>
@@ -62,7 +59,6 @@
 </section>
 
 <style>
-  /* .hero-eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--accent-cyan); opacity: 0.7; } */
   .hero-title em {
     font-style: normal;
     background: var(--gradient-hero);

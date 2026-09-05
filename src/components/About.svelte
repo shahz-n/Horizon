@@ -10,7 +10,7 @@
     </div>
 
     <div
-      class="mx-auto mt-10 grid grid-cols-12 gap-6 px-24 text-justify text-xl leading-relaxed text-secondary"
+      class="mx-auto mt-10 grid grid-cols-12 gap-8 text-lg leading-relaxed text-secondary"
     >
       <p class="glass glass-glow col-span-6 p-6">
         I'm a <strong>self-taught Full-Stack Software Engineer</strong> with 6+
@@ -32,8 +32,8 @@
         >. More than six years later, I'm still following the same curiosity
         that got me started.
       </p>
-
-      <p class="glass glass-glow col-span-12 p-6">
+      <div class="col-span-3"></div>
+      <p class="glass glass-glow col-span-6 p-6">
         I started with <strong>React and Node.js</strong>, and my work over the
         years has taken me through a much broader part of the stack, including
         TypeScript, Next.js, NestJS, GraphQL, databases, cloud infrastructure,
@@ -43,7 +43,7 @@
           frontend applications, and real-time interfaces</strong
         >.
       </p>
-
+      <div class="col-span-3"></div>
       <p class="glass glass-glow col-span-6 p-6">
         I've had the opportunity to
         <strong>design, develop, and own systems end-to-end</strong>, from
