@@ -1,44 +1,43 @@
 {
   "eyebrow": "Projects",
-  "title": "Built outside the day job.",
-  "sub": "Side projects, open-source engines, and major backend architectures I've built and deployed.",
+  "title": "Things I've built.",
+  "sub": "A selection of products and experiments that explore different kinds of software, from astronomical simulation to AI systems, gaming infrastructure, and real-world marketplaces.",
   "projects": [
     {
       "title": "Astrarium",
-      "tagline": "A real-time, to-scale solar system orrery & orbital simulation engine.",
+      "tagline": "A real-time, to-scale solar system orrery and orbital simulation.",
+      "meta": "PERSONAL · SIMULATION",
       "tags": ["Three.js", "Svelte", "TypeScript", "WebGL", "GLSL"],
       "side": "left",
-      "bullets": [
-        "To-scale 3D model of the solar system — every planet, dwarf planet, and major moon, positioned from real astronomical Keplerian data.",
-        "Keplerian orbital-motion engine with true-to-scale velocity, live orbit tracking, and a custom clock scaling from real time to years per second.",
-        "Published an npm package for high-precision line rendering, using camera-relative coordinates to eliminate GPU floating-point jitter at astronomical scales.",
-        "Three custom camera systems, including a six-axis free-flight mode built from scratch to handle extreme time-scale chase scenes."
-      ],
+      "description": "Astrarium is an interactive model of the solar system built around real astronomical data, with planets, dwarf planets, and major moons moving according to Keplerian orbital parameters. The simulation includes a custom time system that can move from real time to several years per second, along with orbit tracking, motion trails, live labels, and camera systems designed for navigating astronomical distances. Its rendering layer also led to a published npm package for high-precision line rendering, using camera-relative coordinates to avoid floating-point precision problems at large scales.",
       "color": "#7ba6f7"
     },
     {
       "title": "Context Studio",
-      "tagline": "An AI knowledge and content workspace for adaptive research briefs.",
-      "tags": ["Next.js", "Supabase", "Redux", "Anthropic API", "OpenAI API"],
+      "tagline": "An AI knowledge and content workspace built around persistent context.",
+      "meta": "PRODUCT · AI",
+      "tags": ["Next.js", "Supabase", "Redux", "Anthropic", "OpenAI"],
       "side": "right",
-      "bullets": [
-        "A fault-tolerant, idempotent document-ingestion pipeline for a serverless environment, with database-based locking and lock-expiry queues.",
-        "A hybrid retrieval system that routes between lexical and vector search based on query length, interleaving results where both work.",
-        "A feedback-driven research-brief system with adaptive topic and source weighting, refining future briefs on a cron-based schedule."
-      ],
+      "description": "Context Studio turns documents, notes, and other captured information into a searchable knowledge base for AI-assisted research and content creation. Its core is an ingestion and retrieval pipeline that processes documents in the background, generates embeddings, and combines lexical and vector search depending on the query. On top of that sits a feedback-driven research brief system that carries user preferences into future generations, allowing the system to adjust topic and source weighting over time rather than treating every brief as an isolated request.",
       "color": "#a78bfa"
     },
     {
-      "title": "Nym4Business Platform",
-      "tagline": "Multi-tenant B2B fintech infrastructure for SMEs and enterprise payments.",
-      "tags": ["NestJS", "GraphQL", "PostgreSQL", "React", "TypeScript"],
+      "title": "PoundAK",
+      "tagline": "A gaming companion platform for realtime telemetry, overlays, and AI-assisted analysis.",
+      "meta": "EXPERIMENTAL · GAMING",
+      "tags": ["Next.js", "React", "TypeScript", "Overwolf", "MongoDB"],
       "side": "left",
-      "bullets": [
-        "End-to-end feature delivery for a multi-tenant platform giving SMEs and organizations access to financial infrastructure.",
-        "Configurable approval-rule engine with custom transaction conditions (amount, type, sender/recipient) and multi-approver workflows.",
-        "Two-factor authentication, audit logging, and role-based dashboards integrated with NymCard's core payment systems."
-      ],
+      "description": "PoundAK is a desktop gaming companion built around live game telemetry and multiple coordinated application contexts. It combines in-game overlays, desktop interfaces, background services, and hotkey-driven windows into a single runtime, with game events feeding both realtime assistance and longer-term performance analysis. The platform also experiments with AI coaching by combining gameplay statistics, session history, player preferences, and other contextual data into structured prompts for different language models.",
       "color": "#67e8f9"
+    },
+    {
+      "title": "BorrowBe",
+      "tagline": "A social marketplace for renting and discovering things locally.",
+      "meta": "PROFESSIONAL · MARKETPLACE",
+      "tags": ["React", "Node.js", "MongoDB", "Maps", "Payments"],
+      "side": "right",
+      "description": "BorrowBe is a local rental marketplace connecting people through searchable listings, location-aware discovery, availability scheduling, conversations, and payments. The product combined map and radius search with structured address queries, while its category-driven CMS allowed different kinds of listings to inherit and customize fields, pricing packages, and limits. The platform also supported realtime conversations and listing updates alongside a wallet and automated payment system built around a hybrid transaction ledger.",
+      "color": "#7ba6f7"
     }
   ]
 }

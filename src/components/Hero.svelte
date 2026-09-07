@@ -50,7 +50,8 @@
         >Get in touch</a
       >
       <a
-        href="#contact"
+        href="/resume.pdf"
+        download
         class="glass rounded-full! py-3 px-9 text-lg font-semibold font-family-display"
         >Download resume</a
       >

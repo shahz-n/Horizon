@@ -22,9 +22,9 @@ export interface PhysicsSystem {
 export function createPhysics(): PhysicsSystem {
   let mouseX = 0,
     mouseY = 0;
-  let moonBaseRotY = 6;
+  let moonBaseRotY = 0.0;
   let currentMoonRotX = 0.0,
-    currentMoonRotY = 0.5;
+    currentMoonRotY = 0.0;
   let currentStarRotX = 0,
     currentStarRotY = 0;
 
@@ -38,7 +38,7 @@ export function createPhysics(): PhysicsSystem {
   return {
     update: (dt: number, prefersReducedMotion: boolean) => {
       if (!prefersReducedMotion) {
-        moonBaseRotY += dt * 0.012;
+        moonBaseRotY += dt * 0.015;
 
         const targetMoonX = mouseY * 0.125;
         const targetMoonY = mouseX * 0.125;

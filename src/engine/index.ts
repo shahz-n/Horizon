@@ -62,8 +62,8 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   const moon: MoonSystem = createMoon(scene);
   const physics: PhysicsSystem = createPhysics();
 
-  // Load Moon DDS compressed albedo texture directly
-  moon.loadTexture("/moon.jpg");
+  // Load Moon texture slices progressively via worker threads
+  moon.loadSlices();
 
   /* Scroll Sync State */
   let scrollProgress = 0;
