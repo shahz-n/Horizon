@@ -1,4 +1,6 @@
 <script lang="ts">
+  import TimelineDot from "./TimelineDot.svelte";
+
   export let project: {
     title: string;
     tagline: string;
@@ -12,20 +14,7 @@
 </script>
 
 <div class="relative w-full" style={`--project-color: ${project.color}`}>
-  <div
-    class:s-right={side === "left"}
-    class:s-left={side === "right"}
-    class="timeline-dot absolute top-1/2 z-5
-           h-4 w-4 -translate-y-1/2 rounded-full
-           border-[3px] border-[var(--text-faint)]
-           bg-[var(--nebula-mid)]
-           transition-[border-color,box-shadow,background,transform]
-           duration-500
-           [.in-view_&]:border-[var(--accent-blue)]
-           [.in-view_&]:bg-[var(--accent-cyan)]
-           [.in-view_&]:scale-[1.15]
-           [.in-view_&]:shadow-[0_0_24px_6px_rgba(103,232,249,0.6)]"
-  ></div>
+  <TimelineDot {side} />
 
   <div
     class="glass-glow glass group
@@ -126,13 +115,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  .s-right {
-    right: -38px;
-  }
-
-  .s-left {
-    left: -38px;
-  }
-</style>
