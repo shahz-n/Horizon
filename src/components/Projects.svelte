@@ -71,7 +71,7 @@
     </div>
 
     <div class="projects-timeline" bind:this={timelineEl}>
-      <div class="timeline-track"></div>
+      <div class="timeline-track glass"></div>
 
       <div class="timeline-fill" bind:this={timelineFillEl}></div>
 
@@ -109,10 +109,9 @@
     bottom: 10px;
     width: 4px;
     transform: translateX(-50%);
-    background: rgba(140, 160, 255, 0.1);
+    box-shadow: none;
     border-radius: 4px;
   }
-
   .timeline-fill {
     position: absolute;
     left: 50%;
@@ -126,7 +125,7 @@
       var(--accent-blue),
       var(--accent-purple)
     );
-    box-shadow: 0 0 24px 4px rgba(123, 166, 247, 0.55);
+    /* box-shadow: 0 0 24px 4px rgba(123, 166, 247, 0.55); */
     border-radius: 4px;
     transition: height 0.08s linear;
   }

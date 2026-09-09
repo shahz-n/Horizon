@@ -55,7 +55,7 @@
     </div>
 
     <div class="experience-timeline" bind:this={timelineEl}>
-      <div class="timeline-track"></div>
+      <div class="timeline-track glass"></div>
       <div class="timeline-fill" bind:this={timelineFillEl}></div>
 
       <div class="experience-grid">
@@ -80,11 +80,52 @@
 </section>
 
 <style>
-  .experience-timeline { position: relative; width: 100%; }
-  .timeline-track { position: absolute; left: 50%; top: 10px; bottom: 10px; width: 4px; transform: translateX(-50%); background: rgba(140, 160, 255, 0.1); border-radius: 4px; }
-  .timeline-fill { position: absolute; left: 50%; top: 10px; width: 4px; height: 0; transform: translateX(-50%); background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple)); box-shadow: 0 0 24px 4px rgba(123, 166, 247, 0.55); border-radius: 4px; transition: height 0.08s linear; }
-  .experience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; position: relative; }
-  .column { display: flex; flex-direction: column; gap: 20vh; }
-  .right-column { margin-top: 20vh; }
-  .experience-item { width: 100%; }
+  .experience-timeline {
+    position: relative;
+    width: 100%;
+  }
+  .timeline-track {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    transform: translateX(-50%);
+    box-shadow: none;
+    border-radius: 4px;
+  }
+  .timeline-fill {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    width: 4px;
+    height: 0;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      180deg,
+      var(--accent-cyan),
+      var(--accent-blue),
+      var(--accent-purple)
+    );
+    /* box-shadow: 0 0 24px 4px rgba(123, 166, 247, 0.55); */
+    border-radius: 4px;
+    transition: height 0.08s linear;
+  }
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    position: relative;
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 20vh;
+  }
+  .right-column {
+    margin-top: 20vh;
+  }
+  .experience-item {
+    width: 100%;
+  }
 </style>

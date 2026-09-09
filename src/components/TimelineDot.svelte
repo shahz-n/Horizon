@@ -5,23 +5,26 @@
 <div
   class:s-right={side === "left"}
   class:s-left={side === "right"}
-  class="timeline-dot absolute top-1/2 z-5
-         h-4 w-4 -translate-y-1/2 rounded-full
-         border-3
-         border-[#0008]
-         bg-accent-cyan
+  class="timeline-dot absolute! top-1/2 z-5
+         h-[20px] w-[20px] -translate-y-1/2
+         rounded-full
+         glass
          transition-[border-color,box-shadow,background,transform]
          duration-500
-         [.in-view_&]:scale-[1.15]
-         [.in-view_&]:shadow-[0_0_24px_6px_rgba(103,232,249,0.6)]"
-></div>
+         flex items-center justify-center"
+>
+  <div class="h-3 w-3 min-w-3 min-h-3 rounded-full bg-accent-cyan"></div>
+</div>
 
 <style>
   .s-right {
-    right: -38px;
+    right: -40px;
   }
 
   .s-left {
-    left: -38px;
+    left: -40px;
+  }
+  .timeline-dot {
+    background: var(--gradient-glass-hover);
   }
 </style>
