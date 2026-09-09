@@ -6,7 +6,7 @@
     {
       "title": "Astrarium",
       "tagline": "A real-time, to-scale solar system orrery and orbital simulation.",
-      "meta": "PERSONAL · SIMULATION",
+      "meta": ["PERSONAL", "SIMULATION"],
       "tags": ["Three.js", "Svelte", "TypeScript", "WebGL", "GLSL"],
       "side": "left",
       "description": "Astrarium is an interactive model of the solar system built around real astronomical data, with planets, dwarf planets, and major moons moving according to Keplerian orbital parameters. The simulation includes a custom time system that can move from real time to several years per second, along with orbit tracking, motion trails, live labels, and camera systems designed for navigating astronomical distances. Its rendering layer also led to a published npm package for high-precision line rendering, using camera-relative coordinates to avoid floating-point precision problems at large scales.",
@@ -15,7 +15,7 @@
     {
       "title": "Context Studio",
       "tagline": "An AI knowledge and content workspace built around persistent context.",
-      "meta": "PRODUCT · AI",
+      "meta": ["PRODUCT", "AI"],
       "tags": ["Next.js", "Supabase", "Redux", "Anthropic", "OpenAI"],
       "side": "right",
       "description": "Context Studio turns documents, notes, and other captured information into a searchable knowledge base for AI-assisted research and content creation. Its core is an ingestion and retrieval pipeline that processes documents in the background, generates embeddings, and combines lexical and vector search depending on the query. On top of that sits a feedback-driven research brief system that carries user preferences into future generations, allowing the system to adjust topic and source weighting over time rather than treating every brief as an isolated request.",
@@ -24,7 +24,7 @@
     {
       "title": "PoundAK",
       "tagline": "A gaming companion platform for realtime telemetry, overlays, and AI-assisted analysis.",
-      "meta": "EXPERIMENTAL · GAMING",
+      "meta": ["EXPERIMENTAL", "GAMING"],
       "tags": ["Next.js", "React", "TypeScript", "Overwolf", "MongoDB"],
       "side": "left",
       "description": "PoundAK is a desktop gaming companion built around live game telemetry and multiple coordinated application contexts. It combines in-game overlays, desktop interfaces, background services, and hotkey-driven windows into a single runtime, with game events feeding both realtime assistance and longer-term performance analysis. The platform also experiments with AI coaching by combining gameplay statistics, session history, player preferences, and other contextual data into structured prompts for different language models.",
@@ -33,7 +33,7 @@
     {
       "title": "BorrowBe",
       "tagline": "A social marketplace for renting and discovering things locally.",
-      "meta": "PROFESSIONAL · MARKETPLACE",
+      "meta": ["PROFESSIONAL", "MARKETPLACE"],
       "tags": ["React", "Node.js", "MongoDB", "Maps", "Payments"],
       "side": "right",
       "description": "BorrowBe is a local rental marketplace connecting people through searchable listings, location-aware discovery, availability scheduling, conversations, and payments. The product combined map and radius search with structured address queries, while its category-driven CMS allowed different kinds of listings to inherit and customize fields, pricing packages, and limits. The platform also supported realtime conversations and listing updates alongside a wallet and automated payment system built around a hybrid transaction ledger.",

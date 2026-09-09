@@ -51,10 +51,10 @@
 <a
   href="/"
   aria-label="Horizon home"
-  class="absolute! -top-3 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center gap-2 glass p-3 pt-5 lg:flex"
+  class="absolute! -top-3 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center gap-2 glass p-2 pt-4 lg:p-3 lg:pt-5 lg:flex"
 >
   <span
-    class="title flex items-center justify-center gap-2 font-display text-xl font-medium"
+    class="title flex items-center justify-center gap-2 font-display text-base lg:text-lg font-medium"
   >
     Horizon
   </span>
@@ -63,7 +63,7 @@
 <!-- Left rail -->
 <nav
   aria-label="Section navigation"
-  class="fixed! -left-3 top-1/2 z-40 flex-col -translate-y-1/2 glass p-2 pl-5 overflow-visible! lg:flex"
+  class="fixed! -left-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pl-5 overflow-visible! max_md:hidden"
 >
   {#each leftNavigation as item}
     <NavItem {...item} />
@@ -77,7 +77,7 @@
 <!-- Right rail -->
 <aside
   aria-label="Section and contact links"
-  class="fixed! -right-3 top-1/2 z-40 flex-col -translate-y-1/2 glass p-2 pr-5 overflow-visible! lg:flex"
+  class="fixed! -right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pr-5 overflow-visible! max_md:hidden"
 >
   {#each rightNavigation as item}
     <NavItem {...item} />

@@ -33,19 +33,16 @@
   ];
 </script>
 
-<section
-  id="contact"
-  class="page pb-48 max_md:pb-32 flex items-center justify-center relative"
->
+<section id="contact" class="page relative flex items-center justify-center">
   <div class="wrap">
     <div class="contact-info">
-      <div class="section-head text-left">
+      <div class="section-head">
         <div class="eyebrow">{contactData.eyebrow}</div>
         <h2>{contactData.title}</h2>
         <p class="sub">{contactData.sub}</p>
       </div>
 
-      <div class="mt-10 grid grid-cols-2 gap-4 max_md:grid-cols-1">
+      <div class="mt-10 grid grid-cols-2 gap-4 max_lg:grid-cols-1 max_md:gap-3">
         {#each contacts as contact}
           <a
             href={contact.href}

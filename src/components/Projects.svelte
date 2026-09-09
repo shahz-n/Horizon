@@ -70,13 +70,15 @@
       <p class="sub">{projectsData.sub}</p>
     </div>
 
-    <div class="projects-timeline" bind:this={timelineEl}>
-      <div class="timeline-track glass"></div>
+    <div class="relative w-full" bind:this={timelineEl}>
+      <div class="timeline-track glass max_md:hidden"></div>
 
-      <div class="timeline-fill" bind:this={timelineFillEl}></div>
+      <div class="timeline-fill max_md:hidden" bind:this={timelineFillEl}></div>
 
-      <div class="projects-grid">
-        <div class="column left-column">
+      <div
+        class="relative grid grid-cols-2 gap-(--timeline-column-gap) max_lg:flex max_lg:flex-col max_lg:gap-6"
+      >
+        <div class="flex flex-col gap-(--timeline-card-gap) max_lg:gap-6">
           {#each leftProjects as project, i}
             <div bind:this={cards[i * 2]} class="project-item">
               <ProjectTile {project} side="left" />
@@ -84,7 +86,9 @@
           {/each}
         </div>
 
-        <div class="column right-column">
+        <div
+          class="mt-(--projects-right-offset) flex flex-col gap-(--timeline-card-gap) max_lg:mt-0 max_lg:gap-6"
+        >
           {#each rightProjects as project, i}
             <div bind:this={cards[i * 2 + 1]} class="project-item">
               <ProjectTile {project} side="right" />
@@ -97,11 +101,6 @@
 </section>
 
 <style>
-  .projects-timeline {
-    position: relative;
-    width: 100%;
-  }
-
   .timeline-track {
     position: absolute;
     left: 50%;
@@ -127,26 +126,5 @@
     );
     border-radius: 4px;
     transition: height 0.08s linear;
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    position: relative;
-  }
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    gap: 20vh;
-  }
-
-  .right-column {
-    margin-top: 40vh;
-  }
-
-  .project-item {
-    width: 100%;
   }
 </style>

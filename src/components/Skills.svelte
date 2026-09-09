@@ -33,10 +33,12 @@
       <p class="sub">{skillsData.sub}</p>
     </div>
 
-    <div class="grid w-full grid-cols-2 gap-2.5 min-[501px]:grid-cols-4 min-[801px]:grid-cols-6 lg:grid-cols-8">
+    <div
+      class="grid w-full gap-1.5 md:gap-2 lg:gap-2.5 grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
+    >
       {#each skillsData.skills as skill, i}
         <div
-          class={`skill-tile glass high-saturation relative flex aspect-square max-h-(--skill-tile-max-height) flex-col items-start justify-between overflow-hidden text-left ${skill.size === "s-2x2" ? "lg:col-span-2 lg:row-span-2" : ""}`}
+          class={`skill-tile glass high-saturation relative flex aspect-square max-h-(--skill-tile-max-height) flex-col items-start justify-between overflow-hidden text-left ${skill.size === "s-2x2" ? "col-span-2 row-span-2" : ""}`}
           bind:this={tiles[i]}
           style="transition-delay: {i * 30}ms"
         >
@@ -53,7 +55,7 @@
           </div>
 
           <div
-            class="portfolio-skill-info absolute bottom-0 z-10 w-full p-4 text-center"
+            class="portfolio-skill-info absolute bottom-0 z-10 w-full p-2 text-center sm:p-3 lg:p-4"
           >
             <div
               class="portfolio-skill-name text-center font-display font-semibold leading-tight text-text"

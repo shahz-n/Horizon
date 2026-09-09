@@ -19,7 +19,7 @@
 
   <div
     class="timeline-card glass high-saturation
-           w-full px-8 py-7
+           w-full px-8 py-7 max_md:px-6 max_md:py-5
            text-left
            opacity-0 translate-y-8
            transition-[opacity,transform]
@@ -33,7 +33,7 @@
       <!-- Title -->
       <div
         class="flex w-full items-center justify-between gap-3
-               text-left text-xl font-bold text-[var(--text)]"
+               text-left text-xl font-bold text-[var(--text)] max_md:text-lg"
       >
         {role.title}
 
@@ -41,7 +41,7 @@
           class="shrink-0 rounded-full
                  border border-(--glass-border)
                  bg-[white]/10
-                 px-3 py-0.5
+                 px-3 py-0.5 max-lg:hidden
                  font-mono text-xs font-semibold
                  text-[var(--text-secondary)]"
         >
@@ -56,6 +56,36 @@
       >
         {role.company}
 
+        <span
+          class="shrink-0 rounded-full
+                 border border-(--glass-border)
+                 bg-(--tag-cyan-bg)
+                 px-3 py-0.5
+                 font-mono text-xs font-semibold
+                 text-[var(--accent-cyan)] max-lg:hidden"
+        >
+          {role.domain}
+        </span>
+      </div>
+
+      <!-- Standalone metadata row -->
+      <div
+        class="flex w-full items-center justify-between gap-3
+               mt-1 lg:hidden"
+      >
+        <!-- Period -->
+        <span
+          class="shrink-0 rounded-full
+                 border border-(--glass-border)
+                 bg-[white]/10
+                 px-3 py-0.5
+                 font-mono text-xs font-semibold
+                 text-[var(--text-secondary)]"
+        >
+          {role.period}
+        </span>
+
+        <!-- Domain -->
         <span
           class="shrink-0 rounded-full
                  border border-(--glass-border)
@@ -80,7 +110,7 @@
 
     <!-- Responsibilities -->
     <ul
-      class="role-bullets relative z-10 mt-4
+      class="role-bullets relative z-10 mt-2!
              space-y-2 text-left"
     >
       {#each role.bullets as bullet}
@@ -106,7 +136,6 @@
           class="rounded-full
                  border border-(--glass-border-strong)
                  bg-(--accent-blue)/10
-          
                  px-3 py-0.5
                  font-mono text-xs font-semibold
                  text-(--accent-blue)"

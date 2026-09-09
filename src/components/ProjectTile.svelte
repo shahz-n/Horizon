@@ -4,7 +4,7 @@
   export let project: {
     title: string;
     tagline: string;
-    meta: string;
+    meta: string[];
     tags: string[];
     description: string;
     color: string;
@@ -62,7 +62,7 @@
     </div>
 
     <!-- Content -->
-    <div class="px-8 py-7">
+    <div class="px-8 py-7 max_md:px-5 max_md:py-5">
       <div class="flex flex-col items-center justify-center gap-1">
         <div
           class="relative z-10 flex w-full items-center
@@ -70,28 +70,31 @@
         >
           <!-- Title -->
           <h3
-            class="text-xl font-bold leading-tight
+            class="text-xl font-bold leading-tight max_md:text-lg
                    text-(--text)"
           >
             {project.title}
           </h3>
 
-          <!-- Meta -->
-          <span
-            class="shrink-0 rounded-full
-                   border border-(--glass-border)
-                   bg-(--tag-cyan-bg)
-                   px-3 py-0.5
-                   font-mono text-xs font-semibold
-                   text-(--accent-cyan)"
-          >
-            {project.meta}
-          </span>
+          <div class="flex flex-wrap justify-end gap-1.5">
+            {#each project.meta as tag}
+              <span
+                class="shrink-0 rounded-full
+                       border border-(--glass-border)
+                       bg-(--tag-cyan-bg)
+                       px-3 py-0.5
+                       font-mono text-xs font-semibold
+                       text-(--accent-cyan)"
+              >
+                {tag}
+              </span>
+            {/each}
+          </div>
         </div>
 
         <!-- Tagline -->
         <p
-          class="w-full text-sm font-medium
+          class="w-full text-sm font-medium max_sm:text-xs
                  leading-relaxed text-(--accent-purple)"
         >
           {project.tagline}

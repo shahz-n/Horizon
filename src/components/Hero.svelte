@@ -4,10 +4,10 @@
 
 <section
   id="hero"
-  class="page relative flex items-center justify-center pt-28 pb-44 max_lg:pt-28 max_lg:pb-44 max_md:pt-24 max_md:pb-32 max_sm:pt-24 max_sm:pb-30"
+  class="page relative flex items-center justify-center pt-28 pb-44 max_lg:pt-28 max_lg:pb-44"
 >
   <div
-    class="hero-content wrap relative z-10 flex w-full flex-col items-center text-center max_lg:max-w-5xl max_md:px-5 max_sm:px-4"
+    class="hero-content wrap relative z-10 flex w-full flex-col items-center text-center max_lg:max-w-5xl"
   >
     <div
       class="eyebrow mb-7 flex items-center justify-center gap-4 font-mono text-xs leading-none tracking-[0.18em] text-accent-cyan uppercase opacity-90 max_sm:gap-2 max_sm:text-xs max_sm:tracking-[0.14em]"
@@ -16,29 +16,29 @@
     </div>
 
     <h1
-      class="hero-title m-0 text-7xl font-display font-semibold leading-(--hero-title-leading) tracking-tighter text-text md:text-8xl lg:text-9xl"
+      class="hero-title m-0 text-6xl font-display font-semibold leading-[0.95] tracking-tighter text-text md:text-8xl lg:text-9xl"
     >
       I'm <em>{heroData.nameFirst}</em>
     </h1>
 
     <p
-      class="intro mt-6! max-w-5xl font-body font-normal text-text max_lg:max-w-3xl md:text-xl lg:text-2xl"
+      class="intro mt-5! max-w-xl font-body font-medium text-text sm:mt-6! md:max-w-3xl text-lg lg:max-w-5xl lg:text-2xl"
     >
       {heroData.intro}
     </p>
 
     <div
-      class="hero-actions mt-(--hero-action-offset) flex items-center justify-center gap-3 max_md:mt-8 max_md:w-full max_md:flex-col max_md:gap-2"
+      class="hero-actions mt-8 flex w-full items-center justify-center gap-2 px-4 sm:w-auto sm:gap-3 lg:mt-(--hero-action-offset)"
     >
       <a
         href={heroData.primaryAction.href}
-        class="glass rounded-full! py-3 px-9 text-lg font-bold text-black! font-family-display bg-[image:var(--gradient-hero)]!"
+        class="glass w-full rounded-full! px-5 md:px-7 py-3 text-base font-bold text-black! font-family-display bg-[image:var(--gradient-hero)]! sm:w-auto sm:px-9 sm:text-lg"
         >{heroData.primaryAction.label}</a
       >
       <a
         href={heroData.resumeAction.href}
         download
-        class="glass rounded-full! py-3 px-9 text-lg font-semibold font-family-display low-saturation"
+        class="glass w-full rounded-full! px-5 md:px-7 py-3 text-base font-semibold font-family-display low-saturation sm:w-auto sm:px-9 sm:text-lg"
         >{heroData.resumeAction.label}</a
       >
     </div>

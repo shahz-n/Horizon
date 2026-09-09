@@ -16,7 +16,7 @@
         "Shipped two-factor authentication and audit logging integrated with NymCard's core payment systems, plus dashboards and GraphQL APIs for role-based data access.",
         "Collaborated with security teams to ensure compliance with financial regulations and strict data privacy standards across multi-tenant environments."
       ],
-      "stack": ["NestJS", "GraphQL", "PostgreSQL", "React", "TypeScript", "Docker"]
+      "stack": ["NestJS", "GraphQL", "PostgreSQL", "React", "TypeScript"]
     },
     {
       "title": "Software Development Engineer",
@@ -31,7 +31,7 @@
         "Built a streaming export system for multi-gigabyte audit-log CSVs, reconstructing data in real time to minimize server memory use and eliminate storage costs.",
         "Designed an advanced request-tracing system delivering detailed traces, including database and HTTP calls, with zero added overhead in response pipelines."
       ],
-      "stack": ["NestJS", "Microservices", "Redis", "PostgreSQL", "AWS", "Docker"]
+      "stack": ["NestJS", "Microservices", "Redis", "PostgreSQL", "AWS"]
     },
     {
       "title": "Founding Engineer & Technical Lead",
@@ -46,7 +46,7 @@
         "Built a real-time chat and notification system with per-listing conversation identity, live presence, and real-time listing updates.",
         "Built a Stripe-integrated wallet and auto-renewal payment system with a hybrid ledger (direct payments and credits) and hash-locked transaction immutability."
       ],
-      "stack": ["Node.js", "React", "Stripe", "WebSockets", "PostgreSQL", "Redis"]
+      "stack": ["Node.js", "React", "WebSockets", "PostgreSQL", "Redis"]
     },
     {
       "title": "Full-Stack Developer",
@@ -59,7 +59,7 @@
         "Built full-stack web applications for clients across 20+ countries, including a gaming-focused social platform, a video conferencing app, and an interactive coding education tool.",
         "Provided technical mentorship to 100+ developers across the full skill spectrum, from teaching absolute beginners to advising working professionals on system design and backend architecture."
       ],
-      "stack": ["React", "Node.js", "TypeScript", "WebRTC", "MongoDB", "GraphQL"]
+      "stack": ["React", "Node.js", "TypeScript", "MongoDB", "GraphQL"]
     }
   ]
 }
