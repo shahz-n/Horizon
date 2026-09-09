@@ -1,8 +1,12 @@
 {
   "eyebrow": "Full-stack engineer · remote · GMT+5:30",
+  "greeting": "Hi there",
   "nameFirst": "Shahzer",
   "nameLast": "Najeeb",
   "roleDescription": "I build backend architecture, distributed systems, and real-time interfaces — from fintech approval engines to a to-scale model of the solar system, built for the love of it.",
+  "intro": "A Full-Stack Software Engineer building backend architecture, distributed systems, real-time interfaces, and complex web applications.",
+  "primaryAction": { "label": "Get in touch", "href": "#contact" },
+  "resumeAction": { "label": "Download resume", "href": "/resume.pdf" },
   "metaStats": [
     { "value": "06+", "label": "years shipping production systems" },
     { "value": "03", "label": "domains — fintech, HR-tech, marketplace" },

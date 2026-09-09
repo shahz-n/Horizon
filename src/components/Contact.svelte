@@ -51,7 +51,7 @@
             href={contact.href}
             target={contact.external ? "_blank" : undefined}
             rel={contact.external ? "noopener noreferrer" : undefined}
-            class="contact-link glass-glow glass relative flex flex-col gap-5 overflow-hidden p-6 text-text"
+            class="contact-link glass relative flex flex-col gap-5 overflow-hidden p-6 text-text"
           >
             <div class="relative z-10 flex items-center gap-3">
               <svelte:component

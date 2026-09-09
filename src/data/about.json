@@ -1,7 +1,13 @@
 {
   "eyebrow": "About",
   "title": "A career shaped by curiosity",
-  "summary": "I'm a full-stack software engineer with six-plus years of hands-on experience building production systems across fintech, HR-tech, and marketplace platforms — in environments ranging from early-stage startups to large enterprises. My depth is in backend architecture, distributed systems, and performance, alongside real experience building complex frontend applications and real-time interfaces. I like owning systems end-to-end: architecture, data modeling, implementation, and deployment.",
+  "paragraphs": [
+    "I'm a <strong>self-taught Full-Stack Software Engineer</strong> with 6+ years of hands-on development experience building production systems across multiple domains, including <strong>fintech, HR-tech, and marketplace platforms</strong>, and across environments ranging from early-stage startups to growing organizations and larger enterprises.",
+    "I learned full-stack development while I was still in school and started working independently during high school. What began with building websites and applications gradually grew into larger and more involved projects, eventually leading me into <strong>production systems, larger teams, and increasingly complex engineering problems</strong>. More than six years later, I'm still following the same curiosity that got me started.",
+    "I started with <strong>React and Node.js</strong>, and my work over the years has taken me through a much broader part of the stack, including TypeScript, Next.js, NestJS, GraphQL, databases, cloud infrastructure, and many other technologies along the way. My experience spans <strong>backend architecture, distributed systems, performance, complex frontend applications, and real-time interfaces</strong>.",
+    "I've had the opportunity to <strong>design, develop, and own systems end-to-end</strong>, from architecture and data modeling through implementation and deployment. The problems have varied considerably between products and domains, and I've enjoyed being able to move with them, learning what each problem demands and understanding how its different pieces fit together.",
+    "I've always been interested in understanding how things work, and that curiosity has stayed with me throughout my career. It has often meant going beyond what a project immediately required, learning new technologies and exploring unfamiliar parts of the stack when they offered a better way to approach a problem. <strong>There is always something further to explore</strong>, which is probably what has kept development interesting for me after all these years."
+  ],
   "stats": [
     {
       "value": "70%",

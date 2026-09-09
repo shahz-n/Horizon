@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { cn } from "../lib/utils";
   import siteData from "../data/index.json";
   import {
     CirclePlay,
@@ -52,14 +51,10 @@
 <a
   href="/"
   aria-label="Horizon home"
-  class={cn(
-    `absolute! -top-3 left-1/2 z-40 -translate-x-1/2 flex items-center justify-center gap-2 glass-glow glass p-3 pt-5 lg:flex`,
-  )}
+  class="absolute! -top-3 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center gap-2 glass p-3 pt-5 lg:flex"
 >
   <span
-    class={cn(
-      `title flex items-center justify-center gap-2 font-display text-xl font-medium`,
-    )}
+    class="title flex items-center justify-center gap-2 font-display text-xl font-medium"
   >
     Horizon
   </span>
@@ -68,9 +63,7 @@
 <!-- Left rail -->
 <nav
   aria-label="Section navigation"
-  class={cn(
-    `fixed! -left-3 top-1/2 z-40 -translate-y-1/2 flex-col glass-glow glass p-2 pl-5 lg:flex overflow-visible!`,
-  )}
+  class="fixed! -left-3 top-1/2 z-40 flex-col -translate-y-1/2 glass p-2 pl-5 overflow-visible! lg:flex"
 >
   {#each leftNavigation as item}
     <NavItem {...item} />
@@ -84,9 +77,7 @@
 <!-- Right rail -->
 <aside
   aria-label="Section and contact links"
-  class={cn(
-    `fixed! -right-3 top-1/2 z-40 -translate-y-1/2 flex-col glass-glow glass p-2 pr-5 lg:flex overflow-visible!`,
-  )}
+  class="fixed! -right-3 top-1/2 z-40 flex-col -translate-y-1/2 glass p-2 pr-5 overflow-visible! lg:flex"
 >
   {#each rightNavigation as item}
     <NavItem {...item} />

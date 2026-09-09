@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import skillsData from "../data/skills.json";
-  import { cn } from "../lib/utils";
 
   let tiles: HTMLElement[] = [];
 
@@ -34,41 +33,30 @@
       <p class="sub">{skillsData.sub}</p>
     </div>
 
-    <div class={cn(`portfolio-skills-grid grid gap-2.5 w-full `)}>
+    <div class="grid w-full grid-cols-2 gap-2.5 min-[501px]:grid-cols-4 min-[801px]:grid-cols-6 lg:grid-cols-8">
       {#each skillsData.skills as skill, i}
         <div
-          class={cn(
-            `skill-tile glass-glow glass high-saturation relative flex flex-col items-start justify-between overflow-hidden text-left`,
-            skill.size === "s-2x2" ? `lg:col-span-2 lg:row-span-2` : ``,
-          )}
+          class={`skill-tile glass high-saturation relative flex aspect-square max-h-(--skill-tile-max-height) flex-col items-start justify-between overflow-hidden text-left ${skill.size === "s-2x2" ? "lg:col-span-2 lg:row-span-2" : ""}`}
           bind:this={tiles[i]}
           style="transition-delay: {i * 30}ms"
         >
           <div
-            class={cn(
-              `portfolio-skill-icon absolute z-10 w-full h-[80%] flex top-0 left-0 items-center justify-center`,
-            )}
+            class="portfolio-skill-icon absolute top-0 left-0 z-10 flex h-[80%] w-full items-center justify-center"
           >
             <img
               src={skill.icon}
               alt={skill.name}
               loading="lazy"
-              class={cn(
-                "w-3/4 h-3/4 object-contain",
-                skill.inverted && "invert",
-              )}
+              class:invert={skill.inverted}
+              class="h-3/4 w-3/4 object-contain"
             />
           </div>
 
           <div
-            class={cn(
-              `portfolio-skill-info absolute bottom-0 z-10 w-full p-4 text-center`,
-            )}
+            class="portfolio-skill-info absolute bottom-0 z-10 w-full p-4 text-center"
           >
             <div
-              class={cn(
-                `portfolio-skill-name font-display font-semibold text-text text-center leading-tight`,
-              )}
+              class="portfolio-skill-name text-center font-display font-semibold leading-tight text-text"
             >
               {skill.name}
             </div>
@@ -80,30 +68,6 @@
 </section>
 
 <style>
-  .portfolio-skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 500px) {
-    .portfolio-skills-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 800px) {
-    .portfolio-skills-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-  @media (max-width: 1200px) {
-    .portfolio-skills-grid {
-      grid-template-columns: repeat(6, 1fr);
-    }
-  }
-  @media (min-width: 1024px) {
-    .portfolio-skills-grid {
-      grid-template-columns: repeat(8, 1fr);
-    }
-  }
-
   .skill-tile {
     opacity: 0;
     transform: scale(0.92);
@@ -112,10 +76,6 @@
       transform 0.6s ease,
       border-color 0.3s ease,
       background 0.3s ease;
-    aspect-ratio: 1 / 1;
-    max-height: 400px;
-  }
-  .skill-tile img {
   }
   .skill-tile:global(.in-view) {
     opacity: 1;

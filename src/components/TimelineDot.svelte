@@ -6,7 +6,7 @@
   class:s-right={side === "left"}
   class:s-left={side === "right"}
   class="timeline-dot absolute! top-1/2 z-5
-         h-[14px] w-[14px] -translate-y-1/2
+         size-(--timeline-dot-size) -translate-y-1/2
          rounded-full
          glass border-[1.5px]! border-(--accent-cyan)
          transition-[border-color,box-shadow,background,transform]
@@ -19,11 +19,11 @@
 
 <style>
   .s-right {
-    right: -37px;
+    right: var(--timeline-marker-offset);
   }
 
   .s-left {
-    left: -37px;
+    left: var(--timeline-marker-offset);
   }
   .timeline-dot {
     background: var(--gradient-glass-hover);

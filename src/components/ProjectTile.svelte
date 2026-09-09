@@ -17,7 +17,7 @@
   <TimelineDot {side} />
 
   <div
-    class="project-card glass-glow glass high-saturation group
+    class="project-card glass high-saturation group
            w-full overflow-hidden
            text-left
            opacity-0 translate-y-8
@@ -26,17 +26,15 @@
            [.in-view_&]:translate-y-0
            [.in-view_&]:opacity-100"
   >
-    <div class="glow-border"></div>
-
     <!-- Project visual -->
     <div
-      class="relative h-[280px] w-full overflow-hidden
+      class="relative h-(--project-visual-height) w-full overflow-hidden
              border-b border-(--glass-border)
              bg-black/40"
     >
       <div
         class="flex h-full w-full flex-col items-center justify-center gap-3
-               bg-[radial-gradient(circle_at_center,rgba(120,140,255,0.05),transparent_70%)]
+               bg-(image:--project-visual-bg)
                text-(--text-faint)"
       >
         <span class="opacity-35">
@@ -55,7 +53,7 @@
         </span>
 
         <span
-          class="font-mono text-[0.6875rem] uppercase
+          class="font-mono text-[length:var(--project-visual-label-size)] uppercase
                  tracking-[0.1em] opacity-35"
         >
           Project visual
@@ -82,7 +80,7 @@
           <span
             class="shrink-0 rounded-full
                    border border-(--glass-border)
-                   bg-[rgba(103,232,249,0.08)]
+                   bg-(--tag-cyan-bg)
                    px-3 py-0.5
                    font-mono text-xs font-semibold
                    text-(--accent-cyan)"

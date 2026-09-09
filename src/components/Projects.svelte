@@ -125,7 +125,6 @@
       var(--accent-blue),
       var(--accent-purple)
     );
-    /* box-shadow: 0 0 24px 4px rgba(123, 166, 247, 0.55); */
     border-radius: 4px;
     transition: height 0.08s linear;
   }

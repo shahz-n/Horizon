@@ -1,59 +1,45 @@
 <script lang="ts">
   import heroData from "../data/hero.json";
-  import { cn } from "../lib/utils";
 </script>
 
 <section
   id="hero"
-  class={cn(
-    `page flex items-center justify-center relative pt-28 pb-44 max_lg:pt-28 max_lg:pb-44 max_md:pt-24 max_md:pb-32 max_sm:pt-24 max_sm:pb-30`,
-  )}
+  class="page relative flex items-center justify-center pt-28 pb-44 max_lg:pt-28 max_lg:pb-44 max_md:pt-24 max_md:pb-32 max_sm:pt-24 max_sm:pb-30"
 >
   <div
-    class={cn(
-      `hero-content wrap flex flex-col items-center text-center relative z-10 w-full max_lg:max-w-5xl max_md:px-5 max_sm:px-4`,
-    )}
+    class="hero-content wrap relative z-10 flex w-full flex-col items-center text-center max_lg:max-w-5xl max_md:px-5 max_sm:px-4"
   >
     <div
-      class={cn(
-        `eyebrow flex items-center justify-center gap-4 mb-7 text-accent-cyan font-mono text-xs tracking-[0.18em] leading-none uppercase opacity-90 max_sm:text-xs max_sm:tracking-[0.14em] max_sm:gap-2`,
-      )}
+      class="eyebrow mb-7 flex items-center justify-center gap-4 font-mono text-xs leading-none tracking-[0.18em] text-accent-cyan uppercase opacity-90 max_sm:gap-2 max_sm:text-xs max_sm:tracking-[0.14em]"
     >
-      <span>Hi there</span>
+      <span>{heroData.greeting}</span>
     </div>
 
     <h1
-      class={cn(
-        `hero-title m-0 font-display font-semibold text-text leading-[0.9] tracking-tighter text-7xl md:text-8xl lg:text-9xl`,
-      )}
+      class="hero-title m-0 text-7xl font-display font-semibold leading-(--hero-title-leading) tracking-tighter text-text md:text-8xl lg:text-9xl"
     >
       I'm <em>{heroData.nameFirst}</em>
     </h1>
 
     <p
-      class={cn(
-        `intro max-w-5xl mt-6! font-body font-normal text-text  max_lg:max-w-3xl md:text-xl lg:text-2xl`,
-      )}
+      class="intro mt-6! max-w-5xl font-body font-normal text-text max_lg:max-w-3xl md:text-xl lg:text-2xl"
     >
-      A Full-Stack Software Engineer building backend architecture, distributed
-      systems, real-time interfaces, and complex web applications.
+      {heroData.intro}
     </p>
 
     <div
-      class={cn(
-        `hero-actions flex items-center justify-center gap-3 mt-[42px] max_md:w-full max_md:flex-col max_md:gap-2 max_md:mt-8`,
-      )}
+      class="hero-actions mt-(--hero-action-offset) flex items-center justify-center gap-3 max_md:mt-8 max_md:w-full max_md:flex-col max_md:gap-2"
     >
       <a
-        href="#contact"
+        href={heroData.primaryAction.href}
         class="glass rounded-full! py-3 px-9 text-lg font-bold text-black! font-family-display bg-[image:var(--gradient-hero)]!"
-        >Get in touch</a
+        >{heroData.primaryAction.label}</a
       >
       <a
-        href="/resume.pdf"
+        href={heroData.resumeAction.href}
         download
         class="glass rounded-full! py-3 px-9 text-lg font-semibold font-family-display low-saturation"
-        >Download resume</a
+        >{heroData.resumeAction.label}</a
       >
     </div>
   </div>

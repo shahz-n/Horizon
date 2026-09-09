@@ -18,7 +18,6 @@ export interface MoonSystem {
   setPositionAndScale(pos: THREE.Vector3, scale: number): void;
   setRotation(rotX: number, rotY: number): void;
   loadSlices(): void;
-  loadTexture(textureUrl?: string): void;
 }
 
 class MoonManager implements MoonSystem {
@@ -62,10 +61,6 @@ class MoonManager implements MoonSystem {
   setRotation(rotX: number, rotY: number): void {
     this.mesh.rotation.x = rotX;
     this.mesh.rotation.y = rotY;
-  }
-
-  loadTexture(_textureUrl?: string): void {
-    this.loadSlices();
   }
 
   loadSlices(): void {

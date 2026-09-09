@@ -1,11 +1,11 @@
-/* =========================================================================
-   Engine Orchestrator — Entry Point for 3D Starfield & Moon Simulation
-   ========================================================================= */
 import * as THREE from "three";
-import { createStarfield, type StarfieldSystem } from "./starfield";
 import { createMoon, type MoonSystem } from "./moon";
-import { getScrollProgress, evaluateMoonTrajectory } from "./trajectory";
 import { createPhysics, type PhysicsSystem } from "./physics";
+import { createStarfield, type StarfieldSystem } from "./starfield";
+import { evaluateMoonTrajectory, getScrollProgress } from "./trajectory";
+
+const MAX_PIXEL_RATIO = 2;
+const SCROLL_LERP_FACTOR = 0.22;
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -21,20 +21,18 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  /* Renderer setup */
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
     alpha: false,
     powerPreference: "high-performance",
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO));
   renderer.setSize(window.innerWidth, window.innerHeight, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
 
-  /* Scene & Camera setup */
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x030410, 0.003);
 
@@ -46,7 +44,6 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   );
   camera.position.set(0, 0, 16);
 
-  /* Lighting */
   const sun = new THREE.DirectionalLight(0xefefff, 2.5);
   sun.position.set(0, 0, 10);
   scene.add(sun);
@@ -54,7 +51,6 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   const fill = new THREE.HemisphereLight(0x3545b0, 0x080414, 0.6);
   scene.add(fill);
 
-  /* Engine Subsystems */
   const starfield: StarfieldSystem = createStarfield(
     scene,
     renderer.getPixelRatio(),
@@ -62,18 +58,15 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   const moon: MoonSystem = createMoon(scene);
   const physics: PhysicsSystem = createPhysics();
 
-  // Load Moon texture slices progressively via worker threads
   moon.loadSlices();
 
-  /* Scroll Sync State */
   let scrollProgress = 0;
   let targetScrollProgress = 0;
 
-  /* Resize listener */
   const onResize = () => {
     const w = window.innerWidth;
     const h = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
     renderer.setPixelRatio(dpr);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
@@ -83,7 +76,6 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
 
   window.addEventListener("resize", onResize);
 
-  /* Main Render Loop */
   const clock = new THREE.Clock();
   let animFrameId: number;
   let destroyed = false;
@@ -93,26 +85,22 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     animFrameId = requestAnimationFrame(animate);
     const dt = clock.getDelta();
 
-    // Responsive scroll lerp mapping
     targetScrollProgress = getScrollProgress();
     scrollProgress = lerp(
       scrollProgress,
       targetScrollProgress,
-      prefersReducedMotion ? 1 : 0.22,
+      prefersReducedMotion ? 1 : SCROLL_LERP_FACTOR,
     );
 
-    // Evaluate 3D Spline Path & Scale
     const trajectory = evaluateMoonTrajectory(scrollProgress);
     moon.setPositionAndScale(trajectory.pos, trajectory.scale);
 
-    // Update Physics (Mouse Damping & Rotations)
     const phys = physics.update(dt, prefersReducedMotion);
     moon.setRotation(phys.moonRotX, phys.moonRotY);
 
     starfield.points.rotation.x = phys.starRotX;
     starfield.points.rotation.y = phys.starRotY;
 
-    // Keep starfield centered on camera
     starfield.followCamera(camera.position);
 
     renderer.render(scene, camera);
@@ -130,6 +118,3 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     getScrollProgress: () => scrollProgress,
   };
 }
-
-// Alias export for backward compatibility
-export const initScene = initEngine;

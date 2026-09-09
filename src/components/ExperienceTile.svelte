@@ -18,7 +18,7 @@
   <TimelineDot {side} />
 
   <div
-    class="timeline-card glass-glow glass high-saturation
+    class="timeline-card glass high-saturation
            w-full px-8 py-7
            text-left
            opacity-0 translate-y-8
@@ -27,8 +27,6 @@
            [.in-view_&]:translate-y-0
            [.in-view_&]:opacity-100"
   >
-    <div class="glow-border"></div>
-
     <div
       class="relative z-10 flex flex-wrap items-center justify-between gap-1"
     >
@@ -61,7 +59,7 @@
         <span
           class="shrink-0 rounded-full
                  border border-(--glass-border)
-                 bg-[rgba(103,232,249,0.08)]
+                 bg-(--tag-cyan-bg)
                  px-3 py-0.5
                  font-mono text-xs font-semibold
                  text-[var(--accent-cyan)]"
@@ -87,7 +85,7 @@
     >
       {#each role.bullets as bullet}
         <li
-          class="relative pl-[18px]
+          class="relative pl-(--list-item-indent)
                  text-sm font-medium
                  leading-[1.6]
                  text-[var(--text-secondary)]"
@@ -121,14 +119,13 @@
 </div>
 
 <style>
-  /* Custom bullet marker */
   .role-bullets li::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 10px;
-    width: 5px;
-    height: 5px;
+    top: var(--list-marker-offset);
+    width: var(--list-marker-size);
+    height: var(--list-marker-size);
     border-radius: 9999px;
     background: var(--accent-cyan);
     opacity: 0.75;

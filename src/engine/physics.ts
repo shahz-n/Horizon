@@ -1,7 +1,9 @@
-/* =========================================================================
-   Engine Module — Mouse Traversal & Smooth Damped Physics (Zero Overshoot)
-   ========================================================================= */
 import * as THREE from "three";
+
+const ROTATION_SPEED = 0.015;
+const MOUSE_ROTATION_LIMIT = 0.125;
+const MOON_DAMPING = 0.03;
+const STAR_DAMPING = 0.02;
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -38,19 +40,19 @@ export function createPhysics(): PhysicsSystem {
   return {
     update: (dt: number, prefersReducedMotion: boolean) => {
       if (!prefersReducedMotion) {
-        moonBaseRotY += dt * 0.015;
+        moonBaseRotY += dt * ROTATION_SPEED;
 
-        const targetMoonX = mouseY * 0.125;
-        const targetMoonY = mouseX * 0.125;
+        const targetMoonX = mouseY * MOUSE_ROTATION_LIMIT;
+        const targetMoonY = mouseX * MOUSE_ROTATION_LIMIT;
 
-        const targetStarX = -mouseY * 0.125;
-        const targetStarY = mouseX * 0.125;
+        const targetStarX = -mouseY * MOUSE_ROTATION_LIMIT;
+        const targetStarY = mouseX * MOUSE_ROTATION_LIMIT;
 
-        currentMoonRotX = lerp(currentMoonRotX, targetMoonX, 0.03);
-        currentMoonRotY = lerp(currentMoonRotY, targetMoonY, 0.03);
+        currentMoonRotX = lerp(currentMoonRotX, targetMoonX, MOON_DAMPING);
+        currentMoonRotY = lerp(currentMoonRotY, targetMoonY, MOON_DAMPING);
 
-        currentStarRotX = lerp(currentStarRotX, targetStarX, 0.02);
-        currentStarRotY = lerp(currentStarRotY, targetStarY, 0.02);
+        currentStarRotX = lerp(currentStarRotX, targetStarX, STAR_DAMPING);
+        currentStarRotY = lerp(currentStarRotY, targetStarY, STAR_DAMPING);
       }
 
       return {
