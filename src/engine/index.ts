@@ -7,6 +7,13 @@ import { evaluateMoonTrajectory, getScrollProgress } from "./trajectory";
 const MAX_PIXEL_RATIO = 2;
 const SCROLL_LERP_FACTOR = 0.22;
 
+const INTRO_DELAY = 500;
+const INTRO_DURATION = 1000;
+
+const INTRO_CAMERA_POSITION = new THREE.Vector3(0, 0, 16);
+const INTRO_LOOK_START = new THREE.Vector3(4, 4, 4);
+const INTRO_LOOK_END = new THREE.Vector3(0, 0, 0);
+
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
@@ -82,9 +89,41 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   let animFrameId: number;
   let destroyed = false;
 
+  let introActive = !prefersReducedMotion;
+  let introStartTime = 0;
+
+  const previousOverflow = document.body.style.overflow;
+
+  const lockScroll = () => {
+    document.body.style.overflow = "hidden";
+  };
+
+  const unlockScroll = () => {
+    document.body.style.overflow = previousOverflow;
+  };
+
+  if (introActive) {
+    camera.position.copy(INTRO_CAMERA_POSITION);
+    camera.lookAt(INTRO_LOOK_START);
+
+    lockScroll();
+
+    window.setTimeout(() => {
+      if (!destroyed) {
+        introStartTime = performance.now();
+      }
+    }, INTRO_DELAY);
+  }
+
+  if (prefersReducedMotion) {
+    camera.position.copy(INTRO_CAMERA_POSITION);
+    camera.lookAt(INTRO_LOOK_END);
+  }
+
   function animate() {
     if (destroyed) return;
     animFrameId = requestAnimationFrame(animate);
+
     const dt = clock.getDelta();
 
     targetScrollProgress = getScrollProgress();
@@ -105,8 +144,31 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
 
     starfield.followCamera(camera.position);
 
+    if (introActive && introStartTime > 0) {
+      const elapsed = performance.now() - introStartTime;
+      const rawProgress = Math.min(elapsed / INTRO_DURATION, 1);
+
+      const progress = 1 - Math.pow(1 - rawProgress, 3);
+
+      camera.position.copy(INTRO_CAMERA_POSITION);
+
+      const lookAtY = lerp(INTRO_LOOK_START.y, INTRO_LOOK_END.y, progress);
+
+      camera.lookAt(0, lookAtY, 0);
+
+      if (rawProgress >= 1) {
+        introActive = false;
+
+        camera.position.copy(INTRO_CAMERA_POSITION);
+        camera.lookAt(INTRO_LOOK_END);
+
+        unlockScroll();
+      }
+    }
+
     renderer.render(scene, camera);
   }
+
   animate();
 
   return {
@@ -114,6 +176,11 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
       destroyed = true;
       cancelAnimationFrame(animFrameId);
       window.removeEventListener("resize", onResize);
+
+      if (introActive) {
+        unlockScroll();
+      }
+
       physics.destroy();
       renderer.dispose();
     },
