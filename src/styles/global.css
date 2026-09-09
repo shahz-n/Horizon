@@ -34,6 +34,7 @@
   --radius-xs: 8px;
   --backdrop-blur-xs: 6px;
   --backdrop-blur-sm: 12px;
+  --text-md: 0.9375rem;
 }
 
 /* ========================================================================
@@ -52,9 +53,9 @@
   --glass-bg: rgba(120, 140, 255, 0.04);
   --glass-bg-hover: rgba(120, 140, 255, 0.08);
   --glass-bg-strong: rgba(120, 140, 255, 0.1);
-  --glass-border: rgba(140, 160, 255, 0.1);
+  --glass-border: rgba(140, 160, 255, 0.15);
   --glass-border-hover: rgba(140, 180, 255, 0.5);
-  --glass-border-strong: rgba(160, 180, 255, 0.2);
+  --glass-border-strong: rgba(160, 180, 255, 0.25);
 
   /* Accent colors */
   --accent-blue: #7ba6f7;
@@ -87,16 +88,16 @@
   );
   --gradient-glass: linear-gradient(
     45deg,
-    rgba(103, 232, 249, 0.05),
-    rgba(120, 140, 255, 0.05),
-    rgba(139, 92, 246, 0.05)
+    rgba(103, 232, 249, 0.06),
+    rgba(120, 140, 255, 0.06),
+    rgba(139, 92, 246, 0.06)
   );
 
   --gradient-glass-hover: linear-gradient(
     45deg,
-    rgba(103, 232, 249, 0.075),
-    rgba(120, 140, 255, 0.075),
-    rgba(139, 92, 246, 0.075)
+    rgba(103, 232, 249, 0.08),
+    rgba(120, 140, 255, 0.09),
+    rgba(139, 92, 246, 0.08)
   );
   --text: #fff;
   --text-secondary: #fff;
@@ -284,7 +285,6 @@ section {
   line-height: 1.7;
 }
 
-/* ===== Glass primitive ===== */
 .glass {
   /* background: var(--glass-bg); */
   background: var(--gradient-glass);
@@ -310,6 +310,14 @@ section {
     inset 1px 1px 1px rgba(255, 255, 255, 0.15),
     inset -1px -1px 1px rgba(255, 255, 255, 0.175),
     inset 0 0 8px rgba(140, 180, 255, 0.25);
+}
+.low-saturation {
+  backdrop-filter: blur(24px) saturate(125%);
+  -webkit-backdrop-filter: blur(24px) saturate(125%);
+}
+.high-saturation {
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
 }
 /* ===== Reveal animation ===== */
 .reveal {

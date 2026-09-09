@@ -17,44 +17,120 @@
 <div class="relative w-full">
   <TimelineDot {side} />
 
-  <div class="timeline-card glass-glow glass">
+  <div
+    class="timeline-card glass-glow glass high-saturation
+           w-full px-8 py-7
+           text-left
+           opacity-0 translate-y-8
+           transition-[opacity,transform]
+           duration-700 ease-out
+           [.in-view_&]:translate-y-0
+           [.in-view_&]:opacity-100"
+  >
     <div class="glow-border"></div>
-    <div class="card-header flex justify-between items-start gap-4 flex-wrap relative z-10 text-left">
-      <div>
-        <div class="role-title text-xl font-semibold text-text text-left">{role.title}</div>
-        <div class="role-company text-base text-accent-purple font-medium mt-1 text-left">{role.company}</div>
+
+    <div
+      class="relative z-10 flex flex-wrap items-center justify-between gap-1"
+    >
+      <!-- Title -->
+      <div
+        class="flex w-full items-center justify-between gap-3
+               text-left text-xl font-bold text-[var(--text)]"
+      >
+        {role.title}
+
+        <span
+          class="shrink-0 rounded-full
+                 border border-(--glass-border)
+                 bg-[white]/10
+                 px-3 py-0.5
+                 font-mono text-xs font-semibold
+                 text-[var(--text-secondary)]"
+        >
+          {role.period}
+        </span>
       </div>
-      <div class="role-meta flex gap-2 flex-wrap items-center">
-        <span class="tag domain-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-accent-cyan bg-[rgba(103,232,249,0.08)]">{role.domain}</span>
-        <span class="tag period-tag px-3 py-0.5 rounded-full border border-[rgba(140,160,255,0.12)] font-mono text-xs text-text-secondary bg-[rgba(255,255,255,0.04)]">{role.period}</span>
+
+      <!-- Company -->
+      <div
+        class="flex w-full items-center justify-between gap-3
+               text-left text-sm font-bold text-[var(--accent-purple)]"
+      >
+        {role.company}
+
+        <span
+          class="shrink-0 rounded-full
+                 border border-(--glass-border)
+                 bg-[rgba(103,232,249,0.08)]
+                 px-3 py-0.5
+                 font-mono text-xs font-semibold
+                 text-[var(--accent-cyan)]"
+        >
+          {role.domain}
+        </span>
       </div>
+
+      <!-- Summary -->
+      <p
+        class="relative z-10 mt-4! w-full
+               text-left text-base font-medium
+               leading-relaxed text-[var(--text)]"
+      >
+        {role.summary}
+      </p>
     </div>
-    <p class="role-summary mt-3.5 text-base text-text font-medium leading-relaxed relative z-10 text-left">{role.summary}</p>
-    <ul class="role-bullets mt-4 relative z-10 text-left">
+
+    <!-- Responsibilities -->
+    <ul
+      class="role-bullets relative z-10 mt-4
+             space-y-2 text-left"
+    >
       {#each role.bullets as bullet}
-        <li>{bullet}</li>
+        <li
+          class="relative pl-[18px]
+                 text-sm font-medium
+                 leading-[1.6]
+                 text-[var(--text-secondary)]"
+        >
+          {bullet}
+        </li>
       {/each}
     </ul>
-    <div class="stack-list mt-5 pt-4 border-t border-[rgba(140,160,255,0.08)] flex gap-2 flex-wrap relative z-10">
+
+    <!-- Stack -->
+    <div
+      class="relative z-10 mt-3 flex flex-wrap
+             gap-1.5 border-t border-(--glass-border)
+             pt-4"
+    >
       {#each role.stack as tech}
-        <span class="tech-badge font-mono text-xs text-accent-blue bg-[rgba(123,166,247,0.08)] border border-[rgba(123,166,247,0.15)] px-2 py-0.5 rounded">{tech}</span>
+        <span
+          class="rounded-full
+                 border border-(--glass-border-strong)
+                 bg-(--accent-blue)/10
+          
+                 px-3 py-0.5
+                 font-mono text-xs font-semibold
+                 text-(--accent-blue)"
+        >
+          {tech}
+        </span>
       {/each}
     </div>
   </div>
 </div>
 
 <style>
-  .timeline-card { padding: 34px 38px; width: 100%; opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; text-align: left; }
-  :global(.in-view) .timeline-card { opacity: 1; transform: translateY(0); }
-  .role-title { font-size: 21px; font-weight: 600; color: var(--text); }
-  .role-company { font-size: 15px; color: var(--accent-purple); font-weight: 500; margin-top: 4px; }
-  .tag { padding: 3px 12px; border-radius: 999px; border: 1px solid var(--glass-border); font-family: var(--ff-mono); font-size: 11.5px; }
-  .domain-tag { color: var(--accent-cyan); background: rgba(103, 232, 249, 0.08); }
-  .period-tag { color: var(--text-secondary); background: rgba(255, 255, 255, 0.04); }
-  .role-summary { margin-top: 14px; font-size: 15.5px; color: var(--text); font-weight: 500; }
-  .role-bullets { margin-top: 16px; }
-  .role-bullets li { position: relative; padding-left: 18px; color: var(--text-secondary); font-size: 14.5px; margin-bottom: 9px; line-height: 1.65; }
-  .role-bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent-blue); opacity: 0.7; }
-  .stack-list { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(140, 160, 255, 0.08); }
-  .tech-badge { font-family: var(--ff-mono); font-size: 11px; color: var(--accent-blue); background: rgba(123, 166, 247, 0.08); border: 1px solid rgba(123, 166, 247, 0.15); padding: 3px 9px; border-radius: 6px; }
+  /* Custom bullet marker */
+  .role-bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: var(--accent-cyan);
+    opacity: 0.75;
+  }
 </style>

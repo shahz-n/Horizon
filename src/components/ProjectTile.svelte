@@ -17,24 +17,27 @@
   <TimelineDot {side} />
 
   <div
-    class="glass-glow glass group
+    class="project-card glass-glow glass high-saturation group
            w-full overflow-hidden
+           text-left
            opacity-0 translate-y-8
-           transition-[opacity,transform] duration-700 ease-out
-           [.in-view_&]:opacity-100
-           [.in-view_&]:translate-y-0"
+           transition-[opacity,transform]
+           duration-700 ease-out
+           [.in-view_&]:translate-y-0
+           [.in-view_&]:opacity-100"
   >
     <div class="glow-border"></div>
 
+    <!-- Project visual -->
     <div
       class="relative h-[280px] w-full overflow-hidden
-             border-b border-[var(--glass-border)]
+             border-b border-(--glass-border)
              bg-black/40"
     >
       <div
         class="flex h-full w-full flex-col items-center justify-center gap-3
                bg-[radial-gradient(circle_at_center,rgba(120,140,255,0.05),transparent_70%)]
-               text-[var(--text-faint)]"
+               text-(--text-faint)"
       >
         <span class="opacity-35">
           <svg
@@ -58,60 +61,72 @@
           Project visual
         </span>
       </div>
+    </div>
 
-      <div
-        class="pointer-events-none absolute bottom-4 left-4 z-10
-               flex flex-wrap gap-2"
+    <!-- Content -->
+    <div class="px-8 py-7">
+      <div class="flex flex-col items-center justify-center gap-1">
+        <div
+          class="relative z-10 flex w-full items-center
+                 justify-between gap-3"
+        >
+          <!-- Title -->
+          <h3
+            class="text-xl font-bold leading-tight
+                   text-(--text)"
+          >
+            {project.title}
+          </h3>
+
+          <!-- Meta -->
+          <span
+            class="shrink-0 rounded-full
+                   border border-(--glass-border)
+                   bg-[rgba(103,232,249,0.08)]
+                   px-3 py-0.5
+                   font-mono text-xs font-semibold
+                   text-(--accent-cyan)"
+          >
+            {project.meta}
+          </span>
+        </div>
+
+        <!-- Tagline -->
+        <p
+          class="w-full text-sm font-medium
+                 leading-relaxed text-(--accent-purple)"
+        >
+          {project.tagline}
+        </p>
+      </div>
+
+      <!-- Description -->
+      <p
+        class="mt-4! text-sm font-medium
+               leading-[1.6] text-(--text-secondary)"
       >
-        {#each project.tags as tag, tagIndex}
+        {project.description}
+      </p>
+
+      <!-- Stack -->
+      <div
+        class="relative z-10 mt-3 flex flex-wrap
+               gap-1.5 border-t border-(--glass-border)
+               pt-4"
+      >
+        {#each project.tags as tech}
           <span
             class="rounded-full
-                   border border-[rgba(140,180,255,0.3)]
-                   bg-[rgba(10,14,30,0.82)]
-                   px-3 py-[5px]
-                   font-mono text-[0.6875rem] text-[var(--text)]
-                   opacity-0 translate-y-4
-                   shadow-[0_4px_16px_rgba(0,0,0,0.4)]
-                   backdrop-blur-[14px] backdrop-saturate-[150%]
-                   transition-[opacity,transform] duration-350 ease-out
-                   group-hover:opacity-100
-                   group-hover:translate-y-0"
-            style={`transition-delay: ${tagIndex * 40}ms`}
+                   border border-(--glass-border-strong)
+                   bg-(--accent-blue)/10
+                   px-3 py-0.5
+                   font-mono text-xs font-semibold
+                   text-(--accent-blue)"
           >
-            {tag}
+            {tech}
           </span>
         {/each}
       </div>
-    </div>
-
-    <div class="p-[30px_34px] text-left">
-      <div class="flex items-start justify-between gap-4">
-        <div
-          class="font-display text-xl font-semibold leading-tight
-                 text-[var(--text)]"
-        >
-          {project.title}
-        </div>
-
-        <div
-          class="mt-1 shrink-0 font-mono text-[0.625rem] font-medium
-                 uppercase tracking-[0.12em]
-                 text-[var(--accent-cyan)]"
-        >
-          {project.meta}
-        </div>
-      </div>
-
-      <p
-        class="mt-3 text-[0.90625rem] font-medium leading-relaxed
-               text-[var(--accent-purple)]"
-      >
-        {project.tagline}
-      </p>
-
-      <p class="mt-4 text-sm leading-[1.7] text-[var(--text-secondary)]">
-        {project.description}
-      </p>
     </div>
   </div>
 </div>

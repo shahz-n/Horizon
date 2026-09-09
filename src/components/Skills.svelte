@@ -38,7 +38,7 @@
       {#each skillsData.skills as skill, i}
         <div
           class={cn(
-            `skill-tile glass-glow glass relative flex flex-col items-start justify-between overflow-hidden text-left`,
+            `skill-tile glass-glow glass high-saturation relative flex flex-col items-start justify-between overflow-hidden text-left`,
             skill.size === "s-2x2" ? `lg:col-span-2 lg:row-span-2` : ``,
           )}
           bind:this={tiles[i]}
@@ -53,7 +53,10 @@
               src={skill.icon}
               alt={skill.name}
               loading="lazy"
-              class="w-3/4 h-3/4 object-contain"
+              class={cn(
+                "w-3/4 h-3/4 object-contain",
+                skill.inverted && "invert",
+              )}
             />
           </div>
 

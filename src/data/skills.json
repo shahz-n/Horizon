@@ -27,6 +27,7 @@
     {
       "name": "Kafka",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachekafka/apachekafka-original.svg",
+      "inverted": true,
       "size": "s-1x1"
     },
 
@@ -74,6 +75,7 @@
       "name": "Three.js",
       "sub": "WebGL · GLSL",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original.svg",
+      "inverted": true,
       "size": "s-1x1"
     },
     {
@@ -84,11 +86,13 @@
     {
       "name": "Express.js",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+      "inverted": true,
       "size": "s-2x2"
     },
     {
       "name": "Next.js",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+
       "size": "s-1x1"
     },
 
@@ -112,7 +116,7 @@
     {
       "name": "AWS",
       "sub": "GCP · Azure",
-      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+      "icon": "/icons/aws.svg",
       "size": "s-x1"
     },
 
@@ -130,6 +134,7 @@
     {
       "name": "GitHub",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+      "inverted": true,
       "size": "s-1x1"
     },
     {

@@ -52,7 +52,7 @@
       <a
         href="/resume.pdf"
         download
-        class="glass rounded-full! py-3 px-9 text-lg font-semibold font-family-display"
+        class="glass rounded-full! py-3 px-9 text-lg font-semibold font-family-display low-saturation"
         >Download resume</a
       >
     </div>
