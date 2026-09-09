@@ -103,7 +103,7 @@
 
       <!-- Description -->
       <p
-        class="mt-4! text-sm font-medium
+        class="mt-4! text-sm
                leading-[1.6] text-(--text-secondary)"
       >
         {project.description}

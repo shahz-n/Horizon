@@ -59,7 +59,7 @@
               />
 
               <span
-                class="font-mono font-normal text-sm uppercase tracking-[0.08em] text-accent-cyan"
+                class="font-mono font-medium text-sm uppercase tracking-[0.08em] text-accent-cyan"
               >
                 {contact.label}
               </span>

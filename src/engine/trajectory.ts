@@ -3,7 +3,7 @@
    ========================================================================= */
 import * as THREE from "three";
 
-const MOON_PATH_POINTS = [
+const LARGE_MOON_PATH_POINTS = [
   new THREE.Vector3(0.0, -75.0, -50.0), // 0.00: Hero (surface view right under content)
   new THREE.Vector3(0.0, -25.0, -60.0), // 0.20: About (ascending toward center)
   new THREE.Vector3(0.0, 0.0, -70.0), // 0.40: Experience (centered in viewport ~50% page height)
@@ -13,12 +13,21 @@ const MOON_PATH_POINTS = [
   new THREE.Vector3(0.0, 75.0, -50.0), // 1.00: Contact (descending into surface view)
 ];
 
-const moonSplineCurve = new THREE.CatmullRomCurve3(
-  MOON_PATH_POINTS,
-  false,
-  "centripetal",
-  0.5,
-);
+const SMALL_MOON_PATH_POINTS = [
+  new THREE.Vector3(0.0, -75.0, -50.0), // 0.00: Hero (surface view right under content)
+  new THREE.Vector3(0.0, -25.0, -105.0), // 0.20: move farther back on smaller screens
+  new THREE.Vector3(0.0, 0.0, -120.0), // 0.40: keep the moon visually smaller in the center
+  new THREE.Vector3(0.0, 0.0, -125.0), // 0.50: deeper camera-axis distance for a balanced scale
+  new THREE.Vector3(0.0, 0.0, -120.0), // 0.60: taper back out without changing start/end anchors
+  new THREE.Vector3(0.0, 25.0, -105.0), // 0.80: preserve the mid-scene arc while keeping it smaller
+  new THREE.Vector3(0.0, 75.0, -50.0), // 1.00: Contact (descending into surface view)
+];
+
+function getMoonPathPoints(): THREE.Vector3[] {
+  return window.innerWidth > 1024
+    ? LARGE_MOON_PATH_POINTS
+    : SMALL_MOON_PATH_POINTS;
+}
 
 interface ScaleKeyframe {
   p: number;
@@ -71,6 +80,13 @@ export interface TrajectoryResult {
 export function evaluateMoonTrajectory(
   scrollProgress: number,
 ): TrajectoryResult {
+  const moonSplineCurve = new THREE.CatmullRomCurve3(
+    getMoonPathPoints(),
+    false,
+    "centripetal",
+    0.5,
+  );
+
   const pos = moonSplineCurve.getPoint(scrollProgress);
   const scale = evalMoonScale(scrollProgress);
   return { pos, scale };

@@ -134,7 +134,7 @@ body {
   color: var(--text);
   font-family: var(--ff-body);
   font-size: 1rem;
-  font-weight: 500;
+  /* font-weight: 500; */
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -250,6 +250,7 @@ section {
   font-size: 17px;
   line-height: 1.7;
 }
+
 .glass {
   position: relative;
   overflow: hidden;
@@ -306,7 +307,7 @@ section {
 
   section,
   section.page {
-    padding: 4rem 1.5rem;
+    padding: 6rem 1.5rem;
   }
   .section-head {
     margin-bottom: 2.5rem;

@@ -27,7 +27,9 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     alpha: false,
     powerPreference: "high-performance",
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO));
+  renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO),
+  );
   renderer.setSize(window.innerWidth, window.innerHeight, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;

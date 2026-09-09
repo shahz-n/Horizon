@@ -116,7 +116,7 @@
       {#each role.bullets as bullet}
         <li
           class="relative pl-(--list-item-indent)
-                 text-sm font-medium
+                 text-sm
                  leading-[1.6]
                  text-[var(--text-secondary)]"
         >

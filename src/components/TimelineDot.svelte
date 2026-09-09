@@ -8,7 +8,7 @@
   class="timeline-dot absolute! top-1/2 z-5 max_md:hidden
          size-(--timeline-dot-size) -translate-y-1/2
          rounded-full
-         glass border-[1.5px]! border-(--accent-cyan)
+         glass border! border-(--accent-cyan)
          transition-[border-color,box-shadow,background,transform]
          duration-500 max-lg:hidden"
 >
