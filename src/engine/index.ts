@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { createMoon, type MoonSystem } from "./moon";
+import { createMoon } from "./moon";
 import { createPhysics, type PhysicsSystem } from "./physics";
 import { createStarfield, type StarfieldSystem } from "./starfield";
 import { evaluateMoonTrajectory, getScrollProgress } from "./trajectory";
@@ -11,8 +11,11 @@ const INTRO_DELAY = 500;
 const INTRO_DURATION = 1000;
 
 const INTRO_CAMERA_POSITION = new THREE.Vector3(0, 0, 16);
-const INTRO_LOOK_START = new THREE.Vector3(4, 4, 4);
+const INTRO_LOOK_START = new THREE.Vector3(4, 6, 4);
 const INTRO_LOOK_END = new THREE.Vector3(0, 0, 0);
+
+const INTRO_MOON_POSITION = new THREE.Vector3(0, -17.5, -6);
+const INTRO_MOON_SCALE = 12;
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -23,7 +26,7 @@ export interface SceneAPI {
   getScrollProgress: () => number;
 }
 
-export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
+export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
@@ -34,15 +37,21 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     alpha: false,
     powerPreference: "high-performance",
   });
+
   renderer.setPixelRatio(
     Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO),
   );
+
   renderer.setSize(window.innerWidth, window.innerHeight, false);
+
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.0;
+  renderer.toneMappingExposure = 1;
 
   const scene = new THREE.Scene();
+
+  const moon = createMoon(scene);
+
   scene.fog = new THREE.FogExp2(0x030410, 0.003);
 
   const camera = new THREE.PerspectiveCamera(
@@ -51,46 +60,35 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     0.001,
     600,
   );
-  camera.position.set(0, 0, 16);
+
+  camera.position.copy(INTRO_CAMERA_POSITION);
+  camera.lookAt(INTRO_LOOK_START);
 
   const sun = new THREE.DirectionalLight(0xefefff, 2.5);
+
   sun.position.set(0, 0, 10);
   scene.add(sun);
 
   const fill = new THREE.HemisphereLight(0x3545b0, 0x080414, 0.6);
+
   scene.add(fill);
 
   const starfield: StarfieldSystem = createStarfield(
     scene,
     renderer.getPixelRatio(),
   );
-  const moon: MoonSystem = createMoon(scene);
+
   const physics: PhysicsSystem = createPhysics();
 
-  moon.loadSlices();
+  moon.setPositionAndScale(INTRO_MOON_POSITION, INTRO_MOON_SCALE);
 
   let scrollProgress = 0;
   let targetScrollProgress = 0;
 
-  const onResize = () => {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
-    renderer.setPixelRatio(dpr);
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    starfield.updatePixelRatio(dpr);
-  };
-
-  window.addEventListener("resize", onResize);
+  let destroyed = false;
+  let animFrameId: number | null = null;
 
   const clock = new THREE.Clock();
-  let animFrameId: number;
-  let destroyed = false;
-
-  let introActive = !prefersReducedMotion;
-  let introStartTime = 0;
 
   const previousOverflow = document.body.style.overflow;
 
@@ -102,31 +100,26 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     document.body.style.overflow = previousOverflow;
   };
 
-  if (introActive) {
-    camera.position.copy(INTRO_CAMERA_POSITION);
-    camera.lookAt(INTRO_LOOK_START);
+  const onResize = () => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
 
-    lockScroll();
+    const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
 
-    window.setTimeout(() => {
-      if (!destroyed) {
-        introStartTime = performance.now();
-      }
-    }, INTRO_DELAY);
-  }
+    renderer.setPixelRatio(dpr);
+    renderer.setSize(w, h, false);
 
-  if (prefersReducedMotion) {
-    camera.position.copy(INTRO_CAMERA_POSITION);
-    camera.lookAt(INTRO_LOOK_END);
-  }
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
 
-  function animate() {
-    if (destroyed) return;
-    animFrameId = requestAnimationFrame(animate);
+    starfield.updatePixelRatio(dpr);
+  };
 
-    const dt = clock.getDelta();
+  window.addEventListener("resize", onResize);
 
+  function updateScene(dt: number): void {
     targetScrollProgress = getScrollProgress();
+
     scrollProgress = lerp(
       scrollProgress,
       targetScrollProgress,
@@ -134,56 +127,98 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     );
 
     const trajectory = evaluateMoonTrajectory(scrollProgress);
+
     moon.setPositionAndScale(trajectory.pos, trajectory.scale);
 
     const phys = physics.update(dt, prefersReducedMotion);
+
     moon.setRotation(phys.moonRotX, phys.moonRotY);
 
     starfield.points.rotation.x = phys.starRotX;
     starfield.points.rotation.y = phys.starRotY;
 
     starfield.followCamera(camera.position);
+  }
 
-    if (introActive && introStartTime > 0) {
-      const elapsed = performance.now() - introStartTime;
-      const rawProgress = Math.min(elapsed / INTRO_DURATION, 1);
+  async function normalAnimate(): Promise<void> {
+    if (destroyed) return;
+    moon.uploadNextSegment(renderer);
+    animFrameId = requestAnimationFrame(normalAnimate);
 
-      const progress = 1 - Math.pow(1 - rawProgress, 3);
+    const dt = clock.getDelta();
 
-      camera.position.copy(INTRO_CAMERA_POSITION);
-
-      const lookAtY = lerp(INTRO_LOOK_START.y, INTRO_LOOK_END.y, progress);
-
-      camera.lookAt(0, lookAtY, 0);
-
-      if (rawProgress >= 1) {
-        introActive = false;
-
-        camera.position.copy(INTRO_CAMERA_POSITION);
-        camera.lookAt(INTRO_LOOK_END);
-
-        unlockScroll();
-      }
-    }
+    updateScene(dt);
 
     renderer.render(scene, camera);
   }
 
-  animate();
+  async function introAnimate(startTime: number): Promise<void> {
+    if (destroyed) return;
+
+    animFrameId = requestAnimationFrame(() => {
+      if (destroyed) return;
+
+      moon.uploadNextSegment(renderer);
+
+      const elapsed = performance.now() - startTime;
+
+      if (elapsed < INTRO_DELAY) {
+        renderer.render(scene, camera);
+        introAnimate(startTime);
+        return;
+      }
+
+      const introElapsed = elapsed - INTRO_DELAY;
+      const rawProgress = Math.min(introElapsed / INTRO_DURATION, 1);
+      const progress = 1 - Math.pow(1 - rawProgress, 3);
+
+      const lookAtY = lerp(INTRO_LOOK_START.y, INTRO_LOOK_END.y, progress);
+
+      camera.position.copy(INTRO_CAMERA_POSITION);
+      camera.lookAt(0, lookAtY, 0);
+
+      const dt = clock.getDelta();
+
+      updateScene(dt);
+
+      renderer.render(scene, camera);
+
+      if (rawProgress < 1) {
+        introAnimate(startTime);
+        return;
+      }
+
+      camera.position.copy(INTRO_CAMERA_POSITION);
+      camera.lookAt(INTRO_LOOK_END);
+
+      unlockScroll();
+
+      clock.start();
+      normalAnimate();
+    });
+  }
+
+  lockScroll();
+
+  introAnimate(performance.now());
+  console.log("intro end", performance.now());
 
   return {
     destroy: () => {
       destroyed = true;
-      cancelAnimationFrame(animFrameId);
+
+      if (animFrameId !== null) {
+        cancelAnimationFrame(animFrameId);
+      }
+
       window.removeEventListener("resize", onResize);
 
-      if (introActive) {
-        unlockScroll();
-      }
+      unlockScroll();
 
       physics.destroy();
       renderer.dispose();
     },
+
     getScrollProgress: () => scrollProgress,
   };
 }
