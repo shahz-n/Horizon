@@ -2,10 +2,17 @@
   import { onMount } from "svelte";
   import expData from "../data/experience.json";
   import ExperienceTile from "./ExperienceTile.svelte";
+  import {
+    updateTimelineFill,
+    updateTimelinePositions,
+  } from "./utils/timeline";
 
   let timelineEl: HTMLElement;
   let timelineFillEl: HTMLElement;
-  let cards: HTMLElement[] = [];
+  let leftCards: HTMLElement[] = [];
+  let rightCards: HTMLElement[] = [];
+
+  const STAGGER_RATIO = 0.8;
 
   const leftRoles = expData.roles.filter((role) => role.side === "left");
   const rightRoles = expData.roles.filter((role) => role.side === "right");
@@ -14,34 +21,54 @@
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("in-view");
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px",
+      },
     );
 
-    cards.forEach((card) => {
+    [...leftCards, ...rightCards].forEach((card) => {
       if (card) observer.observe(card);
     });
 
-    function updateTimelineFill() {
-      if (!timelineEl || !timelineFillEl) return;
-      const rect = timelineEl.getBoundingClientRect();
-      const viewportH = window.innerHeight;
-      const total = rect.height + viewportH * 0.5;
-      const covered = viewportH * 0.5 - rect.top;
-      const percentage = Math.max(0, Math.min(1, covered / total)) * 100;
-      timelineFillEl.style.height = `${percentage}%`;
+    const resizeObserver = new ResizeObserver(() => {
+      updateTimelinePositions(leftCards, rightCards, STAGGER_RATIO);
+      updateTimelineFill(timelineEl, timelineFillEl);
+    });
+
+    leftCards.forEach((card) => resizeObserver.observe(card));
+    rightCards.forEach((card) => resizeObserver.observe(card));
+
+    function handleResize() {
+      updateTimelinePositions(leftCards, rightCards, STAGGER_RATIO);
+      updateTimelineFill(timelineEl, timelineFillEl);
     }
 
-    window.addEventListener("scroll", updateTimelineFill, { passive: true });
-    window.addEventListener("resize", updateTimelineFill);
-    updateTimelineFill();
+    function handleScroll() {
+      updateTimelineFill(timelineEl, timelineFillEl);
+    }
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    window.addEventListener("resize", handleResize);
+
+    requestAnimationFrame(() => {
+      updateTimelinePositions(leftCards, rightCards, STAGGER_RATIO);
+      updateTimelineFill(timelineEl, timelineFillEl);
+    });
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", updateTimelineFill);
-      window.removeEventListener("resize", updateTimelineFill);
+      resizeObserver.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   });
 </script>
@@ -56,24 +83,23 @@
 
     <div class="relative w-full" bind:this={timelineEl}>
       <div class="timeline-track glass max_md:hidden"></div>
+
       <div class="timeline-fill max_md:hidden" bind:this={timelineFillEl}></div>
 
       <div
         class="relative grid grid-cols-2 gap-(--timeline-column-gap) max_lg:flex max_lg:flex-col max_lg:gap-6"
       >
-        <div class="flex flex-col gap-(--timeline-card-gap) max_lg:gap-6">
+        <div class="flex flex-col max_lg:gap-6">
           {#each leftRoles as role, i}
-            <div bind:this={cards[i * 2]} class="experience-item">
+            <div bind:this={leftCards[i]} class="experience-item">
               <ExperienceTile {role} side="left" />
             </div>
           {/each}
         </div>
 
-        <div
-          class="mt-(--experience-right-offset) flex flex-col gap-(--timeline-card-gap) max_lg:mt-0 max_lg:gap-6"
-        >
+        <div class="flex flex-col max_lg:mt-0 max_lg:gap-6">
           {#each rightRoles as role, i}
-            <div bind:this={cards[i * 2 + 1]} class="experience-item">
+            <div bind:this={rightCards[i]} class="experience-item">
               <ExperienceTile {role} side="right" />
             </div>
           {/each}
@@ -94,6 +120,7 @@
     box-shadow: none;
     border-radius: 4px;
   }
+
   .timeline-fill {
     position: absolute;
     left: 50%;
@@ -108,6 +135,5 @@
       var(--accent-purple)
     );
     border-radius: 4px;
-    transition: height 0.08s linear;
   }
 </style>

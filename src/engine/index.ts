@@ -26,7 +26,7 @@ export interface SceneAPI {
   getScrollProgress: () => number;
 }
 
-export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
+export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   const startTime = performance.now();
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
@@ -51,7 +51,7 @@ export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
 
   const scene = new THREE.Scene();
 
-  const moon = createMoon(scene, renderer);
+  const moon = createMoon(scene);
 
   scene.fog = new THREE.FogExp2(0x030410, 0.003);
 
@@ -118,7 +118,7 @@ export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
 
   window.addEventListener("resize", onResize);
 
-  function updateScene(dt: number): void {
+  function updateScene(dt: number, updatePhysics = true): void {
     targetScrollProgress = getScrollProgress();
 
     scrollProgress = lerp(
@@ -131,13 +131,14 @@ export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
 
     moon.setPositionAndScale(trajectory.pos, trajectory.scale);
 
-    const phys = physics.update(dt, prefersReducedMotion);
+    if (updatePhysics) {
+      const phys = physics.update(dt, prefersReducedMotion);
 
-    moon.setRotation(phys.moonRotX, phys.moonRotY);
+      moon.setRotation(phys.moonRotX, phys.moonRotY);
 
-    starfield.points.rotation.x = phys.starRotX;
-    starfield.points.rotation.y = phys.starRotY;
-
+      starfield.points.rotation.x = phys.starRotX;
+      starfield.points.rotation.y = phys.starRotY;
+    }
     starfield.followCamera(camera.position);
   }
 
@@ -180,7 +181,7 @@ export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
 
       const dt = clock.getDelta();
 
-      updateScene(dt);
+      updateScene(dt, false);
 
       renderer.render(scene, camera);
 

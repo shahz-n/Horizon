@@ -8,9 +8,12 @@
     tags: string[];
     description: string;
     color: string;
+    image: string;
   };
 
   export let side: "left" | "right";
+
+  let imageError = false;
 </script>
 
 <div class="relative w-full" style={`--project-color: ${project.color}`}>
@@ -26,49 +29,45 @@
            [.in-view_&]:translate-y-0
            [.in-view_&]:opacity-100"
   >
-    <!-- Project visual -->
-    <div
-      class="relative h-(--project-visual-height) w-full overflow-hidden
-             border-b border-(--glass-border)
-             bg-black/40"
-    >
-      <div
-        class="flex h-full w-full flex-col items-center justify-center gap-3
-               bg-(image:--project-visual-bg)
-               text-(--text-faint)"
-      >
-        <span class="opacity-35">
-          <svg
-            width="38"
-            height="38"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
+    <div class="relative w-full px-8 pt-8 max_md:px-6 max_md:pt-6">
+      <div class="relative aspect-video overflow-hidden rounded-sm bg-black/30">
+        {#if project.image && !imageError}
+          <img
+            src={project.image}
+            alt={project.title}
+            class="block h-full w-full object-cover"
+            onerror={() => (imageError = true)}
+          />
+        {:else}
+          <div
+            class="flex h-full w-full items-center justify-center
+                   text-(--text-faint)"
           >
-            <rect x="3" y="3" width="18" height="18" rx="3" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <path d="M21 15l-5-5L5 21" />
-          </svg>
-        </span>
-
-        <span
-          class="font-mono text-[length:var(--project-visual-label-size)] uppercase
-                 tracking-[0.1em] opacity-35"
-        >
-          Project visual
-        </span>
+            <span class="opacity-35">
+              <svg
+                width="38"
+                height="38"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="3" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <path d="M21 15l-5-5L5 21" />
+              </svg>
+            </span>
+          </div>
+        {/if}
       </div>
     </div>
 
-    <!-- Content -->
     <div class="px-8 py-7 max_md:px-5 max_md:py-5">
       <div class="flex flex-col items-center justify-center gap-1">
         <div
           class="relative z-10 flex w-full items-center
                  justify-between gap-3"
         >
-          <!-- Title -->
           <h3
             class="text-xl font-bold leading-tight max_md:text-lg
                    text-(--text)"
@@ -92,7 +91,6 @@
           </div>
         </div>
 
-        <!-- Tagline -->
         <p
           class="w-full text-sm font-medium max_sm:text-xs
                  leading-relaxed text-(--accent-purple)"
@@ -101,15 +99,13 @@
         </p>
       </div>
 
-      <!-- Description -->
       <p
         class="mt-4! text-sm
                leading-[1.6] text-(--text-secondary)"
       >
-        {project.description}
+        {@html project.description}
       </p>
 
-      <!-- Stack -->
       <div
         class="relative z-10 mt-3 flex flex-wrap
                gap-1.5 border-t border-(--glass-border)

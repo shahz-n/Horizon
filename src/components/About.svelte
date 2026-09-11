@@ -7,6 +7,7 @@
     <div class="section-head text-center">
       <div class="eyebrow">{aboutData.eyebrow}</div>
       <h2>{aboutData.title}</h2>
+      <p class="sub">{aboutData.sub}</p>
     </div>
 
     <div

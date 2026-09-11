@@ -58,7 +58,7 @@
             class="portfolio-skill-info absolute bottom-0 z-10 w-full p-2 text-center sm:p-3 lg:p-4"
           >
             <div
-              class="portfolio-skill-name text-center font-display font-semibold leading-tight text-text"
+              class="portfolio-skill-name text-center font-display font-semibold leading-tight text-sm lg:text-base text-text"
             >
               {skill.name}
             </div>
@@ -70,19 +70,6 @@
 </section>
 
 <style>
-  .skill-tile {
-    opacity: 0;
-    transform: scale(0.92);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease,
-      border-color 0.3s ease,
-      background 0.3s ease;
-  }
-  .skill-tile:global(.in-view) {
-    opacity: 1;
-    transform: scale(1);
-  }
   .portfolio-skill-name {
     font-size: clamp(12px, 1.25vw, 19px);
     line-height: 1.2;

@@ -27,6 +27,7 @@
   --font-family-display: "Space Grotesk", sans-serif;
   --font-family-body: "IBM Plex Sans", sans-serif;
   --font-family-mono: "IBM Plex Mono", monospace;
+  --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-default: 18px;
   --radius-sm: 12px;
@@ -62,10 +63,11 @@
   --ff-display: "Space Grotesk", sans-serif;
   --ff-body: "IBM Plex Sans", sans-serif;
   --ff-mono: "IBM Plex Mono", monospace;
-  --radius: 16px;
-  --radius-lg: 20px;
-  --radius-sm: 12px;
-  --radius-xs: 8px;
+  --radius: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-default: 1rem;
+  --radius-sm: 0.75rem;
+  --radius-xs: 0.5rem;
   --gradient-hero: linear-gradient(
     135deg,
     var(--accent-cyan),
@@ -108,7 +110,7 @@
   --timeline-dot-size: 14px;
   --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
   --timeline-marker-offset: -37px;
-  --project-visual-height: 280px;
+  --project-visual-height: 300px;
   --project-visual-label-size: 0.6875rem;
   --list-marker-offset: 10px;
   --list-marker-size: 5px;
@@ -241,15 +243,15 @@ section {
 }
 .section-head h2 {
   color: var(--text);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 600;
   line-height: 1.15;
 }
 .section-head .sub {
-  margin-top: 12px;
+  margin-top: 0.75rem;
   color: var(--text-secondary);
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 
 .glass {
@@ -260,8 +262,16 @@ section {
   box-shadow: var(--glass-shadow);
   -webkit-backdrop-filter: blur(24px) saturate(150%);
   backdrop-filter: blur(24px) saturate(150%);
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+strong {
+  font-weight: 700 !important;
+}
 
-  transition: box-shadow 0.3s ease !important;
+.visible {
+  opacity: 1;
+  transition: all 0.3s ease-out;
 }
 .glass:hover {
   background: var(--gradient-glass-hover);
@@ -315,12 +325,13 @@ section {
     margin-bottom: 2.5rem;
   }
   .section-head h2 {
-    font-size: clamp(1.875rem, 9vw, 2.5rem);
+    width: 100%;
+    /* text-align: left; */
   }
   .section-head .sub {
-    margin-top: 0.75rem;
-    font-size: 0.9375rem;
-    line-height: 1.55;
+    width: 100%;
+    /* text-align: left; */
+    font-size: 1.125rem;
   }
   .eyebrow {
     gap: 0.5rem;
@@ -333,7 +344,7 @@ section {
     width: 1.5rem;
   }
   .glass {
-    border-radius: var(--radius-sm);
+    /* border-radius: var(--radius-sm); */
   }
   .low-saturation {
     backdrop-filter: blur(24px) saturate(125%);

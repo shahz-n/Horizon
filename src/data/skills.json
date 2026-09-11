@@ -1,7 +1,7 @@
 {
-  "eyebrow": "Stack",
-  "title": "The stack behind the systems.",
-  "sub": "The tools I use to design, build, and ship them.",
+  "eyebrow": "Skills",
+  "title": "What I build with.",
+  "sub": "The languages, frameworks, systems, and infrastructure I work with.",
   "skills": [
     {
       "name": "React",
@@ -148,7 +148,7 @@
       "size": "s-1x1"
     },
     {
-      "name": "Microsoft Azure",
+      "name": "Azure",
       "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg",
       "size": "s-1x1"
     },

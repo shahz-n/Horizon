@@ -2,10 +2,17 @@
   import { onMount } from "svelte";
   import projectsData from "../data/projects.json";
   import ProjectTile from "./ProjectTile.svelte";
+  import {
+    updateTimelineFill,
+    updateTimelinePositions,
+  } from "./utils/timeline";
 
   let timelineEl: HTMLElement;
   let timelineFillEl: HTMLElement;
-  let cards: HTMLElement[] = [];
+  let leftCards: HTMLElement[] = [];
+  let rightCards: HTMLElement[] = [];
+
+  const STAGGER_RATIO = 0.75;
 
   const leftProjects = projectsData.projects.filter(
     (project) => project.side === "left",
@@ -25,39 +32,48 @@
         });
       },
       {
-        threshold: 0.12,
+        threshold: 0.1,
         rootMargin: "0px 0px -40px 0px",
       },
     );
 
-    cards.forEach((card) => {
+    [...leftCards, ...rightCards].forEach((card) => {
       if (card) observer.observe(card);
     });
 
-    function updateTimelineFill() {
-      if (!timelineEl || !timelineFillEl) return;
+    const resizeObserver = new ResizeObserver(() => {
+      updateTimelinePositions(leftCards, rightCards, STAGGER_RATIO);
+      updateTimelineFill(timelineEl, timelineFillEl);
+    });
 
-      const rect = timelineEl.getBoundingClientRect();
-      const viewportH = window.innerHeight;
-      const total = rect.height + viewportH * 0.5;
-      const covered = viewportH * 0.5 - rect.top;
-      const percentage = Math.max(0, Math.min(1, covered / total)) * 100;
+    leftCards.forEach((card) => resizeObserver.observe(card));
+    rightCards.forEach((card) => resizeObserver.observe(card));
 
-      timelineFillEl.style.height = `${percentage}%`;
+    function handleResize() {
+      updateTimelinePositions(leftCards, rightCards, STAGGER_RATIO);
+      updateTimelineFill(timelineEl, timelineFillEl);
     }
 
-    window.addEventListener("scroll", updateTimelineFill, {
+    function handleScroll() {
+      updateTimelineFill(timelineEl, timelineFillEl);
+    }
+
+    window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
-    window.addEventListener("resize", updateTimelineFill);
+    window.addEventListener("resize", handleResize);
 
-    updateTimelineFill();
+    requestAnimationFrame(() => {
+      updateTimelinePositions(leftCards, rightCards, STAGGER_RATIO);
+      updateTimelineFill(timelineEl, timelineFillEl);
+    });
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", updateTimelineFill);
-      window.removeEventListener("resize", updateTimelineFill);
+      resizeObserver.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   });
 </script>
@@ -78,19 +94,19 @@
       <div
         class="relative grid grid-cols-2 gap-(--timeline-column-gap) max_lg:flex max_lg:flex-col max_lg:gap-6"
       >
-        <div class="flex flex-col gap-(--timeline-card-gap) max_lg:gap-6">
+        <div class="flex flex-col max_lg:gap-6">
           {#each leftProjects as project, i}
-            <div bind:this={cards[i * 2]} class="project-item">
+            <div bind:this={leftCards[i]} class="project-item">
               <ProjectTile {project} side="left" />
             </div>
           {/each}
         </div>
 
         <div
-          class="mt-(--projects-right-offset) flex flex-col gap-(--timeline-card-gap) max_lg:mt-0 max_lg:gap-6"
+          class="mt-(--projects-right-offset) flex flex-col max_lg:mt-0 max_lg:gap-6"
         >
           {#each rightProjects as project, i}
-            <div bind:this={cards[i * 2 + 1]} class="project-item">
+            <div bind:this={rightCards[i]} class="project-item">
               <ProjectTile {project} side="right" />
             </div>
           {/each}
@@ -111,6 +127,7 @@
     box-shadow: none;
     border-radius: 4px;
   }
+
   .timeline-fill {
     position: absolute;
     left: 50%;
@@ -125,6 +142,5 @@
       var(--accent-purple)
     );
     border-radius: 4px;
-    transition: height 0.08s linear;
   }
 </style>

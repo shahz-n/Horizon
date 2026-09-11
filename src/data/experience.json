@@ -1,7 +1,7 @@
 {
   "eyebrow": "Experience",
   "title": "Where I've built.",
-  "sub": "Four roles, one throughline: own the system end-to-end, not just the ticket.",
+  "sub": "Across startups, enterprises, and everything in between.",
   "roles": [
     {
       "title": "Software Development Engineer",
@@ -9,12 +9,12 @@
       "domain": "Fintech",
       "period": "Jan 2026 — Jul 2026",
       "side": "left",
-      "summary": "Owned end-to-end development of financial infrastructure for Nym4Business, serving SMEs across the MENA region.",
+      "summary": "Developed and shipped full-stack features for a multi-tenant fintech platform serving SMEs across the MENA region.",
       "bullets": [
-        "Owned end-to-end development (backend, frontend, database) of features for Nym4Business, a multi-tenant B2B platform providing financial infrastructure to SMEs and organizations.",
-        "Developed a configurable approval-rule engine supporting custom transaction conditions (amount, type, sender/recipient) with multi-approver logic across roles and individuals.",
-        "Shipped two-factor authentication and audit logging integrated with NymCard's core payment systems, plus dashboards and GraphQL APIs for role-based data access.",
-        "Collaborated with security teams to ensure compliance with financial regulations and strict data privacy standards across multi-tenant environments."
+        "Owned <strong>end-to-end development</strong> across the backend, frontend, and database layers for <strong>Nym4Business</strong>, NymCard's Business platform.",
+        "Developed a <strong>configurable approval-rule engine</strong> supporting custom transaction conditions and multi-approver logic across roles and individuals.",
+        "Developed <strong>two-factor authentication</strong> and <strong>audit-logging mechanisms</strong> integrated with NymCard's core payment systems.",
+        "Built <strong>dashboards</strong> and <strong>GraphQL APIs</strong> facilitating management and data access across role and permission hierarchies."
       ],
       "stack": ["NestJS", "GraphQL", "PostgreSQL", "React", "TypeScript"]
     },
@@ -26,10 +26,10 @@
       "side": "right",
       "summary": "Architected core microservices for Korn Ferry Talent Suite, serving enterprise clients in 150+ countries.",
       "bullets": [
-        "Developed core backend services (NestJS) powering Korn Ferry Talent Suite, a global HR-tech platform serving thousands of organizations across 150+ countries.",
-        "Designed an internal-routing system for inter-service communication, reducing inter-service latency by up to 70% and overall latency by up to 40%, with no handler code changes required.",
-        "Built a streaming export system for multi-gigabyte audit-log CSVs, reconstructing data in real time to minimize server memory use and eliminate storage costs.",
-        "Designed an advanced request-tracing system delivering detailed traces, including database and HTTP calls, with zero added overhead in response pipelines."
+        "Developed <strong>core backend services</strong> with NestJS powering Korn Ferry Talent Suite, a global HR-tech platform serving organizations across <strong>150+ countries</strong>.",
+        "Designed an <strong>internal routing system</strong> for inter-service communication, reducing inter-service latency by up to <strong>70%</strong> and overall latency by up to <strong>40%</strong>, with no handler changes required.",
+        "Built a <strong>streaming export system</strong> for multi-gigabyte audit logs, reconstructing data in real time to minimize server memory use and eliminate storage costs.",
+        "Designed an <strong>advanced request-tracing system</strong> capturing database and HTTP calls with zero added overhead in response pipelines."
       ],
       "stack": ["NestJS", "Microservices", "Redis", "PostgreSQL", "AWS"]
     },
@@ -41,10 +41,10 @@
       "side": "left",
       "summary": "Led technical design and engineering from pre-seed to production for a high-concurrency rental marketplace.",
       "bullets": [
-        "Founding engineer and technical lead for a rental marketplace; architected and owned the majority of backend and desktop UI, leading a team of three from initial design through production deployment.",
-        "Designed a hybrid geolocation and address-based search system (map, radius, and structured address queries) alongside an extensible, inheritance-based CMS giving granular per-category control over listing fields, pricing packages, and limits.",
-        "Built a real-time chat and notification system with per-listing conversation identity, live presence, and real-time listing updates.",
-        "Built a Stripe-integrated wallet and auto-renewal payment system with a hybrid ledger (direct payments and credits) and hash-locked transaction immutability."
+        "Founding engineer and technical lead, leading a <strong>team of three</strong> and owning most backend and desktop UI development from initial design through <strong>production</strong>.",
+        "Designed <strong>location-aware search</strong> combining maps, radius queries, and structured addresses, alongside a flexible CMS for <strong>category-specific listings</strong> and pricing.",
+        "Built <strong>real-time chat and notification system</strong> with per-listing conversation identity, live presence, and real-time listing updates.",
+        "Built a <strong>Stripe-integrated wallet and auto-renewal payment system</strong> around a hybrid ledger with hash-locked transactions."
       ],
       "stack": ["Node.js", "React", "WebSockets", "PostgreSQL", "Redis"]
     },
@@ -54,10 +54,10 @@
       "domain": "Freelance",
       "period": "Apr 2020 — Dec 2022",
       "side": "right",
-      "summary": "Delivered custom web applications for clients worldwide while mentoring aspiring engineers.",
+      "summary": "Built web applications for clients across 20+ countries while developing a broad foundation in software engineering.",
       "bullets": [
-        "Built full-stack web applications for clients across 20+ countries, including a gaming-focused social platform, a video conferencing app, and an interactive coding education tool.",
-        "Provided technical mentorship to 100+ developers across the full skill spectrum, from teaching absolute beginners to advising working professionals on system design and backend architecture."
+        "Built full-stack applications across different products and industries, including <strong>gaming</strong>, video conferencing, and <strong>interactive coding education</strong>.",
+        "Mentored <strong>100+ developers</strong>, from beginners learning the fundamentals to working professionals exploring <strong>system design</strong> and backend engineering."
       ],
       "stack": ["React", "Node.js", "TypeScript", "MongoDB", "GraphQL"]
     }

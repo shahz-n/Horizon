@@ -1,25 +1,16 @@
 {
   "eyebrow": "About",
   "title": "A career shaped by curiosity",
+  "sub": "Six years of building software, from first principles to production systems.",
   "paragraphs": [
-    "I'm a <strong>self-taught Full-Stack Software Engineer</strong> with 6+ years of hands-on development experience building production systems across multiple domains, including <strong>fintech, HR-tech, and marketplace platforms</strong>, and across environments ranging from early-stage startups to growing organizations and larger enterprises.",
-    "I learned full-stack development while I was still in school and started working independently during high school. What began with building websites and applications gradually grew into larger and more involved projects, eventually leading me into <strong>production systems, larger teams, and increasingly complex engineering problems</strong>. More than six years later, I'm still following the same curiosity that got me started.",
-    "I started with <strong>React and Node.js</strong>, and my work over the years has taken me through a much broader part of the stack, including TypeScript, Next.js, NestJS, GraphQL, databases, cloud infrastructure, and many other technologies along the way. My experience spans <strong>backend architecture, distributed systems, performance, complex frontend applications, and real-time interfaces</strong>.",
-    "I've had the opportunity to <strong>design, develop, and own systems end-to-end</strong>, from architecture and data modeling through implementation and deployment. The problems have varied considerably between products and domains, and I've enjoyed being able to move with them, learning what each problem demands and understanding how its different pieces fit together.",
-    "I've always been interested in understanding how things work, and that curiosity has stayed with me throughout my career. It has often meant going beyond what a project immediately required, learning new technologies and exploring unfamiliar parts of the stack when they offered a better way to approach a problem. <strong>There is always something further to explore</strong>, which is probably what has kept development interesting for me after all these years."
-  ],
-  "stats": [
-    {
-      "value": "70%",
-      "label": "Inter-service latency cut with a custom routing layer at Moback"
-    },
-    {
-      "value": "20+",
-      "label": "Countries — clients served as an independent full-stack developer"
-    },
-    {
-      "value": "100+",
-      "label": "Developers mentored, from first principles to system design"
-    }
+    "I’m a <strong>Full-Stack Software Engineer</strong> with over <strong>6 years</strong> of hands-on experience building and shipping <strong>production systems</strong> across multiple domains, including <strong>fintech</strong>, <strong>HR-tech</strong>, and <strong>marketplace platforms</strong>. I’ve worked across <strong>early-stage startups</strong>, growing organizations, and <strong>large enterprises</strong>, building everything from <strong>backend architecture</strong> and <strong>distributed systems</strong> to <strong>complex frontend applications</strong> and <strong>real-time interfaces</strong>.",
+
+    "My technical background has grown alongside my experience. I started with <strong>React</strong> and <strong>Node.js</strong> and gradually moved deeper into the systems behind the application, working across frontend and backend development, <strong>databases</strong>, <strong>cloud infrastructure</strong>, <strong>distributed services</strong>, and <strong>real-time systems</strong>. I work comfortably across a broad range of technologies, with more emphasis on <strong>understanding the system</strong> and choosing the right tools than being tied to a particular stack.",
+
+    "I started learning software development while I was still in school and began working independently during high school. Most of my early learning came directly from building things, working with clients, and solving problems I hadn’t encountered before. That grew into professional work across different products and organizations, including freelance development for clients in <strong>20+ countries</strong>, followed by work within increasingly larger <strong>engineering teams</strong>.",
+
+    "As the problems became more complex, my role grew with them. I moved from building applications independently to working on <strong>large-scale backend services</strong>, <strong>production infrastructure</strong>, and systems with demanding <strong>performance</strong> and <strong>reliability</strong> requirements, eventually taking on technical leadership as a <strong>Founding Engineer & Technical Lead</strong>. My work has continued to span different kinds of systems while maintaining a broad view of both the product and the engineering underneath it.",
+
+    "Curiosity remains a major part of how I build. I’m interested in what happens beneath the <strong>layers of abstraction</strong>, not just whether something works from the outside. That means understanding the <strong>foundations</strong> behind the tools I use, investigating what is actually happening when a system behaves unexpectedly, and learning how different pieces interact rather than treating them as black boxes. I value <strong>foundational understanding</strong> over simply making things work, because knowing why a system works makes it much easier to reason about, improve, and build on."
   ]
 }

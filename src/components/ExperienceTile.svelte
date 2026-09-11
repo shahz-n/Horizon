@@ -33,7 +33,7 @@
       <!-- Title -->
       <div
         class="flex w-full items-center justify-between gap-3
-               text-left text-xl font-bold text-[var(--text)] max_md:text-lg"
+               text-left text-xl font-bold"
       >
         {role.title}
 
@@ -70,7 +70,7 @@
 
       <!-- Standalone metadata row -->
       <div
-        class="flex w-full items-center justify-between gap-3
+        class="flex w-full items-center justify-start gap-3
                mt-1 lg:hidden"
       >
         <!-- Period -->
@@ -120,7 +120,7 @@
                  leading-[1.6]
                  text-[var(--text-secondary)]"
         >
-          {bullet}
+          {@html bullet}
         </li>
       {/each}
     </ul>
