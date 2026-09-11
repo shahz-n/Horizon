@@ -2,6 +2,8 @@ interface TileRequest {
   index: number;
   url: string;
   priority?: RequestPriority;
+  segmentWidth?: number;
+  segmentHeight?: number;
 }
 
 interface TileChunk {
@@ -28,7 +30,7 @@ self.onmessage = async ({ data }: MessageEvent<TileRequest | null>) => {
     });
     return;
   }
-  const { index, url, priority = "auto" } = data;
+  const { index, url, priority = "auto", segmentWidth = 1024, segmentHeight = 1024 } = data;
   console.log("fetch start", performance.now(), index);
 
   try {
@@ -60,8 +62,8 @@ self.onmessage = async ({ data }: MessageEvent<TileRequest | null>) => {
         sourceChunkWidth,
         sourceChunkHeight,
         {
-          resizeWidth: 1024,
-          resizeHeight: 1024,
+          resizeWidth: segmentWidth,
+          resizeHeight: segmentHeight,
           imageOrientation: "flipY",
           premultiplyAlpha: "none",
           colorSpaceConversion: "none",

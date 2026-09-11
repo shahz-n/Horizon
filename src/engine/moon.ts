@@ -2,18 +2,22 @@ import * as THREE from "three";
 import workerController from "./worker.controller";
 import textureWorkerUrl from "./texture.worker.ts?worker&url";
 
-import { TextureLoader } from "three";
-
-const isLargeScreen = window.innerWidth > 1024 || window.innerHeight > 1024;
-
 const MOON_RADIUS = 6;
 const GRID_SIZE = 4;
 const TILE_COUNT = GRID_SIZE * GRID_SIZE;
 const WORKER_COUNT = Math.min(4, navigator.hardwareConcurrency);
-const SEGMENT_WIDTH = 1024;
-const SEGMENT_HEIGHT = 1024;
-const TILE_WIDTH = 4096;
-const TILE_HEIGHT = 2048;
+
+interface ResolutionConfig {
+  readonly targetTier: "16k" | "8k";
+  readonly segmentWidth: number;
+  readonly segmentHeight: number;
+  readonly atlasWidth: number;
+  readonly atlasHeight: number;
+  readonly tileWidth: number;
+  readonly tileHeight: number;
+  readonly segmentsPerTile: number;
+  readonly geometrySegments: number;
+}
 
 type TileTier = "4k" | "high";
 
@@ -39,7 +43,7 @@ type WorkerResponse = {
 class MoonManager {
   readonly mesh: THREE.Mesh;
 
-  private readonly targetTier: "16k" | "8k";
+  private readonly config: ResolutionConfig;
   private readonly loadedTiers = new Array<TileTier | null>(TILE_COUNT).fill(
     null,
   );
@@ -57,13 +61,41 @@ class MoonManager {
     url: textureWorkerUrl,
   };
 
+  private static createConfig(isLargeScreen: boolean): ResolutionConfig {
+    if (isLargeScreen) {
+      return {
+        targetTier: "16k",
+        segmentWidth: 1024,
+        segmentHeight: 1024,
+        atlasWidth: 16384,
+        atlasHeight: 8192,
+        tileWidth: 4096,
+        tileHeight: 2048,
+        segmentsPerTile: 8,
+        geometrySegments: 128,
+      };
+    }
+    return {
+      targetTier: "8k",
+      segmentWidth: 512,
+      segmentHeight: 512,
+      atlasWidth: 8192,
+      atlasHeight: 4096,
+      tileWidth: 2048,
+      tileHeight: 1024,
+      segmentsPerTile: 8,
+      geometrySegments: 64,
+    };
+  }
+
   createTiledSphereGeometry(segments: number): THREE.BufferGeometry {
     return new THREE.SphereGeometry(MOON_RADIUS, segments, segments);
   }
+
   private createDefaultTexture(): void {
     const texture = new THREE.Texture({
-      width: 16384,
-      height: 8192,
+      width: this.config.atlasWidth,
+      height: this.config.atlasHeight,
     });
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.generateMipmaps = true;
@@ -75,7 +107,9 @@ class MoonManager {
   }
 
   constructor(scene: THREE.Scene) {
-    this.targetTier = isLargeScreen ? "16k" : "8k";
+    const isLargeScreen = window.innerWidth > 1024 || window.innerHeight > 1024;
+    this.config = MoonManager.createConfig(isLargeScreen);
+    
     this.workerController.createPool(
       this.fetchWorker.id,
       new URL(this.fetchWorker.url, import.meta.url),
@@ -83,7 +117,7 @@ class MoonManager {
     );
     this.createDefaultTexture();
     this.mesh = new THREE.Mesh(
-      this.createTiledSphereGeometry(isLargeScreen ? 128 : 64),
+      this.createTiledSphereGeometry(this.config.geometrySegments),
       new THREE.MeshStandardMaterial({
         color: 0xffffff,
         roughness: 1,
@@ -149,7 +183,7 @@ class MoonManager {
         return;
       }
 
-      const folder = tier === "4k" ? "4k" : this.targetTier;
+      const folder = tier === "4k" ? "4k" : this.config.targetTier;
       const url = `/moon/${folder}/${String(index).padStart(2, "0")}.jpg`;
 
       const finish = () => {
@@ -174,6 +208,8 @@ class MoonManager {
         index,
         url,
         priority: tier === "4k" ? "high" : "auto",
+        segmentWidth: this.config.segmentWidth,
+        segmentHeight: this.config.segmentHeight,
       });
     });
   }
@@ -238,11 +274,12 @@ class MoonManager {
     const segmentX = segment % 4;
     const segmentY = Math.floor(segment / 4);
 
-    const tileX = (index % GRID_SIZE) * TILE_WIDTH;
-    const tileY = (GRID_SIZE - 1 - Math.floor(index / GRID_SIZE)) * TILE_HEIGHT;
+    const tileX = (index % GRID_SIZE) * this.config.tileWidth;
+    const tileY =
+      (GRID_SIZE - 1 - Math.floor(index / GRID_SIZE)) * this.config.tileHeight;
 
-    const x = tileX + segmentX * SEGMENT_WIDTH;
-    const y = tileY + (1 - segmentY) * SEGMENT_HEIGHT;
+    const x = tileX + segmentX * this.config.segmentWidth;
+    const y = tileY + (1 - segmentY) * this.config.segmentHeight;
 
     this.bitmaps[this.tilePointer].bitmap = null;
 
@@ -254,7 +291,7 @@ class MoonManager {
     renderer.state.pixelStorei(gl.UNPACK_ALIGNMENT, 4);
 
     gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, gl.RGBA, gl.UNSIGNED_BYTE, bitmap);
-    console.log(segment, index);
+
     if (
       this.tilePointer === this.bitmaps.length - 1 ||
       this.tilePointer % 32 == 0
