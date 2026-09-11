@@ -1,6 +1,7 @@
 interface TileRequest {
   index: number;
   url: string;
+  priority?: RequestPriority;
 }
 
 interface TileChunk {
@@ -19,12 +20,19 @@ const workerScope = self as unknown as {
   postMessage(message: TileResponse, transfer?: Transferable[]): void;
 };
 
-self.onmessage = async ({ data }: MessageEvent<TileRequest>) => {
-  const { index, url } = data;
+self.onmessage = async ({ data }: MessageEvent<TileRequest | null>) => {
+  if (!data) {
+    console.log("ping", performance.now());
+    workerScope.postMessage({
+      index: -1,
+    });
+    return;
+  }
+  const { index, url, priority = "auto" } = data;
   console.log("fetch start", performance.now(), index);
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { priority: priority });
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
@@ -43,7 +51,7 @@ self.onmessage = async ({ data }: MessageEvent<TileRequest>) => {
       const segmentY = Math.floor(segment / 4);
 
       const sourceX = segmentX * sourceChunkWidth;
-      const sourceY = (1 - segmentY) * sourceChunkHeight;
+      const sourceY = segmentY * sourceChunkHeight;
 
       const chunk = await createImageBitmap(
         source,

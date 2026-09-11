@@ -26,8 +26,23 @@ class WorkerController {
     const workers = [];
 
     for (let i = 0; i < count; i++) {
+      const worker = new Worker(url, { type: "module" });
+
+      worker.onerror = (event) => {
+        console.error(
+          "WORKER ERROR",
+          event.message,
+          event.filename,
+          event.lineno,
+        );
+      };
+
+      worker.onmessageerror = (event) => {
+        console.error("WORKER MESSAGE ERROR", event);
+      };
+
       workers.push({
-        worker: new Worker(url, { type: "module" }),
+        worker,
         occupied: false,
       });
     }

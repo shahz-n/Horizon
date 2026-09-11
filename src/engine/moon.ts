@@ -1,14 +1,19 @@
 import * as THREE from "three";
 import workerController from "./worker.controller";
+import textureWorkerUrl from "./texture.worker.ts?worker&url";
+
+import { TextureLoader } from "three";
 
 const isLargeScreen = window.innerWidth > 1024 || window.innerHeight > 1024;
 
 const MOON_RADIUS = 6;
 const GRID_SIZE = 4;
 const TILE_COUNT = GRID_SIZE * GRID_SIZE;
-const WORKER_COUNT = Math.min(3, navigator.hardwareConcurrency);
+const WORKER_COUNT = Math.min(4, navigator.hardwareConcurrency);
 const SEGMENT_WIDTH = 1024;
 const SEGMENT_HEIGHT = 1024;
+const TILE_WIDTH = 4096;
+const TILE_HEIGHT = 2048;
 
 type TileTier = "4k" | "high";
 
@@ -38,7 +43,7 @@ class MoonManager {
   private readonly loadedTiers = new Array<TileTier | null>(TILE_COUNT).fill(
     null,
   );
-  private readonly materials: THREE.MeshStandardMaterial[] = [];
+  private texture!: THREE.Texture;
   private readonly workerController = workerController;
   private readonly bitmaps: {
     index: number;
@@ -49,168 +54,93 @@ class MoonManager {
 
   private readonly fetchWorker = {
     id: "fetchWorker",
-    url: new URL("./texture.worker.ts", import.meta.url),
+    url: textureWorkerUrl,
   };
 
   createTiledSphereGeometry(segments: number): THREE.BufferGeometry {
-    console.log("createTiledSphereGeometry start", performance.now());
-    const geometry = new THREE.SphereGeometry(MOON_RADIUS, segments, segments);
-
-    const index = geometry.getIndex();
-    const uv = geometry.getAttribute("uv");
-
-    if (!index || !uv) {
-      throw new Error("Sphere geometry is missing index or uv attributes");
-    }
-
-    const tileIndices: number[][] = Array.from(
-      { length: TILE_COUNT },
-      () => [],
-    );
-
-    for (let i = 0; i < index.count; i += 3) {
-      const vertices = [index.getX(i), index.getX(i + 1), index.getX(i + 2)];
-      const us = vertices.map((vertex) => uv.getX(vertex));
-
-      if (Math.max(...us) - Math.min(...us) > 0.5) {
-        for (let i = 0; i < us.length; i++) {
-          if (us[i] < 0.5) us[i] += 1;
-        }
-      }
-
-      const u = ((us[0] + us[1] + us[2]) / 3) % 1;
-      const v =
-        (uv.getY(vertices[0]) + uv.getY(vertices[1]) + uv.getY(vertices[2])) /
-        3;
-
-      const col = Math.min(GRID_SIZE - 1, Math.floor(u * GRID_SIZE));
-      const row = Math.min(GRID_SIZE - 1, Math.floor((1 - v) * GRID_SIZE));
-
-      tileIndices[row * GRID_SIZE + col].push(...vertices);
-    }
-
-    const reorderedIndices: number[] = [];
-
-    geometry.clearGroups();
-
-    for (let tile = 0; tile < TILE_COUNT; tile++) {
-      const indices = tileIndices[tile];
-
-      geometry.addGroup(reorderedIndices.length, indices.length, tile);
-      reorderedIndices.push(...indices);
-    }
-
-    geometry.setIndex(reorderedIndices);
-
-    console.log("createTiledSphereGeometry end", performance.now());
-    return geometry;
+    return new THREE.SphereGeometry(MOON_RADIUS, segments, segments);
   }
-
-  private createDefaultTextureMaps(): void {
-    console.log("createDefaultTextureMaps start", performance.now());
-    for (let index = 0; index < TILE_COUNT; index++) {
-      const texture = new THREE.Texture({
-        width: 4096,
-        height: 2048,
-      });
-
-      texture.colorSpace = THREE.SRGBColorSpace;
-      texture.generateMipmaps = false;
-      texture.minFilter = THREE.LinearFilter;
-      texture.magFilter = THREE.LinearFilter;
-
-      const col = index % GRID_SIZE;
-      const row = Math.floor(index / GRID_SIZE);
-
-      texture.repeat.set(GRID_SIZE, GRID_SIZE);
-      texture.offset.set(-col, row - (GRID_SIZE - 1));
-
-      this.materials[index].map = texture;
-      // this.materials[index].needsUpdate = true;
-      texture.source.dataReady = false;
-      texture.needsUpdate = true;
-    }
-
-    console.log("createDefaultTextureMaps end", performance.now());
+  private createDefaultTexture(): void {
+    const texture = new THREE.Texture({
+      width: 16384,
+      height: 8192,
+    });
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.generateMipmaps = true;
+    texture.minFilter = THREE.LinearMipmapLinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.source.dataReady = false;
+    texture.needsUpdate = true;
+    this.texture = texture;
   }
 
   constructor(scene: THREE.Scene) {
     this.targetTier = isLargeScreen ? "16k" : "8k";
-
-    this.mesh = new THREE.Mesh(
-      this.createTiledSphereGeometry(isLargeScreen ? 128 : 64),
-      Array.from({ length: TILE_COUNT }, () => {
-        return new THREE.MeshStandardMaterial({
-          color: 0xffffff,
-          roughness: 1,
-          metalness: 0,
-        });
-      }),
-    );
-    console.log("creating pool", performance.now());
     this.workerController.createPool(
       this.fetchWorker.id,
-      this.fetchWorker.url,
+      new URL(this.fetchWorker.url, import.meta.url),
       WORKER_COUNT,
     );
-    console.log("creating pool end", performance.now());
-    this.materials.push(
-      ...(this.mesh.material as THREE.MeshStandardMaterial[]),
+    this.createDefaultTexture();
+    this.mesh = new THREE.Mesh(
+      this.createTiledSphereGeometry(isLargeScreen ? 128 : 64),
+      new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 1,
+        metalness: 0,
+        map: this.texture,
+      }),
     );
-
-    this.createDefaultTextureMaps();
 
     this.mesh.position.set(0, -17.5, -6);
     this.mesh.scale.setScalar(12);
-
-    scene.add(this.mesh);
-
     this.loadSlices();
+    scene.add(this.mesh);
   }
 
   setPositionAndScale(pos: THREE.Vector3, scale: number): void {
-    // console.log("setPositionAndScale start", performance.now());
     this.mesh.position.copy(pos);
     this.mesh.scale.setScalar(scale);
-    // console.log("setPositionAndScale end", performance.now());
   }
 
   setRotation(rotX: number, rotY: number): void {
-    // console.log("setRotation start", performance.now());
     this.mesh.rotation.set(rotX, rotY, this.mesh.rotation.z);
-    // console.log("setRotation end", performance.now());
   }
 
   loadSlices(): void {
-    console.log("loadSlices start", performance.now());
     void this.loadTexturePipeline();
-    console.log("loadSlices end", performance.now());
   }
 
   private async loadTexturePipeline(): Promise<void> {
-    const jobs = [
-      ...TILES[0].map((index) => ({ index, tier: "4k" as TileTier })),
-      ...TILES.flat().map((index) => ({ index, tier: "high" as TileTier })),
+    const batches = [
+      ...TILES.map((tiles) =>
+        tiles.map((index) => ({ index, tier: "4k" as TileTier })),
+      ),
+      ...TILES.map((tiles) =>
+        tiles.map((index) => ({ index, tier: "high" as TileTier })),
+      ),
     ];
 
-    let nextIndex = 0;
+    for (const batch of batches) {
+      let nextIndex = 0;
 
-    const loadNext = async (): Promise<void> => {
-      const job = jobs[nextIndex++];
+      const loadNext = async (): Promise<void> => {
+        const job = batch[nextIndex++];
 
-      if (!job) return;
+        if (!job) return;
 
-      await this.loadTile(job.index, job.tier);
-      await loadNext();
-    };
+        await this.loadTile(job.index, job.tier);
+        await loadNext();
+      };
 
-    await Promise.all(Array.from({ length: WORKER_COUNT }, loadNext));
+      await Promise.all(
+        Array.from({ length: Math.min(WORKER_COUNT, batch.length) }, loadNext),
+      );
+    }
 
     this.workerController.destroyPool(this.fetchWorker.id);
   }
-
   private async loadTile(index: number, tier: TileTier): Promise<void> {
-    console.log("loadTile start", performance.now(), index, tier);
     return new Promise((resolve) => {
       const worker = this.workerController.acquireWorker(this.fetchWorker.id);
 
@@ -240,8 +170,11 @@ class MoonManager {
 
       worker.onerror = finish;
 
-      worker.postMessage({ index, url });
-      console.log("loadTile end", performance.now(), index, tier);
+      worker.postMessage({
+        index,
+        url,
+        priority: tier === "4k" ? "high" : "auto",
+      });
     });
   }
 
@@ -250,7 +183,6 @@ class MoonManager {
     tier: TileTier,
     chunks: WorkerChunk[],
   ): Promise<void> {
-    console.log("onTileLoaded start", performance.now(), index, tier);
     if (tier === "4k" && this.loadedTiers[index] === "high") {
       for (const chunk of chunks) {
         chunk.bitmap.close();
@@ -260,20 +192,41 @@ class MoonManager {
     }
 
     for (const chunk of chunks) {
-      this.bitmaps.push({
-        index: chunk.index,
-        segment: chunk.segment,
-        bitmap: chunk.bitmap,
-      });
-    }
+      const existing = this.bitmaps.find(
+        (bitmap) =>
+          bitmap.index === chunk.index &&
+          bitmap.segment === chunk.segment &&
+          bitmap.bitmap !== null,
+      );
 
+      if (existing) {
+        existing.bitmap?.close();
+        existing.bitmap = chunk.bitmap;
+      } else {
+        this.bitmaps.push({
+          index: chunk.index,
+          segment: chunk.segment,
+          bitmap: chunk.bitmap,
+        });
+      }
+    }
     this.loadedTiers[index] = tier;
-    console.log("onTileLoaded end", performance.now(), index, tier);
   }
 
   async uploadNextSegment(renderer: THREE.WebGLRenderer): Promise<void> {
-    if (this.tilePointer >= this.bitmaps.length) return;
-    console.log("uploadNextSegment start", performance.now());
+    if (this.tilePointer > this.bitmaps.length - 1) return;
+
+    const texture = this.texture;
+
+    const gl = renderer.getContext();
+
+    const properties = renderer.properties.get(texture) as {
+      __webglTexture?: WebGLTexture;
+    };
+
+    const webglTexture = properties.__webglTexture;
+    if (!webglTexture) return;
+
     const item = this.bitmaps[this.tilePointer];
 
     if (!item) return;
@@ -285,36 +238,32 @@ class MoonManager {
     const segmentX = segment % 4;
     const segmentY = Math.floor(segment / 4);
 
-    const x = segmentX * SEGMENT_WIDTH;
-    const y = segmentY * SEGMENT_HEIGHT;
+    const tileX = (index % GRID_SIZE) * TILE_WIDTH;
+    const tileY = (GRID_SIZE - 1 - Math.floor(index / GRID_SIZE)) * TILE_HEIGHT;
 
-    const texture = this.materials[index].map;
+    const x = tileX + segmentX * SEGMENT_WIDTH;
+    const y = tileY + (1 - segmentY) * SEGMENT_HEIGHT;
 
-    if (!texture) {
-      bitmap.close();
-      this.bitmaps[this.tilePointer].bitmap = null;
-      this.tilePointer++;
-      return;
-    }
-
-    const gl = renderer.getContext();
-
-    const properties = renderer.properties.get(texture) as {
-      __webglTexture?: WebGLTexture;
-    };
-
-    const webglTexture = properties.__webglTexture;
-
-    if (!webglTexture) return;
+    this.bitmaps[this.tilePointer].bitmap = null;
 
     gl.bindTexture(gl.TEXTURE_2D, webglTexture);
 
-    gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, gl.RGBA, gl.UNSIGNED_BYTE, bitmap);
+    renderer.state.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+    renderer.state.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+    renderer.state.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL, gl.NONE);
+    renderer.state.pixelStorei(gl.UNPACK_ALIGNMENT, 4);
 
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, gl.RGBA, gl.UNSIGNED_BYTE, bitmap);
+    console.log(segment, index);
+    if (
+      this.tilePointer === this.bitmaps.length - 1 ||
+      this.tilePointer % 32 == 0
+    ) {
+      gl.generateMipmap(gl.TEXTURE_2D);
+    }
     bitmap.close();
-    this.bitmaps[this.tilePointer].bitmap = null;
+
     this.tilePointer++;
-    console.log("uploadNextSegment end", performance.now());
   }
 }
 

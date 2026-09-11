@@ -49,7 +49,7 @@
   .hero-reveal {
     opacity: 0;
     transform: translateY(-40px);
-    animation: hero-in 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: hero-in 0.6s var(--ease-smooth) forwards;
     animation-delay: 0.1s;
   }
 

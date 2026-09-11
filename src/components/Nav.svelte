@@ -51,7 +51,7 @@
 <a
   href="/"
   aria-label="Horizon home"
-  class="absolute! -top-3 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center gap-2 glass p-2 pt-4 lg:p-3 lg:pt-5 lg:flex"
+  class="absolute! -top-3 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center gap-2 glass p-2 pt-4 lg:p-3 lg:pt-5 lg:flex nav-reveal-brand"
 >
   <span
     class="title flex items-center justify-center gap-2 font-display text-base lg:text-lg font-medium"
@@ -63,7 +63,7 @@
 <!-- Left rail -->
 <nav
   aria-label="Section navigation"
-  class="fixed! -left-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pl-5 overflow-visible! max_md:hidden"
+  class="fixed! -left-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pl-5 overflow-visible! max_md:hidden nav-reveal-left"
 >
   {#each leftNavigation as item}
     <NavItem {...item} />
@@ -77,7 +77,7 @@
 <!-- Right rail -->
 <aside
   aria-label="Section and contact links"
-  class="fixed! -right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pr-5 overflow-visible! max_md:hidden"
+  class="fixed! -right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pr-5 overflow-visible! max_md:hidden nav-reveal-right"
 >
   {#each rightNavigation as item}
     <NavItem {...item} />
@@ -99,5 +99,59 @@
     display: inline-block;
     vertical-align: middle;
     margin: 0 0.5rem;
+  }
+
+  .nav-reveal-brand {
+    opacity: 0;
+    transform: translateY(-60px);
+    animation: nav-brand-in 0.6s var(--ease-smooth) forwards;
+    animation-delay: 0.5s;
+  }
+
+  .nav-reveal-left {
+    opacity: 0;
+    transform: translateX(-80px);
+    animation: nav-left-in 0.6s var(--ease-smooth) forwards;
+    animation-delay: 0.5s;
+  }
+
+  .nav-reveal-right {
+    opacity: 0;
+    transform: translateX(80px);
+    animation: nav-right-in 0.6s var(--ease-smooth) forwards;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes nav-brand-in {
+    from {
+      opacity: 0;
+      transform: translateY(-60px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+
+  @keyframes nav-left-in {
+    from {
+      opacity: 0;
+      transform: translateX(-80px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes nav-right-in {
+    from {
+      opacity: 0;
+      transform: translateX(80px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 </style>

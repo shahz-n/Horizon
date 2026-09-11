@@ -106,6 +106,7 @@
   --hero-action-offset: 42px;
   --hero-title-leading: 0.9;
   --timeline-dot-size: 14px;
+  --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
   --timeline-marker-offset: -37px;
   --project-visual-height: 280px;
   --project-visual-label-size: 0.6875rem;
@@ -257,8 +258,9 @@ section {
   border-radius: var(--radius);
   background: var(--gradient-glass);
   box-shadow: var(--glass-shadow);
-  backdrop-filter: blur(24px) saturate(150%);
   -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+
   transition: box-shadow 0.3s ease !important;
 }
 .glass:hover {
@@ -266,12 +268,12 @@ section {
   box-shadow: var(--glass-shadow-hover);
 }
 .low-saturation {
-  backdrop-filter: blur(24px) saturate(125%);
   -webkit-backdrop-filter: blur(24px) saturate(125%);
+  backdrop-filter: blur(24px) saturate(125%);
 }
 .high-saturation {
-  backdrop-filter: blur(24px) saturate(200%);
   -webkit-backdrop-filter: blur(24px) saturate(200%);
+  backdrop-filter: blur(24px) saturate(200%);
 }
 * {
   scrollbar-width: none;

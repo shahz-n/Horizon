@@ -7,7 +7,7 @@ import { evaluateMoonTrajectory, getScrollProgress } from "./trajectory";
 const MAX_PIXEL_RATIO = 2;
 const SCROLL_LERP_FACTOR = 0.22;
 
-const INTRO_DELAY = 500;
+const INTRO_DELAY = 900;
 const INTRO_DURATION = 1000;
 
 const INTRO_CAMERA_POSITION = new THREE.Vector3(0, 0, 16);
@@ -27,6 +27,7 @@ export interface SceneAPI {
 }
 
 export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
+  const startTime = performance.now();
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
@@ -50,7 +51,7 @@ export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
 
   const scene = new THREE.Scene();
 
-  const moon = createMoon(scene);
+  const moon = createMoon(scene, renderer);
 
   scene.fog = new THREE.FogExp2(0x030410, 0.003);
 
@@ -200,8 +201,7 @@ export async function initEngine(canvas: HTMLCanvasElement): Promise<SceneAPI> {
 
   lockScroll();
 
-  introAnimate(performance.now());
-  console.log("intro end", performance.now());
+  introAnimate(startTime);
 
   return {
     destroy: () => {
