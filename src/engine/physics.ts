@@ -2,8 +2,8 @@ import * as THREE from "three";
 
 const ROTATION_SPEED = 0.015;
 const MOUSE_ROTATION_LIMIT = 0.125;
-const MOON_DAMPING = 0.03;
-const STAR_DAMPING = 0.02;
+const MOON_DAMPING = 0.02;
+const STAR_DAMPING = 0.04;
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -48,11 +48,15 @@ export function createPhysics(): PhysicsSystem {
         const targetStarX = -mouseY * MOUSE_ROTATION_LIMIT;
         const targetStarY = mouseX * MOUSE_ROTATION_LIMIT;
 
-        currentMoonRotX = lerp(currentMoonRotX, targetMoonX, MOON_DAMPING);
-        currentMoonRotY = lerp(currentMoonRotY, targetMoonY, MOON_DAMPING);
+        const dt60 = Math.min(dt, 0.1) * 60;
+        const moonLerp = 1 - Math.pow(1 - MOON_DAMPING, dt60);
+        const starLerp = 1 - Math.pow(1 - STAR_DAMPING, dt60);
 
-        currentStarRotX = lerp(currentStarRotX, targetStarX, STAR_DAMPING);
-        currentStarRotY = lerp(currentStarRotY, targetStarY, STAR_DAMPING);
+        currentMoonRotX = lerp(currentMoonRotX, targetMoonX, moonLerp);
+        currentMoonRotY = lerp(currentMoonRotY, targetMoonY, moonLerp);
+
+        currentStarRotX = lerp(currentStarRotX, targetStarX, starLerp);
+        currentStarRotY = lerp(currentStarRotY, targetStarY, starLerp);
       }
 
       return {

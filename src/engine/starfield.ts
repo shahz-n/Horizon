@@ -38,7 +38,7 @@ const starFragmentShader = `
     vec2 p = gl_PointCoord * 2.0 - 1.0;
     float r2 = dot(p, p);
     if (r2 > 1.0) discard;
-    float alpha = exp(-r2 * (6.5 - (uPixelRatio * 2.5)));
+    float alpha = exp(-r2 * (5.5 - (uPixelRatio * 2.5)));
     float brightness = sqrt(vIntensity);
     gl_FragColor = vec4(vColor * brightness, alpha);
   }
@@ -166,7 +166,10 @@ export function createStarfield(
   });
 
   const starCount =
-    Math.pow(Math.min(window.innerHeight, window.innerWidth), 2) / 50;
+    Math.pow(
+      Math.max(Math.min(window.innerHeight, window.innerWidth), 1000),
+      2,
+    ) / 50;
   const starPoints = new THREE.Points(
     createStarGeometry(starCount),
     starMaterial,

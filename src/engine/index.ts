@@ -11,7 +11,7 @@ const INTRO_DELAY = 900;
 const INTRO_DURATION = 1000;
 
 const INTRO_CAMERA_POSITION = new THREE.Vector3(0, 0, 16);
-const INTRO_LOOK_START = new THREE.Vector3(4, 6, 4);
+const INTRO_LOOK_START = new THREE.Vector3(0, 6, 0);
 const INTRO_LOOK_END = new THREE.Vector3(0, 0, 0);
 
 const INTRO_MOON_POSITION = new THREE.Vector3(0, -17.5, -6);
@@ -89,7 +89,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   let destroyed = false;
   let animFrameId: number | null = null;
 
-  const clock = new THREE.Clock();
+  const clock = new THREE.Clock(false);
 
   const previousOverflow = document.body.style.overflow;
 
@@ -121,11 +121,12 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   function updateScene(dt: number, updatePhysics = true): void {
     targetScrollProgress = getScrollProgress();
 
-    scrollProgress = lerp(
-      scrollProgress,
-      targetScrollProgress,
-      prefersReducedMotion ? 1 : SCROLL_LERP_FACTOR,
-    );
+    const dt60 = Math.min(dt, 0.1) * 60;
+    const lerpFactor = prefersReducedMotion
+      ? 1
+      : 1 - Math.pow(1 - SCROLL_LERP_FACTOR, dt60);
+
+    scrollProgress = lerp(scrollProgress, targetScrollProgress, lerpFactor);
 
     const trajectory = evaluateMoonTrajectory(scrollProgress);
 
@@ -170,14 +171,22 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
         return;
       }
 
+      if (!clock.running) {
+        clock.start();
+      }
+
       const introElapsed = elapsed - INTRO_DELAY;
       const rawProgress = Math.min(introElapsed / INTRO_DURATION, 1);
       const progress = 1 - Math.pow(1 - rawProgress, 3);
 
-      const lookAtY = lerp(INTRO_LOOK_START.y, INTRO_LOOK_END.y, progress);
+      const lookAtTarget = new THREE.Vector3().lerpVectors(
+        INTRO_LOOK_START,
+        INTRO_LOOK_END,
+        progress,
+      );
 
       camera.position.copy(INTRO_CAMERA_POSITION);
-      camera.lookAt(0, lookAtY, 0);
+      camera.lookAt(lookAtTarget);
 
       const dt = clock.getDelta();
 
@@ -190,13 +199,9 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
         return;
       }
 
-      camera.position.copy(INTRO_CAMERA_POSITION);
-      camera.lookAt(INTRO_LOOK_END);
-
       unlockScroll();
 
-      clock.start();
-      normalAnimate();
+      animFrameId = requestAnimationFrame(normalAnimate);
     });
   }
 
