@@ -21,7 +21,7 @@
     class="timeline-card glass high-saturation
            w-full px-8 py-7 max_md:px-6 max_md:py-5
            text-left reveal
-           opacity-0 translate-y-8"
+           opacity-0"
   >
     <div
       class="relative z-10 flex flex-wrap items-center justify-between gap-1"
@@ -66,7 +66,7 @@
 
       <!-- Standalone metadata row -->
       <div
-        class="flex w-full items-center justify-start gap-3
+        class="flex w-full items-center justify-start gap-1.5
                mt-1 lg:hidden"
       >
         <!-- Period -->

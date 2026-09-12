@@ -7,11 +7,11 @@ import { evaluateMoonTrajectory } from "./trajectory";
 
 const MAX_PIXEL_RATIO = 2;
 
-const INTRO_DELAY = 700;
+const INTRO_DELAY = 750;
 const INTRO_DURATION = 1000;
 const INTRO_MIN_FRAMES = 60;
 
-const GLASS_OPACITY_MARGIN = 15;
+const GLASS_OPACITY_MARGIN = 20;
 
 const SCROLL_LERP_FACTOR = 0.2;
 
@@ -41,10 +41,11 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     powerPreference: "high-performance",
   });
 
-  renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO),
-  );
-  renderer.setSize(window.innerWidth, window.innerHeight, false);
+  const canvasRect = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
+
+  renderer.setPixelRatio(dpr);
+  renderer.setSize(canvasRect.width, canvasRect.height, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1;
@@ -57,8 +58,8 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
 
   const camera = new THREE.PerspectiveCamera(
     30,
-    window.innerWidth / window.innerHeight,
-    0.001,
+    canvasRect.width / canvasRect.height,
+    0.01,
     600,
   );
   camera.position.copy(INTRO_CAMERA_POSITION);
@@ -68,8 +69,15 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   sun.position.set(0, 0, 10);
   scene.add(sun);
 
-  const fill = new THREE.HemisphereLight(0x3545b0, 0x080414, 0.6);
-  scene.add(fill);
+  const fillTop = new THREE.HemisphereLight(0x3545b0, 0x080414, 0.6);
+
+  fillTop.up.set(0, 1, 0);
+
+  const fillBottom = new THREE.HemisphereLight(0x080414, 0x3545b0, 0.6);
+
+  fillBottom.up.set(0, -1, 0);
+
+  scene.add(fillTop, fillBottom);
 
   const starfield: StarfieldSystem = createStarfield(
     scene,
@@ -95,13 +103,17 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     syncTouch: false,
     wheelMultiplier: 0.6,
     touchMultiplier: 1,
+    anchors: {
+      duration: 1,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+    },
   });
 
-  let last_frames = 0;
-  setInterval(() => {
-    console.log("fps:", frames - last_frames);
-    last_frames = frames;
-  }, 1000);
+  // let last_frames = 0;
+  // setInterval(() => {
+  //   console.log("fps:", frames - last_frames);
+  //   last_frames = frames;
+  // }, 1000);
 
   const updateGlassOpacity = () => {
     const viewportHeight = window.innerHeight;
@@ -132,15 +144,21 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     lenis.start();
   };
 
+  let viewportWidth = canvasRect.width;
+
   const onResize = () => {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+    const rect = canvas.getBoundingClientRect();
+
+    if (rect.width === viewportWidth) return;
+
+    viewportWidth = rect.width;
+
     const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
 
     renderer.setPixelRatio(dpr);
-    renderer.setSize(w, h, false);
+    renderer.setSize(rect.width, rect.height, false);
 
-    camera.aspect = w / h;
+    camera.aspect = rect.width / rect.height;
     camera.updateProjectionMatrix();
 
     starfield.updatePixelRatio(dpr);

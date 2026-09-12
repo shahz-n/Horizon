@@ -3,36 +3,13 @@
   import Github from "./icons/Github.svelte";
   import Linkedin from "./icons/Linkedin.svelte";
   import contactData from "../data/contact.json";
-  import siteData from "../data/index.json";
 
-  const contacts = [
-    {
-      label: "Email",
-      value: siteData.email,
-      href: `mailto:${siteData.email}`,
-      icon: Mail,
-    },
-    {
-      label: "GitHub",
-      value: siteData.github.replace("https://", ""),
-      href: siteData.github,
-      icon: Github,
-      external: true,
-    },
-    {
-      label: "LinkedIn",
-      value: siteData.linkedin.replace("https://", ""),
-      href: siteData.linkedin,
-      icon: Linkedin,
-      external: true,
-    },
-    {
-      label: "Phone",
-      value: siteData.phone,
-      href: `tel:${siteData.phone.replace(/ /g, "")}`,
-      icon: Phone,
-    },
-  ];
+  const contactIcons: Record<string, any> = {
+    mail: Mail,
+    github: Github,
+    linkedin: Linkedin,
+    phone: Phone,
+  };
 </script>
 
 <section id="contact" class="page relative flex items-center justify-center">
@@ -45,7 +22,7 @@
       </div>
 
       <div class="mt-10 grid grid-cols-2 gap-4 max_lg:grid-cols-1 max_md:gap-3">
-        {#each contacts as contact}
+        {#each contactData.contacts as contact}
           <a
             href={contact.href}
             target={contact.external ? "_blank" : undefined}
@@ -54,7 +31,7 @@
           >
             <div class="relative z-10 flex items-center gap-3">
               <svelte:component
-                this={contact.icon}
+                this={contactIcons[contact.icon]}
                 size={20}
                 strokeWidth={2}
                 class="text-accent-cyan"
@@ -75,10 +52,8 @@
               {/if}
             </div>
 
-            <span
-              class="relative z-10 text-lg leading-snug [overflow-wrap:anywhere]"
-            >
-              {contact.value}
+            <span class="relative z-10 text-lg leading-snug wrap-anywhere">
+              {contact.display}
             </span>
           </a>
         {/each}

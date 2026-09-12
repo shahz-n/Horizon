@@ -3,7 +3,7 @@
    ========================================================================= */
 import * as THREE from "three";
 
-const SIMULATION_RADIUS = 260;
+const SIMULATION_RADIUS = 300;
 
 const STAR_RANGES = [
   { weight: 0.03, min: 30000, max: 45000, size: [1.5, 2.5] }, // O
@@ -26,7 +26,7 @@ const starVertexShader = `
     vIntensity = intensity;
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * mvPosition;
-    gl_PointSize = max(min(size * 2.5, uPixelRatio * 3.0), uPixelRatio);
+    gl_PointSize = max(min(size * 2.5, uPixelRatio * 2.5), uPixelRatio);
   }
 `;
 
@@ -38,7 +38,7 @@ const starFragmentShader = `
     vec2 p = gl_PointCoord * 2.0 - 1.0;
     float r2 = dot(p, p);
     if (r2 > 1.0) discard;
-    float alpha = exp(-r2 * (4.5 - (uPixelRatio * 2.0)));
+    float alpha = exp(-r2 * (3.75 - (uPixelRatio * 2.0)));
     float brightness = sqrt(vIntensity);
     gl_FragColor = vec4(vColor * brightness, alpha);
   }
@@ -89,9 +89,9 @@ function kelvinToColor(
 
 function randomIntensity(): number {
   const r = Math.random();
-  if (r > 0.997) return 15.0;
-  if (r > 0.99) return 10.0;
-  if (r > 0.98) return 5.0;
+  if (r > 0.995) return 20.0;
+  if (r > 0.99) return 12.0;
+  if (r > 0.98) return 6.0;
   return 0.25 + Math.pow(Math.random(), 3) * 2.0;
 }
 
@@ -166,10 +166,7 @@ export function createStarfield(
   });
 
   const starCount =
-    Math.pow(
-      Math.max(Math.min(window.innerHeight, window.innerWidth), 1000),
-      2,
-    ) / 50;
+    Math.pow(Math.min(window.innerHeight, window.innerWidth) + 2000, 1.5) / 10;
   const starPoints = new THREE.Points(
     createStarGeometry(starCount),
     starMaterial,

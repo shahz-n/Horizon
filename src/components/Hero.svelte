@@ -7,7 +7,7 @@
   class="page relative flex items-center justify-center pt-28 pb-44 max_lg:pt-28 max_lg:pb-44"
 >
   <div
-    class="hero-content wrap relative z-10 flex w-full flex-col items-center text-center max_lg:max-w-5xl"
+    class="hero-content wrap z-10 flex w-full flex-col items-center text-center max_lg:max-w-5xl"
   >
     <div
       class="eyebrow hero-reveal mb-7 flex items-center justify-center gap-4 font-mono text-xs leading-none tracking-[0.18em] text-accent-cyan uppercase opacity-90 max_sm:gap-2 max_sm:text-xs max_sm:tracking-[0.14em]"
@@ -22,17 +22,17 @@
     </h1>
 
     <p
-      class="intro hero-reveal hero-reveal-3 mt-5! max-w-xl font-body font-medium text-text sm:mt-6! md:max-w-3xl text-lg lg:max-w-5xl lg:text-2xl"
+      class="intro hero-reveal hero-reveal-3 mt-5! max-w-xl font-body font-medium text-text sm:mt-6! md:max-w-3xl text-base lg:max-w-5xl lg:text-2xl"
     >
       {heroData.intro}
     </p>
 
     <div
-      class="hero-actions mt-8 flex w-full items-center justify-center gap-2 px-4 sm:w-auto sm:gap-3 lg:mt-(--hero-action-offset)"
+      class="hero-actions mt-8 flex w-full items-center justify-center gap-3 px-4 max-sm:mt-12 max-sm:flex-col sm:w-auto sm:gap-3 lg:mt-(--hero-action-offset) max-sm:absolute max-sm:bottom-0 max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:pb-12 max-sm:px-10"
     >
       <a
         href={heroData.primaryAction.href}
-        class="glass w-full hero-reveal hero-reveal-4 rounded-full! px-5 md:px-7 py-3 text-base font-bold text-black! font-family-display
+        class="glass w-full hero-reveal hero-reveal-4 rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-bold text-black! font-family-display
          bg-[image:var(--gradient-hero)]!
          bg-size-[100%_100%]! text-shadow-xs
          sm:w-auto sm:px-9 sm:text-lg
@@ -44,7 +44,7 @@
       <a
         href={heroData.resumeAction.href}
         download
-        class="glass w-full hero-reveal-4 hero-reveal rounded-full! px-5 md:px-7 py-3 text-base font-semibold font-family-display low-saturation sm:w-auto sm:px-9 sm:text-lg"
+        class="glass w-full hero-reveal-4 hero-reveal rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-semibold font-family-display low-saturation sm:w-auto sm:px-9 sm:text-lg"
         >{heroData.resumeAction.label}</a
       >
     </div>

@@ -219,7 +219,6 @@ class MoonManager {
     tier: TileTier,
     chunks: WorkerChunk[],
   ): Promise<void> {
-    // console.log(performance.now(), "[moon] Tile", index, "loaded", chunks);
     if (tier === "4k" && this.loadedTiers[index] === "high") {
       for (const chunk of chunks) {
         chunk.bitmap.close();

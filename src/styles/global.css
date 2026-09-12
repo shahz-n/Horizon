@@ -38,7 +38,7 @@
 }
 
 :root {
-  --void: #030408;
+  --void: #020306;
   --deep-space: #060a14;
   --nebula-dark: #0a0e1a;
   --nebula-mid: #101628;
@@ -206,9 +206,10 @@ button {
   position: fixed;
   z-index: 0;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 100lvw;
+  height: 100lvh;
   inset: 0;
+  top: 0;
   pointer-events: none;
   background: var(--void);
 }
@@ -268,6 +269,7 @@ section {
   color: var(--text-secondary);
   font-size: 1.25rem;
   line-height: 1.5;
+  width: clamp(300px, 60vw, 900px);
 }
 
 .glass {
@@ -316,6 +318,9 @@ strong {
   .wrap {
     width: var(--content-width-sm);
   }
+  .section-head {
+    margin-bottom: 3rem;
+  }
 }
 @media (max-width: 1024px) {
   html {
@@ -341,7 +346,7 @@ strong {
     padding: 6rem 1.5rem;
   }
   .section-head {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
   .section-head h2 {
     width: 100%;

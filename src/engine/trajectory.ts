@@ -5,22 +5,22 @@ import * as THREE from "three";
 
 const LARGE_MOON_PATH_POINTS = [
   new THREE.Vector3(0.0, -75.0, -50.0), // 0.00: Hero (surface view right under content)
-  new THREE.Vector3(0.0, -25.0, -60.0), // 0.20: About (ascending toward center)
+  new THREE.Vector3(0.0, -30.0, -65.0), // 0.20: About (ascending toward center)
   new THREE.Vector3(0.0, 0.0, -70.0), // 0.40: Experience (centered in viewport ~50% page height)
   new THREE.Vector3(0.0, 0.0, -80.0), // 0.50: Experience (centered in viewport ~50% page height)
   new THREE.Vector3(0.0, 0.0, -70.0), // 0.60: Skills (gently floating center-right)
-  new THREE.Vector3(0.0, 25.0, -60.0), // 0.80: Projects (gently floating center-left)
+  new THREE.Vector3(0.0, 30.0, -65.0), // 0.80: Projects (gently floating center-left)
   new THREE.Vector3(0.0, 75.0, -50.0), // 1.00: Contact (descending into surface view)
 ];
 
 const SMALL_MOON_PATH_POINTS = [
-  new THREE.Vector3(0.0, -75.0, -50.0), // 0.00: Hero (surface view right under content)
-  new THREE.Vector3(0.0, -25.0, -105.0), // 0.20: move farther back on smaller screens
+  new THREE.Vector3(0.0, -75.0, -60.0), // 0.00: Hero (surface view right under content)
+  new THREE.Vector3(0.0, -30.0, -110.0), // 0.20: move farther back on smaller screens
   new THREE.Vector3(0.0, 0.0, -120.0), // 0.40: keep the moon visually smaller in the center
   new THREE.Vector3(0.0, 0.0, -125.0), // 0.50: deeper camera-axis distance for a balanced scale
   new THREE.Vector3(0.0, 0.0, -120.0), // 0.60: taper back out without changing start/end anchors
-  new THREE.Vector3(0.0, 25.0, -105.0), // 0.80: preserve the mid-scene arc while keeping it smaller
-  new THREE.Vector3(0.0, 75.0, -50.0), // 1.00: Contact (descending into surface view)
+  new THREE.Vector3(0.0, 30.0, -110.0), // 0.80: preserve the mid-scene arc while keeping it smaller
+  new THREE.Vector3(0.0, 80.0, -60.0), // 1.00: Contact (descending into surface view)
 ];
 
 function getMoonPathPoints(): THREE.Vector3[] {

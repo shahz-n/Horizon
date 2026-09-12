@@ -9,7 +9,7 @@
       "meta": ["Personal", "Simulation"],
       "tags": ["Three.js", "Svelte", "TypeScript", "WebGL", "GLSL"],
       "side": "left",
-      "description": "Astrarium is an interactive model of the solar system built around <strong>real astronomical data</strong>, with planets, dwarf planets, and major moons moving according to <strong>Keplerian orbital parameters</strong>. The simulation includes a <strong>custom time system</strong> that can move from real time to several years per second, along with <strong>orbit tracking</strong>, motion trails, live labels, and camera systems designed for navigating astronomical distances. Its rendering layer also led to a published npm package for <strong>high-precision line rendering</strong>, using <strong>camera-relative coordinates</strong> to avoid floating-point precision problems at large scales.",
+      "description": "Astrarium is an interactive model of the solar system built around <strong>real astronomical data</strong>, with planets, dwarf planets, and major moons moving according to <strong>Keplerian orbital parameters</strong>. The simulation includes a <strong>custom time system</strong> that can move from real time to several years per second, along with <strong>orbit tracking</strong>, motion trails, live labels, and camera systems designed for navigating astronomical distances. Its rendering layer also led to a published npm package for <strong>high-precision line rendering</strong>, using <strong>camera-relative coordinates</strong> to avoid floating-point precision problems at large scales. Guess where this website's starfield came from.",
       "color": "#7ba6f7",
       "image": "/projects/astrarium.webp",
       "github": "https://github.com/shahz-n/Astrarium"

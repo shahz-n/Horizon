@@ -2,10 +2,34 @@
   "eyebrow": "Let's Connect",
   "title": "Get in touch.",
   "sub": "Have a project in mind, want to work together, or just want to talk tech? I’m always open to interesting conversations.",
-  "form": {
-    "namePlaceholder": "Your name",
-    "emailPlaceholder": "you@company.com",
-    "messagePlaceholder": "What are you building?",
-    "buttonText": "Send message"
-  }
+  "contacts": [
+    {
+      "label": "Email",
+      "display": "m.shahzer.najeeb@gmail.com",
+      "href": "mailto:m.shahzer.najeeb@gmail.com",
+      "icon": "mail",
+      "external": false
+    },
+    {
+      "label": "GitHub",
+      "display": "github.com/shahz-n",
+      "href": "https://github.com/shahz-n",
+      "icon": "github",
+      "external": true
+    },
+    {
+      "label": "LinkedIn",
+      "display": "linkedin.com/in/m-shahzer-najeeb",
+      "href": "https://linkedin.com/in/m-shahzer-najeeb",
+      "icon": "linkedin",
+      "external": true
+    },
+    {
+      "label": "Phone",
+      "display": "+91 78605 36423",
+      "href": "tel:+917860536423",
+      "icon": "phone",
+      "external": false
+    }
+  ]
 }
