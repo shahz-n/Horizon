@@ -38,7 +38,7 @@ const starFragmentShader = `
     vec2 p = gl_PointCoord * 2.0 - 1.0;
     float r2 = dot(p, p);
     if (r2 > 1.0) discard;
-    float alpha = exp(-r2 * (5.5 - (uPixelRatio * 2.5)));
+    float alpha = exp(-r2 * (4.5 - (uPixelRatio * 2.0)));
     float brightness = sqrt(vIntensity);
     gl_FragColor = vec4(vColor * brightness, alpha);
   }
