@@ -10,7 +10,9 @@
       "tags": ["Three.js", "Svelte", "TypeScript", "WebGL", "GLSL"],
       "side": "left",
       "description": "Astrarium is an interactive model of the solar system built around <strong>real astronomical data</strong>, with planets, dwarf planets, and major moons moving according to <strong>Keplerian orbital parameters</strong>. The simulation includes a <strong>custom time system</strong> that can move from real time to several years per second, along with <strong>orbit tracking</strong>, motion trails, live labels, and camera systems designed for navigating astronomical distances. Its rendering layer also led to a published npm package for <strong>high-precision line rendering</strong>, using <strong>camera-relative coordinates</strong> to avoid floating-point precision problems at large scales.",
-      "color": "#7ba6f7"
+      "color": "#7ba6f7",
+      "image": "/projects/astrarium.webp",
+      "github": "https://github.com/shahz-n/Astrarium"
     },
     {
       "title": "BorrowBe",
@@ -20,7 +22,8 @@
       "side": "right",
       "description": "BorrowBe is a local rental marketplace connecting people through <strong>searchable listings</strong>, location-aware discovery, availability scheduling, conversations, and payments. The product combined <strong>map and radius search</strong> with structured address queries, while its category-driven CMS allowed different kinds of listings to <strong>inherit and customize fields, pricing packages, and limits</strong>. The platform also supported <strong>realtime conversations and listing updates</strong> alongside a wallet and automated payment system built around a <strong>hybrid transaction ledger</strong>.",
       "color": "#7ba6f7",
-      "image": "/projects/borrowbe.webp"
+      "image": "/projects/borrowbe.webp",
+      "github": "https://github.com/shahz-n/BorrowBe"
     },
     {
       "title": "Context Studio",
@@ -30,7 +33,8 @@
       "side": "right",
       "description": "Context Studio turns documents, notes, and other captured information into a <strong>searchable knowledge base</strong> for AI-assisted research and content creation. Its core is an <strong>ingestion and retrieval pipeline</strong> that processes documents in the background, generates embeddings, and combines <strong>lexical and vector search</strong> depending on the query. On top of that sits a <strong>feedback-driven research brief system</strong> that carries user preferences into future generations, allowing the system to adjust topic and source weighting over time rather than treating every brief as an isolated request.",
       "color": "#a78bfa",
-      "image": "/projects/context-studio.webp"
+      "image": "/projects/context-studio.webp",
+      "github": "https://github.com/shahz-n/Context-Studio"
     },
     {
       "title": "PoundAK",
@@ -40,7 +44,8 @@
       "side": "left",
       "description": "PoundAK is a desktop gaming companion built around <strong>live game telemetry</strong> and multiple coordinated application contexts. It combines <strong>in-game overlays</strong>, desktop interfaces, background services, and hotkey-driven windows into a single runtime, with game events feeding both <strong>realtime assistance</strong> and longer-term performance analysis. The platform also experiments with <strong>AI coaching</strong> by combining gameplay statistics, session history, player preferences, and other contextual data into structured prompts for different language models.",
       "color": "#67e8f9",
-      "image": "/projects/pound-ak.webp"
+      "image": "/projects/pound-ak.webp",
+      "github": "https://github.com/shahz-n/PoundAK"
     }
   ]
 }

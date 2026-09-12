@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Github from "./icons/Github.svelte";
   import TimelineDot from "./TimelineDot.svelte";
 
   export let project: {
@@ -9,6 +10,7 @@
     description: string;
     color: string;
     image: string;
+    github?: string;
   };
 
   export let side: "left" | "right";
@@ -54,6 +56,28 @@
               </svg>
             </span>
           </div>
+        {/if}
+
+        {#if project.github}
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${project.title} on GitHub`}
+            class="absolute! bottom-4 right-4
+                   flex items-center gap-2
+                   rounded-sm! border border-(--glass-border)
+                   bg-black/50! px-3 py-3 pr-4
+                   font-mono text-sm font-medium
+                   text-white opacity-0!
+                   backdrop-blur-sm
+                   glass
+                   transition-opacity duration-300
+                   group-hover:opacity-100!"
+          >
+            <Github class="h-5 w-5" />
+            View on GitHub
+          </a>
         {/if}
       </div>
     </div>

@@ -32,9 +32,15 @@
     >
       <a
         href={heroData.primaryAction.href}
-        class="glass w-full hero-reveal hero-reveal-4 rounded-full! px-5 md:px-7 py-3 text-base font-bold text-black! font-family-display bg-[image:var(--gradient-hero)]! sm:w-auto sm:px-9 sm:text-lg"
-        >{heroData.primaryAction.label}</a
+        class="glass w-full hero-reveal hero-reveal-4 rounded-full! px-5 md:px-7 py-3 text-base font-bold text-black! font-family-display
+         bg-[image:var(--gradient-hero)]!
+         bg-size-[100%_100%]! text-shadow-xs
+         sm:w-auto sm:px-9 sm:text-lg
+         hover:bg-size-[200%_200%]!
+         transition-[background-size] duration-500!"
       >
+        {heroData.primaryAction.label}
+      </a>
       <a
         href={heroData.resumeAction.href}
         download

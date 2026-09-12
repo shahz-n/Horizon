@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { ArrowUpRight, Circle, Mail, Phone, Square } from "@lucide/svelte";
+  import { ArrowUpRight, Mail, Phone } from "@lucide/svelte";
+  import Github from "./icons/Github.svelte";
+  import Linkedin from "./icons/Linkedin.svelte";
   import contactData from "../data/contact.json";
   import siteData from "../data/index.json";
 
@@ -14,14 +16,14 @@
       label: "GitHub",
       value: siteData.github.replace("https://", ""),
       href: siteData.github,
-      icon: Circle,
+      icon: Github,
       external: true,
     },
     {
       label: "LinkedIn",
       value: siteData.linkedin.replace("https://", ""),
       href: siteData.linkedin,
-      icon: Square,
+      icon: Linkedin,
       external: true,
     },
     {

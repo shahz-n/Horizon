@@ -8,22 +8,23 @@
     Folder,
     Mail,
     Phone,
-    Circle as Github,
-    Square as Linkedin,
     MessageCircle,
   } from "@lucide/svelte";
+
+  import Github from "./icons/Github.svelte";
+  import Linkedin from "./icons/Linkedin.svelte";
 
   import NavItem from "./NavItem.svelte";
 
   const leftNavigation = [
-    { href: "#hero", label: "Home", icon: CirclePlay },
+    { href: "#hero", label: "Hi there", icon: CirclePlay },
     { href: "#experience", label: "Experience", icon: Briefcase },
     { href: "#projects", label: "Projects", icon: Folder },
   ];
 
   const rightNavigation = [
     { href: "#about", label: "About", icon: Compass },
-    { href: "#skills", label: "Tech Stack", icon: Layers },
+    { href: "#skills", label: "Skills", icon: Layers },
     { href: "#contact", label: "Contact", icon: MessageCircle },
   ];
 

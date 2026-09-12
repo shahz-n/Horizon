@@ -4,7 +4,7 @@
     label: string;
     icon: typeof import("@lucide/svelte").ArrowDownRight;
     external?: boolean;
-    size?: number;
+    size?: number | string | undefined;
   }
 
   let {
