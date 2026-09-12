@@ -39,7 +39,8 @@
       "tags": ["Next.js", "React", "TypeScript", "Overwolf", "MongoDB"],
       "side": "left",
       "description": "PoundAK is a desktop gaming companion built around <strong>live game telemetry</strong> and multiple coordinated application contexts. It combines <strong>in-game overlays</strong>, desktop interfaces, background services, and hotkey-driven windows into a single runtime, with game events feeding both <strong>realtime assistance</strong> and longer-term performance analysis. The platform also experiments with <strong>AI coaching</strong> by combining gameplay statistics, session history, player preferences, and other contextual data into structured prompts for different language models.",
-      "color": "#67e8f9"
+      "color": "#67e8f9",
+      "image": "/projects/pound-ak.webp"
     }
   ]
 }
