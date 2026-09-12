@@ -38,9 +38,8 @@
     >
       {#each skillsData.skills as skill, i}
         <div
-          class={`skill-tile glass high-saturation relative flex aspect-square max-h-(--skill-tile-max-height) flex-col items-start justify-between overflow-hidden text-left ${skill.size === "s-2x2" ? "col-span-2 row-span-2" : ""}`}
+          class={`skill-tile glass reveal high-saturation relative flex aspect-square max-h-(--skill-tile-max-height) flex-col items-start justify-between overflow-hidden text-left ${skill.size === "s-2x2" ? "col-span-2 row-span-2" : ""}`}
           bind:this={tiles[i]}
-          style="transition-delay: {i * 30}ms"
         >
           <div
             class="portfolio-skill-icon absolute top-0 left-0 z-10 flex h-[80%] w-full items-center justify-center"

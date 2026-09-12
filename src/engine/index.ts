@@ -3,13 +3,17 @@ import Lenis from "lenis";
 import { createMoon } from "./moon";
 import { createPhysics, type PhysicsSystem } from "./physics";
 import { createStarfield, type StarfieldSystem } from "./starfield";
-import { evaluateMoonTrajectory, getScrollProgress } from "./trajectory";
+import { evaluateMoonTrajectory } from "./trajectory";
 
 const MAX_PIXEL_RATIO = 2;
-const SCROLL_LERP_FACTOR = 1.0;
 
-const INTRO_DELAY = 900;
+const INTRO_DELAY = 700;
 const INTRO_DURATION = 1000;
+const INTRO_MIN_FRAMES = 60;
+
+const GLASS_OPACITY_MARGIN = 15;
+
+const SCROLL_LERP_FACTOR = 0.2;
 
 const INTRO_CAMERA_POSITION = new THREE.Vector3(0, 0, 16);
 const INTRO_LOOK_START = new THREE.Vector3(0, 6, 0);
@@ -17,10 +21,6 @@ const INTRO_LOOK_END = new THREE.Vector3(0, 0, 0);
 
 const INTRO_MOON_POSITION = new THREE.Vector3(0, -17.5, -6);
 const INTRO_MOON_SCALE = 12;
-
-function lerp(a: number, b: number, t: number): number {
-  return a + (b - a) * t;
-}
 
 export interface SceneAPI {
   destroy: () => void;
@@ -78,22 +78,49 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
 
   const physics: PhysicsSystem = createPhysics();
 
-  let scrollProgress = 0;
-  let targetScrollProgress = 0;
+  const glassElements = [...document.querySelectorAll<HTMLElement>(".reveal")];
 
+  let scrollProgress = 0;
   let destroyed = false;
   let animFrameId: number | null = null;
+  let frames = 0;
+  let introStartTime: number | null = null;
 
   const clock = new THREE.Clock(false);
   const previousOverflow = document.body.style.overflow;
 
   const lenis = new Lenis({
-    lerp: prefersReducedMotion ? 1 : 0.1,
-    smoothWheel: !prefersReducedMotion,
+    lerp: SCROLL_LERP_FACTOR,
+    smoothWheel: true,
     syncTouch: false,
-    wheelMultiplier: 1.0,
-    touchMultiplier: 1.0,
+    wheelMultiplier: 0.6,
+    touchMultiplier: 1,
   });
+
+  let last_frames = 0;
+  setInterval(() => {
+    console.log("fps:", frames - last_frames);
+    last_frames = frames;
+  }, 1000);
+
+  const updateGlassOpacity = () => {
+    const viewportHeight = window.innerHeight;
+    const margin = viewportHeight * (GLASS_OPACITY_MARGIN / 100);
+
+    for (const element of glassElements) {
+      const rect = element.getBoundingClientRect();
+
+      let opacity = 1;
+
+      if (rect.bottom <= margin) {
+        opacity = Math.max(0, rect.bottom / margin);
+      } else if (rect.top >= viewportHeight - margin) {
+        opacity = Math.max(0, (viewportHeight - rect.top) / margin);
+      }
+
+      element.style.opacity = (Math.round(opacity * 100) / 100).toString();
+    }
+  };
 
   const lockScroll = () => {
     document.body.style.overflow = "hidden";
@@ -122,14 +149,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   window.addEventListener("resize", onResize);
 
   function updateScene(dt: number, updatePhysics = true): void {
-    targetScrollProgress = getScrollProgress();
-
-    const dt60 = Math.min(dt, 0.1) * 60;
-    const lerpFactor = prefersReducedMotion
-      ? 1
-      : 1 - Math.pow(1 - SCROLL_LERP_FACTOR, dt60);
-
-    scrollProgress = lerp(scrollProgress, targetScrollProgress, lerpFactor);
+    scrollProgress = lenis.progress;
 
     const trajectory = evaluateMoonTrajectory(scrollProgress);
     moon.setPositionAndScale(trajectory.pos, trajectory.scale);
@@ -140,6 +160,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
       starfield.points.rotation.x = phys.starRotX;
       starfield.points.rotation.y = phys.starRotY;
     }
+
     starfield.followCamera(camera.position);
   }
 
@@ -147,17 +168,18 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
 
   function introAnimation(time: number): void {
     const elapsed = time - startTime;
+    frames++;
 
-    if (elapsed < INTRO_DELAY) {
-      updateScene(0, false);
+    if (elapsed < INTRO_DELAY || frames < INTRO_MIN_FRAMES) {
       return;
     }
 
-    if (!clock.running) {
+    if (introStartTime === null) {
+      introStartTime = time;
       clock.start();
     }
 
-    const introElapsed = elapsed - INTRO_DELAY;
+    const introElapsed = time - introStartTime;
     const rawProgress = Math.min(introElapsed / INTRO_DURATION, 1);
     const progress = 1 - Math.pow(1 - rawProgress, 3);
 
@@ -175,6 +197,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   }
 
   function normalAnimation(time: number): void {
+    frames++;
     lenis.raf(time);
     const dt = clock.getDelta();
     updateScene(dt);
@@ -184,11 +207,13 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
 
   function tick(time: number): void {
     if (destroyed) return;
+
     animFrameId = requestAnimationFrame(tick);
 
     currentAnimation(time);
-    moon.uploadNextSegment(renderer);
+    updateGlassOpacity();
     renderer.render(scene, camera);
+    moon.uploadNextSegment(renderer);
   }
 
   lockScroll();

@@ -30,20 +30,7 @@
 
   onMount(() => {
     sceneAPI = initEngine(canvasEl);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("visible", entry.isIntersecting);
-        });
-      },
-      {
-        threshold: 0.1,
-      },
-    );
 
-    document.querySelectorAll(".glass").forEach((element) => {
-      observer.observe(element);
-    });
     return () => {
       sceneAPI?.destroy();
     };

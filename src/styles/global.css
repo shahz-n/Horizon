@@ -127,6 +127,7 @@
   box-sizing: border-box;
 }
 html {
+  scroll-behavior: smooth;
   font-size: 16px;
 }
 body {
@@ -262,7 +263,9 @@ section {
   -webkit-backdrop-filter: blur(24px) saturate(150%);
   backdrop-filter: blur(24px) saturate(150%);
   opacity: 0;
-  transition: all 0.3s ease-in;
+  transition:
+    all 0.3s ease-in,
+    opacity 0s ease-in;
 }
 strong {
   font-weight: 700 !important;
@@ -361,6 +364,9 @@ strong {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {

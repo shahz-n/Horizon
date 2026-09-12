@@ -18,7 +18,7 @@
           <div class="col-span-3 max_lg:hidden"></div>
         {/if}
         <p
-          class={`glass col-span-6 p-4 md:p-5 lg:p-6 max_lg:col-span-1 ${index >= 3 ? "max_lg:hidden" : ""}`}
+          class={`glass reveal col-span-6 p-4 md:p-5 lg:p-6 max_lg:col-span-1 ${index >= 3 ? "max_lg:hidden" : ""}`}
         >
           {@html paragraph}
         </p>

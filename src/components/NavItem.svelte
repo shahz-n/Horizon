@@ -1,5 +1,4 @@
 <script lang="ts">
-
   interface Props {
     href: string;
     label: string;
@@ -32,14 +31,14 @@
 
   <!-- Tooltip to the left -->
   <div
-    class="tooltip tooltip-left pointer-events-none absolute! right-full! top-1/2! z-50 mr-5 -translate-y-1/2 rounded-full! whitespace-nowrap glass p-2 px-4 font-mono text-xs tracking-[0.08em] text-white uppercase"
+    class="tooltip tooltip-left pointer-events-none absolute! right-full! top-1/2! z-50 mr-5 -translate-y-1/2 rounded-full! whitespace-nowrap glass p-2 px-4 text-xs tracking-[0.08em] text-white font-medium uppercase flex items-center justify-center"
   >
     {label}
   </div>
 
   <!-- Tooltip to the right -->
   <div
-    class="tooltip tooltip-right pointer-events-none absolute! left-full! top-1/2! z-50 ml-5 -translate-y-1/2 rounded-full! whitespace-nowrap glass p-2 px-4 font-mono text-xs tracking-[0.08em] text-white uppercase"
+    class="tooltip tooltip-right pointer-events-none absolute! left-full! top-1/2! z-50 ml-5 -translate-y-1/2 rounded-full! whitespace-nowrap glass p-2 px-4 text-xs tracking-[0.08em] text-white font-medium uppercase flex items-center justify-center"
   >
     {label}
   </div>

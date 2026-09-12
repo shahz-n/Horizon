@@ -22,12 +22,8 @@
   <div
     class="project-card glass high-saturation group
            w-full overflow-hidden
-           text-left
-           opacity-0 translate-y-8
-           transition-[opacity,transform]
-           duration-700 ease-out
-           [.in-view_&]:translate-y-0
-           [.in-view_&]:opacity-100"
+           text-left reveal
+           opacity-0 translate-y-8"
   >
     <div class="relative w-full px-8 pt-8 max_md:px-6 max_md:pt-6">
       <div class="relative aspect-video overflow-hidden rounded-sm bg-black/30">
