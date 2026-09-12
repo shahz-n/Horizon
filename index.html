@@ -3,19 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shahzer Najeeb — Full-Stack Software Engineer</title>
+
+    <title>Horizon</title>
+
     <meta
       name="description"
-      content="Shahzer Najeeb — Full-stack software engineer. Backend architecture, distributed systems, real-time interfaces."
+      content="A Full-Stack Software Engineer building backend architecture, distributed systems, real-time interfaces, and complex web applications."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+
+    <meta name="author" content="Shahzer Najeeb" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#030408" />
+
+    <link rel="canonical" href="https://horizon.shahzer.dev/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Horizon" />
+    <meta
+      property="og:description"
+      content="A Full-Stack Software Engineer building backend architecture, distributed systems, real-time interfaces, and complex web applications."
     />
-    <!-- Preload critical front-facing moon segments -->
+    <meta property="og:url" content="https://horizon.shahzer.dev/" />
+    <meta property="og:site_name" content="Horizon" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Horizon" />
+    <meta
+      name="twitter:description"
+      content="A Full-Stack Software Engineer building backend architecture, distributed systems, real-time interfaces, and complex web applications."
+    />
+
     <link
       rel="preload"
       fetchpriority="high"
@@ -29,25 +47,10 @@
       href="/moon/4k/01.jpg"
     />
   </head>
-  <svg height="0" width="0">
-    <filter id="glass">
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.01 0.01"
-        numOctaves="5"
-        result="noise"
-      />
-      <feDisplacementMap
-        in2="noise"
-        in="SourceGraphic"
-        scale="10"
-        xChannelSelector="R"
-        yChannelSelector="G"
-      />
-    </filter>
-  </svg>
+
   <body>
     <div id="app"></div>
+
     <script>
       history.scrollRestoration = "manual";
 
@@ -57,6 +60,7 @@
 
       window.scrollTo(0, 0);
     </script>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

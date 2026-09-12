@@ -106,21 +106,21 @@
     opacity: 0;
     transform: translateY(-60px);
     animation: nav-brand-in 0.6s var(--ease-smooth) forwards;
-    animation-delay: 0.5s;
+    animation-delay: 0.6s;
   }
 
   .nav-reveal-left {
     opacity: 0;
     transform: translateX(-80px);
     animation: nav-left-in 0.6s var(--ease-smooth) forwards;
-    animation-delay: 0.5s;
+    animation-delay: 0.6s;
   }
 
   .nav-reveal-right {
     opacity: 0;
     transform: translateX(80px);
     animation: nav-right-in 0.6s var(--ease-smooth) forwards;
-    animation-delay: 0.5s;
+    animation-delay: 0.6s;
   }
 
   @keyframes nav-brand-in {
