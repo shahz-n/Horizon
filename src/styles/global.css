@@ -127,7 +127,6 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
 }
 body {
@@ -362,9 +361,6 @@ strong {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {

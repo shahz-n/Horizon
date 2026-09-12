@@ -109,7 +109,7 @@ class MoonManager {
   constructor(scene: THREE.Scene) {
     const isLargeScreen = window.innerWidth > 1024 || window.innerHeight > 1024;
     this.config = MoonManager.createConfig(isLargeScreen);
-    
+
     this.workerController.createPool(
       this.fetchWorker.id,
       new URL(this.fetchWorker.url, import.meta.url),
@@ -125,7 +125,7 @@ class MoonManager {
         map: this.texture,
       }),
     );
-
+    this.mesh.frustumCulled = false;
     this.mesh.position.set(0, -17.5, -6);
     this.mesh.scale.setScalar(12);
     this.loadSlices();
@@ -219,6 +219,7 @@ class MoonManager {
     tier: TileTier,
     chunks: WorkerChunk[],
   ): Promise<void> {
+    // console.log(performance.now(), "[moon] Tile", index, "loaded", chunks);
     if (tier === "4k" && this.loadedTiers[index] === "high") {
       for (const chunk of chunks) {
         chunk.bitmap.close();
@@ -261,6 +262,7 @@ class MoonManager {
     };
 
     const webglTexture = properties.__webglTexture;
+
     if (!webglTexture) return;
 
     const item = this.bitmaps[this.tilePointer];

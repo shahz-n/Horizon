@@ -22,16 +22,14 @@ const workerScope = self as unknown as {
   postMessage(message: TileResponse, transfer?: Transferable[]): void;
 };
 
-self.onmessage = async ({ data }: MessageEvent<TileRequest | null>) => {
-  if (!data) {
-    console.log("ping", performance.now());
-    workerScope.postMessage({
-      index: -1,
-    });
-    return;
-  }
-  const { index, url, priority = "auto", segmentWidth = 1024, segmentHeight = 1024 } = data;
-  console.log("fetch start", performance.now(), index);
+self.onmessage = async ({ data }: MessageEvent<TileRequest>) => {
+  const {
+    index,
+    url,
+    priority = "auto",
+    segmentWidth = 1024,
+    segmentHeight = 1024,
+  } = data;
 
   try {
     const response = await fetch(url, { priority: priority });
@@ -76,8 +74,6 @@ self.onmessage = async ({ data }: MessageEvent<TileRequest | null>) => {
         bitmap: chunk,
       });
     }
-
-    console.log("fetch end", performance.now(), index);
     source.close();
 
     workerScope.postMessage(
