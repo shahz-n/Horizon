@@ -101,7 +101,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     lerp: SCROLL_LERP_FACTOR,
     smoothWheel: true,
     syncTouch: false,
-    wheelMultiplier: 0.6,
+    wheelMultiplier: 0.75,
     touchMultiplier: 1,
     anchors: {
       duration: 1,
