@@ -26,7 +26,7 @@ const starVertexShader = `
     vIntensity = intensity;
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * mvPosition;
-    gl_PointSize = max(min(size * 2.0 * uPixelRatio, uPixelRatio * 4.5), uPixelRatio);
+    gl_PointSize = max(min(size * 2.0 * uPixelRatio, uPixelRatio * 4.0), uPixelRatio);
   }
 `;
 
@@ -41,7 +41,7 @@ const starFragmentShader = `
 
     if (r2 > 1.0) discard;
 
-    float falloff = 2.5;
+    float falloff = 2.0;
     float alpha = exp(-r2 * falloff);
 
     float brightness = sqrt(vIntensity);
@@ -105,7 +105,7 @@ function randomIntensity(): number {
   if (r > 0.997) return 18.0;
   if (r > 0.99) return 12.0;
   if (r > 0.98) return 7.0;
-  return 0.2 + Math.pow(Math.random(), 2) * 2.0;
+  return 0.1 + Math.pow(Math.random(), 2) * 2.0;
 }
 
 function createStarGeometry(count: number): THREE.BufferGeometry {
