@@ -6,13 +6,13 @@ import * as THREE from "three";
 const SIMULATION_RADIUS = 300;
 
 const STAR_RANGES = [
-  { weight: 0.03, min: 30000, max: 45000, size: [1.5, 2.5] }, // O
-  { weight: 0.08, min: 10000, max: 30000, size: [1.5, 2.5] }, // B
-  { weight: 0.1, min: 7500, max: 10000, size: [1.4, 2.3] }, // A
-  { weight: 0.13, min: 6000, max: 7500, size: [1.4, 2.3] }, // F
-  { weight: 0.2, min: 5200, max: 6000, size: [1.3, 2.1] }, // G
-  { weight: 0.18, min: 3700, max: 5200, size: [1.2, 1.9] }, // K
-  { weight: 0.2, min: 2400, max: 3700, size: [1.2, 1.6] }, // M
+  { weight: 0.03, min: 30000, max: 45000, size: [1.4, 2.5] }, // O
+  { weight: 0.08, min: 10000, max: 30000, size: [1.4, 2.5] }, // B
+  { weight: 0.1, min: 7500, max: 10000, size: [1.2, 2.3] }, // A
+  { weight: 0.13, min: 6000, max: 7500, size: [1.2, 2.3] }, // F
+  { weight: 0.2, min: 5200, max: 6000, size: [1.1, 2.1] }, // G
+  { weight: 0.18, min: 3700, max: 5200, size: [1.0, 1.9] }, // K
+  { weight: 0.2, min: 2400, max: 3700, size: [1.0, 1.6] }, // M
 ] as const;
 
 const starVertexShader = `
@@ -26,7 +26,7 @@ const starVertexShader = `
     vIntensity = intensity;
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * mvPosition;
-    gl_PointSize = max(min(size * 2.5, uPixelRatio * 2.5), uPixelRatio);
+    gl_PointSize = max(min(size * 4.0, uPixelRatio * 3.5), uPixelRatio);
   }
 `;
 
@@ -34,13 +34,26 @@ const starFragmentShader = `
   varying vec3 vColor;
   varying float vIntensity;
   uniform float uPixelRatio;
+
   void main() {
     vec2 p = gl_PointCoord * 2.0 - 1.0;
     float r2 = dot(p, p);
+
     if (r2 > 1.0) discard;
-    float alpha = exp(-r2 * (3.75 - (uPixelRatio * 2.0)));
+
+    float falloff = 4.75 - min(uPixelRatio * 1.5, 3.0);
+    float alpha = exp(-r2 * falloff);
+
     float brightness = sqrt(vIntensity);
-    gl_FragColor = vec4(vColor * brightness, alpha);
+    vec3 color = vColor * brightness;
+
+    float maxChannel = max(max(color.r, color.g), color.b);
+
+    if (maxChannel > 1.0) {
+      color *= (1.0 + log(maxChannel)) / maxChannel;
+    }
+
+    gl_FragColor = vec4(color, alpha);
   }
 `;
 
@@ -166,7 +179,7 @@ export function createStarfield(
   });
 
   const starCount =
-    Math.pow(Math.min(window.innerHeight, window.innerWidth) + 2000, 1.5) / 10;
+    25_000 + Math.sqrt(window.innerHeight * window.innerWidth) * 2;
   const starPoints = new THREE.Points(
     createStarGeometry(starCount),
     starMaterial,
