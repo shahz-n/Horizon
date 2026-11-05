@@ -105,22 +105,22 @@
   .nav-reveal-brand {
     opacity: 0;
     transform: translateY(-60px);
-    animation: nav-brand-in 0.6s var(--ease-smooth) forwards;
-    animation-delay: 0.6s;
+    animation: nav-brand-in 0.9s var(--ease-smooth) forwards;
+    animation-delay: 0.9s;
   }
 
   .nav-reveal-left {
     opacity: 0;
     transform: translateX(-80px);
-    animation: nav-left-in 0.6s var(--ease-smooth) forwards;
-    animation-delay: 0.6s;
+    animation: nav-left-in 0.9s var(--ease-smooth) forwards;
+    animation-delay: 0.9s;
   }
 
   .nav-reveal-right {
     opacity: 0;
     transform: translateX(80px);
-    animation: nav-right-in 0.6s var(--ease-smooth) forwards;
-    animation-delay: 0.6s;
+    animation: nav-right-in 0.9s var(--ease-smooth) forwards;
+    animation-delay: 0.9s;
   }
 
   @keyframes nav-brand-in {

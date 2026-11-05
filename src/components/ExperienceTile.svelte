@@ -95,24 +95,23 @@
       </div>
 
       <!-- Summary -->
-      <p
+      <!-- <p
         class="relative z-10 mt-4! w-full
                text-left text-base font-medium
                leading-relaxed text-[var(--text)]"
       >
         {role.summary}
-      </p>
+      </p> -->
     </div>
 
     <!-- Responsibilities -->
     <ul
-      class="role-bullets relative z-10 mt-2!
+      class="role-bullets relative z-10 mt-4!
              space-y-2 text-left"
     >
       {#each role.bullets as bullet}
         <li
           class="relative pl-(--list-item-indent)
-                 text-sm
                  leading-[1.6]
                  text-[var(--text-secondary)]"
         >
@@ -123,7 +122,7 @@
 
     <!-- Stack -->
     <div
-      class="relative z-10 mt-3 flex flex-wrap
+      class="relative z-10 mt-4 flex flex-wrap
              gap-1.5 border-t border-(--glass-border)
              pt-4"
     >

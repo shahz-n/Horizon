@@ -7,9 +7,9 @@ import { evaluateMoonTrajectory } from "./trajectory";
 
 const MAX_PIXEL_RATIO = 2;
 
-const INTRO_DELAY = 750;
-const INTRO_DURATION = 1000;
-const INTRO_MIN_FRAMES = 60;
+const INTRO_DELAY = 900;
+const INTRO_DURATION = 1200;
+const INTRO_MIN_FRAMES = 80;
 
 const GLASS_OPACITY_MARGIN = 20;
 

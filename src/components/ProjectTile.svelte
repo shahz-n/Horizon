@@ -120,7 +120,7 @@
       </div>
 
       <p
-        class="mt-4! text-sm
+        class="mt-4! text
                leading-[1.6] text-(--text-secondary)"
       >
         {@html project.description}

@@ -55,20 +55,19 @@
   .hero-reveal {
     opacity: 0;
     transform: translateY(-40px);
-    animation: hero-in 0.6s var(--ease-smooth) forwards;
-    animation-delay: 0.1s;
+    animation: hero-in 0.75s var(--ease-smooth) forwards;
   }
 
   .hero-reveal-2 {
-    animation-delay: 0.2s;
+    animation-delay: 0.4s;
   }
 
   .hero-reveal-3 {
-    animation-delay: 0.3s;
+    animation-delay: 0.5s;
   }
 
   .hero-reveal-4 {
-    animation-delay: 0.4s;
+    animation-delay: 0.65s;
   }
 
   @keyframes hero-in {

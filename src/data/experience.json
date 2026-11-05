@@ -4,60 +4,57 @@
   "sub": "Across startups, enterprises, and everything in between.",
   "roles": [
     {
-      "title": "Software Development Engineer",
+      "title": "Senior Software Engineer",
       "company": "NymCard — Abu Dhabi, UAE (Remote)",
       "domain": "Fintech",
       "period": "Jan 2026 — Jul 2026",
       "side": "left",
-      "summary": "Developed and shipped full-stack features for a multi-tenant fintech platform serving SMEs across the MENA region.",
       "bullets": [
-        "Owned <strong>end-to-end development</strong> across the backend, frontend, and database layers for <strong>Nym4Business</strong>, NymCard's Business platform.",
-        "Developed a <strong>configurable approval-rule engine</strong> supporting custom transaction conditions and multi-approver logic across roles and individuals.",
+        "Owned <strong>end-to-end feature development</strong> for <strong>Nym4Business</strong>, a multi-tenant B2B platform providing financial infrastructure to SMEs and organizations.",
+        "Developed a <strong>configurable approval-rule engine</strong> supporting custom transaction conditions with multi-approver logic across roles and individuals.",
         "Developed <strong>two-factor authentication</strong> and <strong>audit-logging mechanisms</strong> integrated with NymCard's core payment systems.",
-        "Built <strong>dashboards</strong> and <strong>GraphQL APIs</strong> facilitating management and data access across role and permission hierarchies."
+        "Built <strong>dashboards and GraphQL APIs</strong> facilitating management and data access across role and permission hierarchies."
       ],
       "stack": ["NestJS", "GraphQL", "PostgreSQL", "React", "TypeScript"]
     },
     {
-      "title": "Software Development Engineer",
+      "title": "Senior Software Engineer",
       "company": "Moback — Bangalore, India (Remote)",
       "domain": "HR-Tech",
       "period": "Dec 2024 — Jan 2026",
       "side": "right",
-      "summary": "Architected core microservices for Korn Ferry Talent Suite, serving enterprise clients in 150+ countries.",
       "bullets": [
-        "Developed <strong>core backend services</strong> with NestJS powering Korn Ferry Talent Suite, a global HR-tech platform serving organizations across <strong>150+ countries</strong>.",
-        "Designed an <strong>internal routing system</strong> for inter-service communication, reducing inter-service latency by up to <strong>70%</strong> and overall latency by up to <strong>40%</strong>, with no handler changes required.",
-        "Built a <strong>streaming export system</strong> for multi-gigabyte audit logs, reconstructing data in real time to minimize server memory use and eliminate storage costs.",
-        "Designed an <strong>advanced request-tracing system</strong> capturing database and HTTP calls with zero added overhead in response pipelines."
+        "Developed <strong>core backend services</strong> powering Korn Ferry Talent Suite, a global HR-Tech platform serving <strong>thousands of organizations across 150+ countries</strong>.",
+        "Designed an <strong>internal-routing system</strong> for inter-service communication, reducing inter-service latency by up to <strong>70%</strong> and overall latency by up to <strong>40%</strong>, without requiring any handler layer changes.",
+        "Built a <strong>streaming export system</strong> for multi-gigabyte audit-log CSVs, reconstructing data in real time to minimize server memory use and eliminate storage costs.",
+        "Designed an <strong>advanced request-tracing system</strong> delivering detailed traces, including database and HTTP calls, with no added processing or network overhead in response pipelines."
       ],
       "stack": ["NestJS", "Microservices", "Redis", "PostgreSQL", "AWS"]
     },
     {
-      "title": "Founding Engineer & Technical Lead",
+      "title": "Founding Engineer & Tech Lead",
       "company": "BorrowBe — Edmonton, Canada (Remote)",
       "domain": "Marketplace",
-      "period": "Jan 2023 — Dec 2024",
+      "period": "Dec 2022 — Dec 2024",
       "side": "left",
-      "summary": "Led technical design and engineering from pre-seed to production for a high-concurrency rental marketplace.",
       "bullets": [
-        "Founding engineer and technical lead, leading a <strong>team of three</strong> and owning most backend and desktop UI development from initial design through <strong>production</strong>.",
-        "Designed <strong>location-aware search</strong> combining maps, radius queries, and structured addresses, alongside a flexible CMS for <strong>category-specific listings</strong> and pricing.",
-        "Built <strong>real-time chat and notification system</strong> with per-listing conversation identity, live presence, and real-time listing updates.",
-        "Built a <strong>Stripe-integrated wallet and auto-renewal payment system</strong> around a hybrid ledger with hash-locked transactions."
+        "Led the development of a <strong>two-sided marketplace platform</strong> - architecting and owning most of the backend and frontend development while leading a <strong>team of three</strong> from initial design through production deployment.",
+        "Designed a <strong>hybrid geolocation + address-based search system</strong> (map, radius, and structured address queries) alongside a <strong>dynamic inheritance-based CMS</strong> giving granular per-category control over listing fields, pricing packages, and limits.",
+        "Built a <strong>real-time chat and notification system</strong> with per-listing conversation identity, live presence, and real-time listing updates.",
+        "Architected a <strong>Stripe-integrated wallet and recurring payment system</strong>, implementing a hybrid transaction ledger supporting direct payments, account credits, and automated subscription renewals."
       ],
-      "stack": ["Node.js", "React", "WebSockets", "PostgreSQL", "Redis"]
+      "stack": ["Node.js", "React", "WebSockets", "PostgreSQL", "React Native"]
     },
     {
-      "title": "Full-Stack Developer",
+      "title": "Full-Stack Engineer",
       "company": "Independent / Freelance — New Delhi, India (Remote)",
       "domain": "Freelance",
-      "period": "Apr 2020 — Dec 2022",
+      "period": "Feb 2020 — Dec 2022",
       "side": "right",
-      "summary": "Built web applications for clients across 20+ countries while developing a broad foundation in software engineering.",
       "bullets": [
-        "Built full-stack applications across different products and industries, including <strong>gaming</strong>, video conferencing, and <strong>interactive coding education</strong>.",
-        "Mentored <strong>100+ developers</strong>, from beginners learning the fundamentals to working professionals exploring <strong>system design</strong> and backend engineering."
+        "Mentored <strong>100+ developers worldwide</strong>, working with individuals across experience levels, from programming beginners to experienced engineers seeking guidance in software development and system design.",
+        "Developed <strong>full-stack applications</strong> across the TypeScript ecosystem, leveraging technologies including <strong>React, Next.js, React Native, Node.js, Express, GraphQL, and WebSockets</strong> to deliver end-to-end solutions.",
+        "Worked across diverse product domains, including a <strong>gaming companion application</strong>, a <strong>tournament hosting and management platform</strong>, and an <strong>educational technology platform</strong>, among others."
       ],
       "stack": ["React", "Node.js", "TypeScript", "MongoDB", "GraphQL"]
     }

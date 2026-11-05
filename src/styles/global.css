@@ -268,9 +268,11 @@ section {
   color: var(--text-secondary);
   font-size: 1.25rem;
   line-height: 1.5;
-  width: clamp(300px, 60vw, 900px);
+  width: clamp(320px, 65vw, 1000px);
 }
-
+strong {
+  font-weight: 600 !important;
+}
 .glass {
   position: relative;
   overflow: hidden;
