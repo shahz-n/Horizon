@@ -11,7 +11,7 @@
       "side": "left",
       "bullets": [
         "Owned <strong>end-to-end development of features</strong> for <strong>Nym4Business</strong>, a multi-tenant B2B financial platform serving SMEs and organizations.",
-        "Developed a <strong>configurable transaction approval system</strong> supporting conditional rules, multi-level approvals, and role/user based authorization.",
+        "Developed a <strong>configurable transaction approval system</strong> supporting conditional rules, role and user based authorization, and multi-level approvals.",
         "Implemented <strong>two-factor authentication</strong>, <strong>audit-logging mechanisms</strong>, and card-issuing workflows integrated with NymCard's core payment systems."
       ],
       "stack": ["NestJS", "GraphQL", "PostgreSQL", "React", "TypeScript"]
@@ -23,8 +23,8 @@
       "period": "Dec 2024 — Jan 2026",
       "side": "right",
       "bullets": [
-        "Developed <strong>core backend services</strong> powering Korn Ferry Talent Suite, a global HR-Tech platform serving thousands of organizations across <strong>150+ countries</strong>.",
-        "Engineered an <strong>internal service-discovery and request-routing system</strong> that periodically scanned services, aggregated route maps, and dynamically translated outgoing requests, reducing inter-service latency by up to <strong>70%</strong> and overall request latency by up to <strong>40%</strong>, without requiring changes to individual service handlers.",
+        "Developed <strong>core backend services</strong> powering Korn Ferry Talent Suite, a global HR-Tech platform serving thousands of organizations across 150+ countries.",
+        "Engineered an <strong>internal service-discovery and request-routing system</strong> that periodically scanned services, aggregated route maps, and dynamically translated outgoing requests, reducing inter-service latency by up to 70% and overall request latency by up to 40%, without requiring changes to individual service handlers.",
         "Architected a <strong>real-time streaming export pipeline</strong> for multi-gigabyte audit logs, generating and streaming CSV exports directly to clients without intermediate server-side files, minimizing memory consumption and eliminating generated-file storage overhead.",
         "Designed an <strong>advanced hierarchical request-tracing system</strong> capturing nested execution flows, operation-level timings, and contextual metadata across database and HTTP calls, with minimal overhead in request-processing pipelines."
       ],
@@ -37,10 +37,10 @@
       "period": "Dec 2022 — Dec 2024",
       "side": "left",
       "bullets": [
-        "Led the engineering of a <strong>two-sided marketplace platform</strong> from initial design through production launch, owning core backend and frontend architecture while leading a <strong>team of three</strong>.",
+        "Led the development of a <strong>two-sided marketplace platform</strong> from initial concept to production, owning core backend and frontend architecture while leading a team of three.",
         "Designed a <strong>dynamic inheritance-based CMS</strong> with a hierarchical category system, allowing categories and subcategories to be created with independently configurable listing attributes, pricing packages, and limits, while inheriting or selectively overriding parent configurations.",
-        "Engineered a <strong>hybrid geospatial and address-based search system</strong> using MongoDB geospatial queries and custom distance calculations to support map-based discovery, radius searches, and structured address filtering.",
-        "Built a <strong>real-time communication system</strong> using Socket.IO, with per-listing chat rooms, custom presence tracking, reconnection handling, typing indicators, media messaging, and real-time notifications.",
+        "Engineered a <strong>structured address + geospatial search system</strong>, using hierarchical address segments and MongoDB geospatial indexing and queries to support listing discovery by address or search radius.",
+        "Engineered a <strong>real-time, listing-centric messaging and notification system</strong> using Socket.IO, with per-listing conversation identity, online status, live typing events, and multimedia support.",
         "Architected a <strong>Stripe-integrated wallet and recurring payments system</strong>, implementing a hybrid transaction ledger supporting direct payments, account credits, and automated subscription renewals."
       ],
       "stack": ["Node.js", "React", "WebSockets", "PostgreSQL", "React Native"]

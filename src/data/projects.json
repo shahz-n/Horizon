@@ -9,18 +9,18 @@
       "meta": ["Personal", "Simulation"],
       "tags": ["Three.js", "Svelte", "TypeScript", "WebGL", "GLSL"],
       "side": "left",
-      "description": "Astrarium is an interactive 3D orrery inspired by NASA's \"Eyes on the Solar System\", built around <strong>real astronomical data</strong> and featuring all the planets, dwarf planets, and major moons, each following <strong>Keplerian orbital parameters</strong>. The simulation features a <strong>custom time system</strong> that scales from real time to several years per second, alongside <strong>orbit tracking</strong>, motion trails, live labels, and custom camera systems for navigating astronomical distances. Its rendering layer also led to the development and publication of an npm package for <strong>high-precision line rendering</strong>, using <strong>camera-relative coordinates</strong> to overcome floating-point precision issues at astronomical scales. And if the starfield looks familiar, there's a reason. Guess where this website's starfield came from.",
+      "description": "Astrarium is an interactive, to-scale 3D orrery inspired by NASA's \"Eyes on the Solar System\", built around <strong>real astronomical data</strong> covering all planets, dwarf planets, and major moons. It features a <strong>Keplerian orbital simulation</strong> with true-to-scale orbital velocities, a custom time system spanning real-time motion to several years per second, and live orbit tracking, motion trails, and labels. To handle rendering at astronomical scales, I developed a custom <strong>high-precision line-rendering system</strong> using camera-relative coordinates, which I also published as an npm package. Guess where this website's starfield came from.",
       "color": "#7ba6f7",
       "image": "/projects/astrarium.webp",
       "github": "https://github.com/shahz-n/Astrarium"
     },
     {
       "title": "BorrowBe",
-      "tagline": "A social marketplace for renting and discovering things locally.",
+      "tagline": "A two-sided rental marketplace for discovering, listing, and renting things locally.",
       "meta": ["Professional", "Marketplace"],
       "tags": ["React", "Node.js", "MongoDB", "Maps", "Payments"],
       "side": "right",
-      "description": "BorrowBe is a local rental marketplace connecting people through <strong>searchable listings</strong>, location-aware discovery, availability scheduling, conversations, and payments. The product combined <strong>map and radius search</strong> with structured address queries, while its category-driven CMS allowed different kinds of listings to <strong>inherit and customize fields, pricing packages, and limits</strong>. The platform also supported <strong>realtime conversations and listing updates</strong> alongside a wallet and automated payment system built around a <strong>hybrid transaction ledger</strong>.",
+      "description": "BorrowBe is a two-sided rental marketplace connecting people through <strong>location-aware discovery</strong>, customizable listings, and peer-to-peer transactions. Its <strong>inheritance-based CMS</strong> lets categories define and selectively override listing attributes, pricing packages, and limits. The platform also combines <strong>address and geospatial search</strong>, real-time messaging and notifications, and a Stripe-integrated wallet with recurring payments.",
       "color": "#7ba6f7",
       "image": "/projects/borrowbe.webp",
       "github": "https://github.com/shahz-n/BorrowBe"
@@ -31,7 +31,7 @@
       "meta": ["Project", "AI"],
       "tags": ["Next.js", "Supabase", "Redux", "Anthropic", "OpenAI"],
       "side": "right",
-      "description": "Context Studio turns documents, notes, and other captured information into a <strong>searchable knowledge base</strong> for AI-assisted research and content creation. Its core is an <strong>ingestion and retrieval pipeline</strong> that processes documents in the background, generates embeddings, and combines <strong>lexical and vector search</strong> depending on the query. On top of that sits a <strong>feedback-driven research brief system</strong> that carries user preferences into future generations, allowing the system to adjust topic and source weighting over time rather than treating every brief as an isolated request.",
+      "description": "Context Studio is an AI knowledge and content workspace that turns documents and notes into a <strong>searchable, persistent knowledge base</strong>. Its ingestion pipeline processes documents in the background, while a <strong>hybrid retrieval system</strong> combines lexical and vector search based on query characteristics. A <strong>feedback-driven research brief system</strong> carries user preferences into subsequent generations, adapting topic and source weighting over time.",
       "color": "#a78bfa",
       "image": "/projects/context-studio.webp",
       "github": "https://github.com/shahz-n/Context-Studio"
@@ -42,7 +42,7 @@
       "meta": ["Experimental", "Gaming"],
       "tags": ["Next.js", "React", "TypeScript", "Overwolf", "MongoDB"],
       "side": "left",
-      "description": "PoundAK is a desktop gaming companion built around <strong>live game telemetry</strong> and multiple coordinated application contexts. It combines <strong>in-game overlays</strong>, desktop interfaces, background services, and hotkey-driven windows into a single runtime, with game events feeding both <strong>realtime assistance</strong> and longer-term performance analysis. The platform also experiments with <strong>AI coaching</strong> by combining gameplay statistics, session history, player preferences, and other contextual data into structured prompts for different language models.",
+      "description": "PoundAK is a desktop gaming companion built around <strong>live game telemetry</strong> and multiple coordinated application contexts. It combines in-game overlays, desktop interfaces, background services, and hotkey-driven windows into a unified runtime, using game events to power <strong>real-time assistance</strong> and performance analysis. Its experimental <strong>AI coaching system</strong> combines gameplay statistics, session history, and player preferences into contextual prompts for different language models.",
       "color": "#67e8f9",
       "image": "/projects/pound-ak.webp",
       "github": "https://github.com/shahz-n/PoundAK"
