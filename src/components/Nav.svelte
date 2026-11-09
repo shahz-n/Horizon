@@ -52,7 +52,7 @@
 <a
   href="/"
   aria-label="Horizon home"
-  class="absolute! -top-3 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center gap-2 glass p-2 pt-4 lg:p-3 lg:pt-5 lg:flex nav-reveal-brand"
+  class="absolute! max-md:hidden -top-3 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center gap-2 glass p-2 pt-4 lg:p-3 lg:pt-5 lg:flex nav-reveal-brand"
 >
   <span
     class="title flex items-center justify-center gap-2 font-display text-base lg:text-lg font-medium"

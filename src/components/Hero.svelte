@@ -16,13 +16,13 @@
     </div>
 
     <h1
-      class="hero-title hero-reveal hero-reveal-2 m-0 text-6xl font-display font-semibold leading-[0.95] tracking-tighter text-text md:text-8xl lg:text-9xl"
+      class="hero-title hero-reveal hero-reveal-2 m-0 text-6xl font-display font-semibold leading-[0.95] tracking-tighter text-text md:text-6xl lg:text-8xl"
     >
       I'm <em>{heroData.nameFirst}</em>
     </h1>
 
     <p
-      class="intro hero-reveal hero-reveal-3 mt-5! max-w-xl font-body font-medium text-text sm:mt-6! md:max-w-3xl text-base lg:max-w-5xl lg:text-2xl"
+      class="intro hero-reveal hero-reveal-3 mt-5! max-w-xl font-body font-medium text-text sm:mt-6! md:max-w-xl text-base lg:max-w-4xl lg:text-2xl"
     >
       {heroData.intro}
     </p>
@@ -32,7 +32,7 @@
     >
       <a
         href={heroData.primaryAction.href}
-        class="glass w-full hero-reveal hero-reveal-4 rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-bold text-black! font-family-display
+        class="glass w-full md:w-56 hero-reveal hero-reveal-4 rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-bold text-black! font-family-display
          bg-[image:var(--gradient-hero)]!
          bg-size-[100%_100%]! text-shadow-xs
          sm:w-auto sm:px-9 sm:text-lg
@@ -44,7 +44,7 @@
       <a
         href={heroData.resumeAction.href}
         download
-        class="glass w-full hero-reveal-4 hero-reveal rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-semibold font-family-display low-saturation sm:w-auto sm:px-9 sm:text-lg"
+        class="glass w-full md:w-56 hero-reveal-4 hero-reveal rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-semibold font-family-display low-saturation sm:w-auto sm:px-9 sm:text-lg"
         >{heroData.resumeAction.label}</a
       >
     </div>

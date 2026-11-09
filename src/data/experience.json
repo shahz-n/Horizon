@@ -7,13 +7,12 @@
       "title": "Senior Software Engineer",
       "company": "NymCard — Abu Dhabi, UAE (Remote)",
       "domain": "Fintech",
-      "period": "Jan 2026 — Jul 2026",
+      "period": "Jan 2026 — Jun 2026",
       "side": "left",
       "bullets": [
-        "Owned <strong>end-to-end feature development</strong> for <strong>Nym4Business</strong>, a multi-tenant B2B platform providing financial infrastructure to SMEs and organizations.",
-        "Developed a <strong>configurable approval-rule engine</strong> supporting custom transaction conditions with multi-approver logic across roles and individuals.",
-        "Developed <strong>two-factor authentication</strong> and <strong>audit-logging mechanisms</strong> integrated with NymCard's core payment systems.",
-        "Built <strong>dashboards and GraphQL APIs</strong> facilitating management and data access across role and permission hierarchies."
+        "Owned <strong>end-to-end development of features</strong> for <strong>Nym4Business</strong>, a multi-tenant B2B financial platform serving SMEs and organizations.",
+        "Developed a <strong>configurable transaction approval system</strong> supporting conditional rules, multi-level approvals, and role/user based authorization.",
+        "Implemented <strong>two-factor authentication</strong>, <strong>audit-logging mechanisms</strong>, and card-issuing workflows integrated with NymCard's core payment systems."
       ],
       "stack": ["NestJS", "GraphQL", "PostgreSQL", "React", "TypeScript"]
     },
@@ -24,10 +23,10 @@
       "period": "Dec 2024 — Jan 2026",
       "side": "right",
       "bullets": [
-        "Developed <strong>core backend services</strong> powering Korn Ferry Talent Suite, a global HR-Tech platform serving <strong>thousands of organizations across 150+ countries</strong>.",
-        "Designed an <strong>internal-routing system</strong> for inter-service communication, reducing inter-service latency by up to <strong>70%</strong> and overall latency by up to <strong>40%</strong>, without requiring any handler layer changes.",
-        "Built a <strong>streaming export system</strong> for multi-gigabyte audit-log CSVs, reconstructing data in real time to minimize server memory use and eliminate storage costs.",
-        "Designed an <strong>advanced request-tracing system</strong> delivering detailed traces, including database and HTTP calls, with no added processing or network overhead in response pipelines."
+        "Developed <strong>core backend services</strong> powering Korn Ferry Talent Suite, a global HR-Tech platform serving thousands of organizations across <strong>150+ countries</strong>.",
+        "Engineered an <strong>internal service-discovery and request-routing system</strong> that periodically scanned services, aggregated route maps, and dynamically translated outgoing requests, reducing inter-service latency by up to <strong>70%</strong> and overall request latency by up to <strong>40%</strong>, without requiring changes to individual service handlers.",
+        "Architected a <strong>real-time streaming export pipeline</strong> for multi-gigabyte audit logs, generating and streaming CSV exports directly to clients without intermediate server-side files, minimizing memory consumption and eliminating generated-file storage overhead.",
+        "Designed an <strong>advanced hierarchical request-tracing system</strong> capturing nested execution flows, operation-level timings, and contextual metadata across database and HTTP calls, with minimal overhead in request-processing pipelines."
       ],
       "stack": ["NestJS", "Microservices", "Redis", "PostgreSQL", "AWS"]
     },
@@ -38,10 +37,11 @@
       "period": "Dec 2022 — Dec 2024",
       "side": "left",
       "bullets": [
-        "Led the development of a <strong>two-sided marketplace platform</strong> - architecting and owning most of the backend and frontend development while leading a <strong>team of three</strong> from initial design through production deployment.",
-        "Designed a <strong>hybrid geolocation + address-based search system</strong> (map, radius, and structured address queries) alongside a <strong>dynamic inheritance-based CMS</strong> giving granular per-category control over listing fields, pricing packages, and limits.",
-        "Built a <strong>real-time chat and notification system</strong> with per-listing conversation identity, live presence, and real-time listing updates.",
-        "Architected a <strong>Stripe-integrated wallet and recurring payment system</strong>, implementing a hybrid transaction ledger supporting direct payments, account credits, and automated subscription renewals."
+        "Led the engineering of a <strong>two-sided marketplace platform</strong> from initial design through production launch, owning core backend and frontend architecture while leading a <strong>team of three</strong>.",
+        "Designed a <strong>dynamic inheritance-based CMS</strong> with a hierarchical category system, allowing categories and subcategories to be created with independently configurable listing attributes, pricing packages, and limits, while inheriting or selectively overriding parent configurations.",
+        "Engineered a <strong>hybrid geospatial and address-based search system</strong> using MongoDB geospatial queries and custom distance calculations to support map-based discovery, radius searches, and structured address filtering.",
+        "Built a <strong>real-time communication system</strong> using Socket.IO, with per-listing chat rooms, custom presence tracking, reconnection handling, typing indicators, media messaging, and real-time notifications.",
+        "Architected a <strong>Stripe-integrated wallet and recurring payments system</strong>, implementing a hybrid transaction ledger supporting direct payments, account credits, and automated subscription renewals."
       ],
       "stack": ["Node.js", "React", "WebSockets", "PostgreSQL", "React Native"]
     },
@@ -52,9 +52,9 @@
       "period": "Feb 2020 — Dec 2022",
       "side": "right",
       "bullets": [
-        "Mentored <strong>100+ developers worldwide</strong>, working with individuals across experience levels, from programming beginners to experienced engineers seeking guidance in software development and system design.",
-        "Developed <strong>full-stack applications</strong> across the TypeScript ecosystem, leveraging technologies including <strong>React, Next.js, React Native, Node.js, Express, GraphQL, and WebSockets</strong> to deliver end-to-end solutions.",
-        "Worked across diverse product domains, including a <strong>gaming companion application</strong>, a <strong>tournament hosting and management platform</strong>, and an <strong>educational technology platform</strong>, among others."
+        "Mentored <strong>100+ developers worldwide</strong>, providing technical guidance across software engineering, full-stack development, and system design, from foundational programming to advanced engineering concepts.",
+        "Designed and delivered <strong>end-to-end full-stack applications</strong> across the TypeScript and JavaScript ecosystems, spanning React, Next.js, React Native, Node.js, Express, GraphQL, and more.",
+        "Delivered products across diverse domains, including gaming companion applications, tournament management platforms, educational technology, and more."
       ],
       "stack": ["React", "Node.js", "TypeScript", "MongoDB", "GraphQL"]
     }
