@@ -22,7 +22,7 @@
     </h1>
 
     <p
-      class="intro hero-reveal hero-reveal-3 mt-5! max-w-xl font-body font-medium text-text sm:mt-6! md:max-w-xl text-base lg:max-w-4xl lg:text-2xl"
+      class="intro hero-reveal hero-reveal-3 mt-5! max-w-xl font-body font-normal text-text sm:mt-6! md:max-w-lg text-lg lg:max-w-3xl lg:text-2xl tracking-wide"
     >
       {heroData.intro}
     </p>

@@ -209,7 +209,7 @@ button {
   inset: 0;
   top: 0;
   pointer-events: none;
-  background: var(--void);
+  background: black;
   transform: translateZ(0);
 }
 .site {

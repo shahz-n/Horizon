@@ -2,7 +2,7 @@
   "greeting": "Hi there",
   "nameFirst": "Shahzer",
 
-  "intro": "A Full-Stack Software Engineer building scalable systems and architecting complex applications",
+  "intro": "A Full-Stack Software Engineer architecting scalable systems and building complex applications",
   "primaryAction": { "label": "Get in touch", "href": "#contact" },
   "resumeAction": { "label": "Download resume", "href": "/resume.pdf" }
 }
