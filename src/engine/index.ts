@@ -7,7 +7,7 @@ import { evaluateMoonTrajectory } from "./trajectory";
 
 const INTRO_DELAY = 1200;
 const INTRO_DURATION = 900;
-const INTRO_MIN_FRAMES = 60;
+const INTRO_MIN_FRAMES = 75;
 
 const GLASS_OPACITY_MARGIN = 20;
 
