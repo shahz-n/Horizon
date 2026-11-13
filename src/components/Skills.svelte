@@ -49,7 +49,11 @@
 
 <style>
   .portfolio-skill-name {
-    font-size: clamp(12px, 1.25vw, 19px);
+    font-size: clamp(11px, 1.25vw, 19px);
     line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 0.25rem;
   }
 </style>

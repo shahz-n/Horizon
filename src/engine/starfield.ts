@@ -178,7 +178,7 @@ export function createStarfield(
     uniforms: { uPixelRatio: { value: dpr } },
   });
 
-  const starCount = 35_000;
+  const starCount = 33_000;
   const starPoints = new THREE.Points(
     createStarGeometry(starCount),
     starMaterial,
