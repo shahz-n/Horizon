@@ -42,7 +42,8 @@ type WorkerResponse = {
 
 class MoonManager {
   readonly mesh: THREE.Mesh;
-
+  private uploadCanvas?: OffscreenCanvas;
+  private uploadContext?: OffscreenCanvasRenderingContext2D;
   private readonly config: ResolutionConfig;
   private readonly loadedTiers = new Array<TileTier | null>(TILE_COUNT).fill(
     null,
@@ -92,30 +93,47 @@ class MoonManager {
     return new THREE.SphereGeometry(MOON_RADIUS, segments, segments);
   }
 
-  private createDefaultTexture(): void {
+  private createDefaultTexture(renderer: THREE.WebGLRenderer): void {
     const texture = new THREE.Texture({
       width: this.config.atlasWidth,
       height: this.config.atlasHeight,
     });
+    const maxAnisotropy = renderer.capabilities.getMaxAnisotropy();
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.generateMipmaps = true;
     texture.minFilter = THREE.LinearMipmapLinearFilter;
     texture.magFilter = THREE.LinearFilter;
     texture.source.dataReady = false;
+
+    texture.anisotropy = maxAnisotropy;
     texture.needsUpdate = true;
+
     this.texture = texture;
   }
 
-  constructor(scene: THREE.Scene) {
-    const isLargeScreen = window.innerWidth > 1024 || window.innerHeight > 1024;
-    this.config = MoonManager.createConfig(isLargeScreen);
+  private initializeUploadCanvas(): void {
+    this.uploadCanvas = new OffscreenCanvas(
+      this.config.segmentWidth,
+      this.config.segmentHeight,
+    );
 
+    this.uploadContext =
+      this.uploadCanvas.getContext("2d", {
+        alpha: false,
+      }) ?? undefined;
+  }
+
+  constructor(scene: THREE.Scene, renderer: THREE.WebGLRenderer) {
+    const isLargeScreen = window.innerWidth > 1024 || window.innerHeight > 1024;
+    // const isLargeScreen = false;
+    this.config = MoonManager.createConfig(isLargeScreen);
+    this.initializeUploadCanvas();
     this.workerController.createPool(
       this.fetchWorker.id,
       new URL(this.fetchWorker.url, import.meta.url),
       WORKER_COUNT,
     );
-    this.createDefaultTexture();
+    this.createDefaultTexture(renderer);
     this.mesh = new THREE.Mesh(
       this.createTiledSphereGeometry(this.config.geometrySegments),
       new THREE.MeshStandardMaterial({
@@ -253,7 +271,6 @@ class MoonManager {
     if (this.tilePointer > this.bitmaps.length - 1) return;
 
     const texture = this.texture;
-
     const gl = renderer.getContext();
 
     const properties = renderer.properties.get(texture) as {
@@ -265,11 +282,9 @@ class MoonManager {
     if (!webglTexture) return;
 
     const item = this.bitmaps[this.tilePointer];
-
     if (!item) return;
 
     const { index, segment, bitmap } = item;
-
     if (!bitmap) return;
 
     const segmentX = segment % 4;
@@ -284,29 +299,49 @@ class MoonManager {
 
     this.bitmaps[this.tilePointer].bitmap = null;
 
-    gl.bindTexture(gl.TEXTURE_2D, webglTexture);
+    // Create an offscreen canvas and physically flip the bitmap vertically.
+    const canvas = this.uploadCanvas!;
+    const ctx = this.uploadContext!;
+
+    ctx.setTransform(1, 0, 0, -1, 0, bitmap.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(bitmap, 0, 0);
+
+    renderer.state.bindTexture(gl.TEXTURE_2D, webglTexture);
 
     renderer.state.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
     renderer.state.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
     renderer.state.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL, gl.NONE);
     renderer.state.pixelStorei(gl.UNPACK_ALIGNMENT, 4);
 
-    gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, gl.RGBA, gl.UNSIGNED_BYTE, bitmap);
+    // Upload the physically flipped canvas instead of the ImageBitmap.
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
+
+    const error = gl.getError();
+
+    if (error !== gl.NO_ERROR) {
+      console.error("Texture upload error:", error, {
+        index,
+        segment,
+        x,
+        y,
+      });
+    }
 
     if (
       this.tilePointer === this.bitmaps.length - 1 ||
-      this.tilePointer % 32 == 0
+      (this.tilePointer + 1) % 64 === 0
     ) {
       gl.generateMipmap(gl.TEXTURE_2D);
     }
-    bitmap.close();
 
+    bitmap.close();
     this.tilePointer++;
   }
 }
 
 let moonInstance: MoonManager | null = null;
 
-export function createMoon(scene: THREE.Scene) {
-  return (moonInstance ??= new MoonManager(scene));
+export function createMoon(scene: THREE.Scene, renderer: THREE.WebGLRenderer) {
+  return (moonInstance ??= new MoonManager(scene, renderer));
 }

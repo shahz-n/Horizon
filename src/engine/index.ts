@@ -7,8 +7,8 @@ import { evaluateMoonTrajectory } from "./trajectory";
 
 const MAX_PIXEL_RATIO = 2;
 
-const INTRO_DELAY = 900;
-const INTRO_DURATION = 1200;
+const INTRO_DELAY = 1200;
+const INTRO_DURATION = 900;
 const INTRO_MIN_FRAMES = 80;
 
 const GLASS_OPACITY_MARGIN = 20;
@@ -37,14 +37,13 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
-    alpha: false,
     powerPreference: "high-performance",
   });
 
   const canvasRect = canvas.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
+  // const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
 
-  renderer.setPixelRatio(dpr);
+  renderer.setPixelRatio(1);
   renderer.setSize(canvasRect.width, canvasRect.height, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -53,7 +52,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x030410, 0.003);
 
-  const moon = createMoon(scene);
+  const moon = createMoon(scene, renderer);
   moon.setPositionAndScale(INTRO_MOON_POSITION, INTRO_MOON_SCALE);
 
   const camera = new THREE.PerspectiveCamera(
@@ -101,7 +100,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     lerp: SCROLL_LERP_FACTOR,
     smoothWheel: true,
     syncTouch: false,
-    wheelMultiplier: 0.75,
+    wheelMultiplier: 0.85,
     touchMultiplier: 1,
     anchors: {
       duration: 1,
@@ -109,11 +108,11 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     },
   });
 
-  // let last_frames = 0;
-  // setInterval(() => {
-  //   console.log("fps:", frames - last_frames);
-  //   last_frames = frames;
-  // }, 1000);
+  let last_frames = 0;
+  setInterval(() => {
+    console.log("fps:", frames - last_frames);
+    last_frames = frames;
+  }, 1000);
 
   const updateGlassOpacity = () => {
     const viewportHeight = window.innerHeight;

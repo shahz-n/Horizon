@@ -62,7 +62,6 @@ self.onmessage = async ({ data }: MessageEvent<TileRequest>) => {
         {
           resizeWidth: segmentWidth,
           resizeHeight: segmentHeight,
-          imageOrientation: "flipY",
           premultiplyAlpha: "none",
           colorSpaceConversion: "none",
         },

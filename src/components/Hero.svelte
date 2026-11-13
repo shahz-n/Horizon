@@ -44,7 +44,7 @@
       <a
         href={heroData.resumeAction.href}
         download
-        class="glass w-full md:w-56 hero-reveal-4 hero-reveal rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-semibold font-family-display low-saturation sm:w-auto sm:px-9 sm:text-lg"
+        class="glass glass-button w-full md:w-56 hero-reveal-4 hero-reveal rounded-full! px-6 md:px-8 py-4 md:py-3.5 text-base font-semibold font-family-display low-saturation sm:w-auto sm:px-9 sm:text-lg"
         >{heroData.resumeAction.label}</a
       >
     </div>

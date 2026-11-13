@@ -1,28 +1,7 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import skillsData from "../data/skills.json";
 
   let tiles: HTMLElement[] = [];
-
-  onMount(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-    );
-
-    tiles.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  });
 </script>
 
 <section id="skills" class="page">
@@ -34,7 +13,7 @@
     </div>
 
     <div
-      class="grid w-full gap-1.5 md:gap-2 lg:gap-2.5 grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
+      class="grid w-full gap-1.5 md:gap-2 lg:gap-2.5 grid-cols-4 md:grid-cols-6 lg:grid-cols-8 skills-grid"
     >
       {#each skillsData.skills as skill, i}
         <div
