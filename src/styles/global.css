@@ -37,7 +37,7 @@
 }
 
 :root {
-  --void: #020306;
+  --void: #000;
   --deep-space: #060a14;
   --nebula-dark: #0a0e1a;
   --nebula-mid: #101628;
@@ -149,7 +149,7 @@ html.lenis body {
 body {
   margin: 0;
   overflow-x: hidden;
-  background: var(--void);
+  background: #000;
   color: var(--text);
   font-family: var(--ff-body);
   font-size: 1rem;
@@ -302,15 +302,6 @@ strong {
   background: var(--gradient-glass-hover);
   box-shadow: var(--glass-shadow-hover);
 }
-/* .low-saturation {
-  -webkit-backdrop-filter: blur(16px) saturate(125%);
-  backdrop-filter: blur(16px) saturate(125%);
-}
-.high-saturation {
-  -webkit-backdrop-filter: blur(16px) saturate(200%);
-  backdrop-filter: blur(16px) saturate(200%);
-} */
-
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -355,11 +346,9 @@ strong {
   }
   .section-head h2 {
     width: 100%;
-    /* text-align: left; */
   }
   .section-head .sub {
     width: 100%;
-    /* text-align: left; */
     font-size: 1.125rem;
   }
   .eyebrow {
@@ -372,15 +361,6 @@ strong {
   .eyebrow::after {
     width: 1.5rem;
   }
-
-  /* .low-saturation {
-    backdrop-filter: blur(16px) saturate(125%);
-    -webkit-backdrop-filter: blur(16px) saturate(125%);
-  }
-  .high-saturation {
-    backdrop-filter: blur(16px) saturate(250%);
-    -webkit-backdrop-filter: blur(16px) saturate(250%);
-  } */
 }
 @media (max-width: 640px) {
   html {

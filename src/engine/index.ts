@@ -5,11 +5,9 @@ import { createPhysics, type PhysicsSystem } from "./physics";
 import { createStarfield, type StarfieldSystem } from "./starfield";
 import { evaluateMoonTrajectory } from "./trajectory";
 
-const MAX_PIXEL_RATIO = 2;
-
 const INTRO_DELAY = 1200;
 const INTRO_DURATION = 900;
-const INTRO_MIN_FRAMES = 80;
+const INTRO_MIN_FRAMES = 60;
 
 const GLASS_OPACITY_MARGIN = 20;
 
@@ -41,7 +39,6 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
   });
 
   const canvasRect = canvas.getBoundingClientRect();
-  // const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
 
   renderer.setPixelRatio(1);
   renderer.setSize(canvasRect.width, canvasRect.height, false);
@@ -108,12 +105,6 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     },
   });
 
-  let last_frames = 0;
-  setInterval(() => {
-    console.log("fps:", frames - last_frames);
-    last_frames = frames;
-  }, 1000);
-
   const updateGlassOpacity = () => {
     const viewportHeight = window.innerHeight;
     const margin = viewportHeight * (GLASS_OPACITY_MARGIN / 100);
@@ -151,16 +142,10 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     if (rect.width === viewportWidth) return;
 
     viewportWidth = rect.width;
-
-    const dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
-
-    renderer.setPixelRatio(dpr);
     renderer.setSize(rect.width, rect.height, false);
 
     camera.aspect = rect.width / rect.height;
     camera.updateProjectionMatrix();
-
-    starfield.updatePixelRatio(dpr);
   };
 
   window.addEventListener("resize", onResize);

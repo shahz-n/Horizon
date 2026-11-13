@@ -299,7 +299,6 @@ class MoonManager {
 
     this.bitmaps[this.tilePointer].bitmap = null;
 
-    // Create an offscreen canvas and physically flip the bitmap vertically.
     const canvas = this.uploadCanvas!;
     const ctx = this.uploadContext!;
 
@@ -314,7 +313,6 @@ class MoonManager {
     renderer.state.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL, gl.NONE);
     renderer.state.pixelStorei(gl.UNPACK_ALIGNMENT, 4);
 
-    // Upload the physically flipped canvas instead of the ImageBitmap.
     gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
 
     const error = gl.getError();
