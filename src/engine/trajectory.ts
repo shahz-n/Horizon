@@ -1,6 +1,3 @@
-/* =========================================================================
-   Engine Module — 3D Spline Path & Scale Trajectory Evaluator
-   ========================================================================= */
 import * as THREE from "three";
 
 const LARGE_MOON_PATH_POINTS = [

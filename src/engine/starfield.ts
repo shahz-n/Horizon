@@ -1,6 +1,3 @@
-/* =========================================================================
-   Engine Module — Starfield Generator & Shader (from Astrarium)
-   ========================================================================= */
 import * as THREE from "three";
 
 const SIMULATION_RADIUS = 300;
@@ -41,7 +38,7 @@ const starFragmentShader = `
 
     if (r2 > 1.0) discard;
 
-    float falloff = 2.0;
+    float falloff = 1.5;
     float alpha = exp(-r2 * falloff);
 
     float brightness = sqrt(vIntensity);
@@ -178,7 +175,7 @@ export function createStarfield(
     uniforms: { uPixelRatio: { value: dpr } },
   });
 
-  const starCount = 33_000;
+  const starCount = 30_000;
   const starPoints = new THREE.Points(
     createStarGeometry(starCount),
     starMaterial,

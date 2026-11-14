@@ -1,5 +1,3 @@
-import * as THREE from "three";
-
 const ROTATION_SPEED = 0.015;
 const MOUSE_ROTATION_LIMIT = 0.125;
 const MOON_DAMPING = 0.02;

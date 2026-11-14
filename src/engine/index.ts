@@ -9,8 +9,6 @@ const INTRO_DELAY = 1200;
 const INTRO_DURATION = 900;
 const INTRO_MIN_FRAMES = 75;
 
-const GLASS_OPACITY_MARGIN = 20;
-
 const SCROLL_LERP_FACTOR = 0.2;
 
 const INTRO_CAMERA_POSITION = new THREE.Vector3(0, 0, 16);
@@ -56,7 +54,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     30,
     canvasRect.width / canvasRect.height,
     0.01,
-    600,
+    400,
   );
   camera.position.copy(INTRO_CAMERA_POSITION);
   camera.lookAt(INTRO_LOOK_START);
@@ -82,8 +80,6 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
 
   const physics: PhysicsSystem = createPhysics();
 
-  const glassElements = [...document.querySelectorAll<HTMLElement>(".reveal")];
-
   let scrollProgress = 0;
   let destroyed = false;
   let animFrameId: number | null = null;
@@ -104,25 +100,11 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
       easing: (t) => 1 - Math.pow(1 - t, 3),
     },
   });
-
-  const updateGlassOpacity = () => {
-    const viewportHeight = window.innerHeight;
-    const margin = viewportHeight * (GLASS_OPACITY_MARGIN / 100);
-
-    for (const element of glassElements) {
-      const rect = element.getBoundingClientRect();
-
-      let opacity = 1;
-
-      if (rect.bottom <= margin) {
-        opacity = Math.max(0, rect.bottom / margin);
-      } else if (rect.top >= viewportHeight - margin) {
-        opacity = Math.max(0, (viewportHeight - rect.top) / margin);
-      }
-
-      element.style.opacity = (Math.round(opacity * 100) / 100).toString();
-    }
-  };
+  let last_frames = 0;
+  // setInterval(() => {
+  //   console.log("fps:", frames - last_frames);
+  //   last_frames = frames;
+  // }, 1000);
 
   const lockScroll = () => {
     document.body.style.overflow = "hidden";
@@ -213,7 +195,6 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
     animFrameId = requestAnimationFrame(tick);
 
     currentAnimation(time);
-    updateGlassOpacity();
     renderer.render(scene, camera);
     moon.uploadNextSegment(renderer);
   }

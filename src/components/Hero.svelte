@@ -56,6 +56,7 @@
     opacity: 0;
     transform: translateY(-40px);
     animation: hero-in 0.75s var(--ease-smooth) forwards;
+    will-change: opacity, transform;
   }
 
   .hero-reveal-2 {
@@ -78,6 +79,7 @@
     to {
       opacity: 1;
       transform: translateY(0);
+      will-change: none;
     }
   }
 

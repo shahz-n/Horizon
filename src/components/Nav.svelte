@@ -64,7 +64,7 @@
 <!-- Left rail -->
 <nav
   aria-label="Section navigation"
-  class="fixed! -left-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pl-5 overflow-visible! max_md:hidden nav-reveal-left"
+  class="fixed! glass-button -left-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pl-5 overflow-visible! max_md:hidden nav-reveal-left"
 >
   {#each leftNavigation as item}
     <NavItem {...item} />
@@ -78,7 +78,7 @@
 <!-- Right rail -->
 <aside
   aria-label="Section and contact links"
-  class="fixed! -right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pr-5 overflow-visible! max_md:hidden nav-reveal-right"
+  class="fixed! glass-button -right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col glass p-2 pr-5 overflow-visible! max_md:hidden nav-reveal-right"
 >
   {#each rightNavigation as item}
     <NavItem {...item} />
@@ -107,6 +107,9 @@
     transform: translateY(-60px);
     animation: nav-brand-in 0.9s var(--ease-smooth) forwards;
     animation-delay: 0.9s;
+    will-change: opacity, transform;
+    /* backdrop-filter: none !important; */
+    /* background: black; */
   }
 
   .nav-reveal-left {
@@ -114,6 +117,8 @@
     transform: translateX(-80px);
     animation: nav-left-in 0.9s var(--ease-smooth) forwards;
     animation-delay: 0.9s;
+    /* backdrop-filter: none !important;
+    background: black; */
   }
 
   .nav-reveal-right {
@@ -121,6 +126,8 @@
     transform: translateX(80px);
     animation: nav-right-in 0.9s var(--ease-smooth) forwards;
     animation-delay: 0.9s;
+    /* backdrop-filter: none !important;
+    background: black; */
   }
 
   @keyframes nav-brand-in {
@@ -131,6 +138,7 @@
     to {
       opacity: 1;
       transform: translate(0);
+      will-change: none;
     }
   }
 
@@ -142,6 +150,7 @@
     to {
       opacity: 1;
       transform: translateX(0);
+      will-change: none;
     }
   }
 
@@ -153,6 +162,7 @@
     to {
       opacity: 1;
       transform: translateX(0);
+      will-change: none;
     }
   }
 </style>

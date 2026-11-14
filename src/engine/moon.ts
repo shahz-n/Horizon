@@ -125,7 +125,6 @@ class MoonManager {
 
   constructor(scene: THREE.Scene, renderer: THREE.WebGLRenderer) {
     const isLargeScreen = window.innerWidth > 1024 || window.innerHeight > 1024;
-    // const isLargeScreen = false;
     this.config = MoonManager.createConfig(isLargeScreen);
     this.initializeUploadCanvas();
     this.workerController.createPool(
