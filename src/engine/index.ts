@@ -100,7 +100,7 @@ export function initEngine(canvas: HTMLCanvasElement): SceneAPI {
       easing: (t) => 1 - Math.pow(1 - t, 3),
     },
   });
-  let last_frames = 0;
+  // let last_frames = 0;
   // setInterval(() => {
   //   console.log("fps:", frames - last_frames);
   //   last_frames = frames;

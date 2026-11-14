@@ -28,7 +28,7 @@
            opacity-0"
   >
     <div class="relative w-full px-8 pt-8 max_md:px-6 max_md:pt-6">
-      <div class="relative aspect-video overflow-hidden rounded-sm bg-black/30">
+      <div class="relative aspect-video overflow-hidden rounded-sm bg-black!">
         {#if project.image && !imageError}
           <img
             src={project.image}
